@@ -1,0 +1,3 @@
+org\github\foxnic\web\example\controller\AddressController.class
+org\github\foxnic\web\example\service\impl\AddressServiceImpl.class
+org\github\foxnic\web\example\service\IAddressService.class
