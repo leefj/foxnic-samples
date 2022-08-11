@@ -8,11 +8,11 @@ import com.github.foxnic.generator.builder.model.PojoClassFile;
 import com.github.foxnic.generator.builder.model.VoClassFile;
 import com.github.foxnic.generator.builder.view.option.*;
 import com.github.foxnic.generator.config.WriteMode;
-import com.leefj.webfull.constants.db.WebFullTables.EXAMPLE_ADDRESS;
+import com.leefj.webfull.constants.db.WebFullTables.WEBFULL_EXAMPLE_ADDRESS;
 import org.github.foxnic.web.generator.module.BaseCodeConfig;
 
 
-public class ExampleAddressConfig extends BaseCodeConfig<EXAMPLE_ADDRESS> {
+public class ExampleAddressConfig extends BaseCodeConfig<WEBFULL_EXAMPLE_ADDRESS> {
 
 
 
@@ -90,7 +90,7 @@ public class ExampleAddressConfig extends BaseCodeConfig<EXAMPLE_ADDRESS> {
 	@Override
 	public void configList(ViewOptions view,ListOptions list) {
 
-		list.sort(EXAMPLE_ADDRESS.PHONE_NUMBER,true);
+		list.sort(WEBFULL_EXAMPLE_ADDRESS.PHONE_NUMBER,true);
 
 	}
 
@@ -120,7 +120,7 @@ public class ExampleAddressConfig extends BaseCodeConfig<EXAMPLE_ADDRESS> {
 
 
 	public ExampleAddressConfig() {
-		super("service-example", EXAMPLE_ADDRESS.$TABLE,"example_", 3);
+		super("service-example", WEBFULL_EXAMPLE_ADDRESS.$TABLE,"webfull_example_", 3);
 	}
 
 

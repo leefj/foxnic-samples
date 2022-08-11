@@ -1,13 +1,13 @@
 /**
  * 订单地址 列表页 JS 脚本
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-08-11 16:45:49
+ * @since 2022-08-11 16:57:47
  */
 
 function FormPage() {
 
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect,foxup,dropdown;
-	const moduleURL="/webfull-service-example/example-address";
+	const moduleURL="/webfull-service-example/webfull-example-address";
 	// 表单执行操作类型：view，create，edit
 	var action=null;
 	var disableCreateNew=false;
@@ -23,7 +23,7 @@ function FormPage() {
      	admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,foxup=layui.foxnicUpload,dropdown=layui.dropdown;
 		laydate = layui.laydate,table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect;
 
-		action=admin.getTempData('example-address-form-data-form-action');
+		action=admin.getTempData('webfull-example-address-form-data-form-action');
 		//如果没有修改和保存权限
 		if( !admin.checkAuth(AUTH_PREFIX+":update") && !admin.checkAuth(AUTH_PREFIX+":save")) {
 			disableModify=true;
@@ -37,7 +37,7 @@ function FormPage() {
 		}
 
 		if(window.pageExt.form.beforeInit) {
-			window.pageExt.form.beforeInit(action,admin.getTempData('example-address-form-data'));
+			window.pageExt.form.beforeInit(action,admin.getTempData('webfull-example-address-form-data'));
 		}
 
 		//渲染表单组件
@@ -89,9 +89,9 @@ function FormPage() {
 				prevBodyHeight = bodyHeight;
 				return;
 			}
-			var area=admin.changePopupArea(null,bodyHeight+footerHeight,'example-address-form-data-win');
+			var area=admin.changePopupArea(null,bodyHeight+footerHeight,'webfull-example-address-form-data-win');
 			if(area==null) return;
-			admin.putTempData('example-address-form-area', area);
+			admin.putTempData('webfull-example-address-form-area', area);
 			window.adjustPopup=adjustPopup;
 			if(area.tooHeigh) {
 				var windowHeight=area.iframeHeight;
@@ -142,7 +142,7 @@ function FormPage() {
       */
 	function fillFormData(formData) {
 		if(!formData) {
-			formData = admin.getTempData('example-address-form-data');
+			formData = admin.getTempData('webfull-example-address-form-data');
 		}
 
 		window.pageExt.form.beforeDataFill && window.pageExt.form.beforeDataFill(formData);
@@ -250,7 +250,7 @@ function FormPage() {
 				}
 
 				if(doNext) {
-					admin.finishPopupCenterById('example-address-form-data-win');
+					admin.finishPopupCenterById('webfull-example-address-form-data-win');
 				}
 
 				// 调整状态为编辑
@@ -282,7 +282,7 @@ function FormPage() {
 
 
 	    //关闭窗口
-	    $("#cancel-button").click(function(){ admin.finishPopupCenterById('example-address-form-data-win',this); });
+	    $("#cancel-button").click(function(){ admin.finishPopupCenterById('webfull-example-address-form-data-win',this); });
 
     }
 

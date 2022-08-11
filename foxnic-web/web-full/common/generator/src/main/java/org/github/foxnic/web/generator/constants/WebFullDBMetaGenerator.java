@@ -32,7 +32,7 @@ public class WebFullDBMetaGenerator {
 		dbMetaBuilder.setTableFilter(table->{
 			table=table.toLowerCase();
 			// 仅生成以 example_ 开头的表
-			if(table.startsWith("example_")) return true;
+			if(table.startsWith("webfull_")) return true;
 			return false;
 		});
 		dbMetaBuilder.save(true);

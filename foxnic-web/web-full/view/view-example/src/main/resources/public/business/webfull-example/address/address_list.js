@@ -1,7 +1,7 @@
 /**
  * 订单地址 列表页 JS 脚本
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-08-11 16:45:47
+ * @since 2022-08-11 16:57:45
  */
 
 
@@ -9,7 +9,7 @@ function ListPage() {
 
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect;
 	//模块基础路径
-	const moduleURL="/webfull-service-example/example-address";
+	const moduleURL="/webfull-service-example/webfull-example-address";
 	var dataTable=null;
 	var sort=null;
 	/**
@@ -240,7 +240,7 @@ function ListPage() {
 			}
 			switch(obj.event){
 				case 'create':
-					admin.putTempData('example-address-form-data', {});
+					admin.putTempData('webfull-example-address-form-data', {});
 					openCreateFrom();
 					break;
 				case 'batch-del':
@@ -259,7 +259,7 @@ function ListPage() {
         function openCreateFrom() {
         	//设置新增是初始化数据
         	var data={};
-			admin.putTempData('example-address-form-data-form-action', "create",true);
+			admin.putTempData('webfull-example-address-form-data-form-action', "create",true);
             showEditForm(data);
         };
 
@@ -309,11 +309,11 @@ function ListPage() {
 				if(!doNext) return;
 			}
 
-			admin.putTempData('example-address-form-data-form-action', "",true);
+			admin.putTempData('webfull-example-address-form-data-form-action', "",true);
 			if (layEvent === 'edit') { // 修改
 				admin.post(moduleURL+"/get-by-id", { id : data.id }, function (data) {
 					if(data.success) {
-						admin.putTempData('example-address-form-data-form-action', "edit",true);
+						admin.putTempData('webfull-example-address-form-data-form-action', "edit",true);
 						showEditForm(data.data);
 					} else {
 						 fox.showMessage(data);
@@ -322,7 +322,7 @@ function ListPage() {
 			} else if (layEvent === 'view') { // 查看
 				admin.post(moduleURL+"/get-by-id", { id : data.id }, function (data) {
 					if(data.success) {
-						admin.putTempData('example-address-form-data-form-action', "view",true);
+						admin.putTempData('webfull-example-address-form-data-form-action', "view",true);
 						showEditForm(data.data);
 					} else {
 						fox.showMessage(data);
@@ -366,14 +366,14 @@ function ListPage() {
 			var doNext=window.pageExt.list.beforeEdit(data);
 			if(!doNext) return;
 		}
-		var action=admin.getTempData('example-address-form-data-form-action');
+		var action=admin.getTempData('webfull-example-address-form-data-form-action');
 		var queryString="";
 		if(data && data.id) queryString='id=' + data.id;
 		if(window.pageExt.list.makeFormQueryString) {
 			queryString=window.pageExt.list.makeFormQueryString(data,queryString,action);
 		}
-		admin.putTempData('example-address-form-data', data);
-		var area=admin.getTempData('example-address-form-area');
+		admin.putTempData('webfull-example-address-form-data', data);
+		var area=admin.getTempData('webfull-example-address-form-area');
 		var height= (area && area.height) ? area.height : ($(window).height()*0.6);
 		var top= (area && area.top) ? area.top : (($(window).height()-height)/2);
 		var title = fox.translate('订单地址');
@@ -387,8 +387,8 @@ function ListPage() {
 			offset: [top,null],
 			area: ["500px",height+"px"],
 			type: 2,
-			id:"example-address-form-data-win",
-			content: '/business/example/address/address_form.html' + (queryString?("?"+queryString):""),
+			id:"webfull-example-address-form-data-win",
+			content: '/business/webfull-example/address/address_form.html' + (queryString?("?"+queryString):""),
 			finish: function () {
 				if(action=="create") {
 					refreshTableData();

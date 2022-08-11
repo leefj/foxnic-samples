@@ -38,11 +38,11 @@ import java.util.Map;
  * 订单地址 服务实现
  * </p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-08-11 16:45:38
+ * @since 2022-08-11 16:57:43
 */
 
 
-@Service("ExampleAddressService")
+@Service("WebfullExampleAddressService")
 public class AddressServiceImpl extends SuperService<Address> implements IAddressService {
 
 	/**

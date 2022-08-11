@@ -49,12 +49,12 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 订单地址 接口控制器
  * </p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-08-11 16:45:44
+ * @since 2022-08-11 16:57:43
 */
 
 @Api(tags = "订单地址")
 @ApiSort(0)
-@RestController("ExampleAddressController")
+@RestController("WebfullExampleAddressController")
 public class AddressController extends SuperController {
 
 	@Autowired

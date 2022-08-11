@@ -1,24 +1,25 @@
 package com.leefj.webfull.proxy.example;
 
-import com.github.foxnic.api.transter.Result;
-import com.github.foxnic.dao.data.PagedList;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.github.foxnic.web.proxy.api.APIProxy;
+import org.github.foxnic.web.proxy.FeignConfiguration;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.springframework.cloud.openfeign.FeignClient;
 import com.leefj.webfull.domain.example.Address;
 import com.leefj.webfull.domain.example.AddressVO;
-import com.leefj.webfull.proxy.WebFullServiceNames;
-import org.github.foxnic.web.proxy.FeignConfiguration;
-import org.github.foxnic.web.proxy.api.APIProxy;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import java.util.List;
+import com.github.foxnic.api.transter.Result;
+import com.github.foxnic.dao.data.PagedList;
+import com.leefj.webfull.proxy.WebFullServiceNames;
 
 /**
  * <p>
  * 订单地址  控制器服务代理
  * </p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-08-11 16:45:44
+ * @since 2022-08-11 16:57:43
  */
 @FeignClient(value = WebFullServiceNames.EXAMPLE, contextId = AddressServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface AddressServiceProxy {
@@ -29,9 +30,9 @@ public interface AddressServiceProxy {
     public static final String API_BASIC_PATH = "webfull-service-example";
 
     /**
-     * API 上下文路径 , example-address
+     * API 上下文路径 , webfull-example-address
      */
-    public static final String API_CONTEXT_PATH = "example-address";
+    public static final String API_CONTEXT_PATH = "webfull-example-address";
 
     /**
      * API 基础路径 , 由 API_BASIC_PATH 和 API_CONTEXT_PATH 两部分组成

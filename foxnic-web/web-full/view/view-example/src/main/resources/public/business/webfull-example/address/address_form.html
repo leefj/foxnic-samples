@@ -2,7 +2,7 @@
 /**
  * 订单地址 列表页 JS 脚本
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-08-11 16:45:48
+ * @since 2022-08-11 16:57:46
  */
  -->
  <!DOCTYPE html>
@@ -99,7 +99,7 @@
 </div>
 <div class="model-form-footer">
     <button class="layui-btn layui-btn-primary" id="cancel-button" lay-filter="cancel-button" type="button" th:text="${lang.translate('取消')}" >取消</button>
-    <button th:if="${perm.checkAnyAuth('example_address:create','example_address:update','example_address:save')}" class="layui-btn" style="margin-right: 15px;display: none;"  id="submit-button" lay-filter="submit-button" lay-submit th:text="${lang.translate('保存')}">保存</button>
+    <button th:if="${perm.checkAnyAuth('webfull_example_address:create','webfull_example_address:update','webfull_example_address:save')}" class="layui-btn" style="margin-right: 15px;display: none;"  id="submit-button" lay-filter="submit-button" lay-submit th:text="${lang.translate('保存')}">保存</button>
 </div>
 
 <script type="text/javascript" src="/module/global.js" th:src="'/module/global.js?'+${cacheKey}"></script>
@@ -110,15 +110,15 @@
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
     var VALIDATE_CONFIG={"regionType":{"labelInForm":"类型","inputType":"text_input","required":true}};
-    var AUTH_PREFIX="example_address";
+    var AUTH_PREFIX="webfull_example_address";
 
 
 </script>
 
 
 
-<script th:src="'/business/example/address/address_ext.js?'+${cacheKey}"></script>
-<script th:src="'/business/example/address/address_form.js?'+${cacheKey}"></script>
+<script th:src="'/business/webfull-example/address/address_ext.js?'+${cacheKey}"></script>
+<script th:src="'/business/webfull-example/address/address_form.js?'+${cacheKey}"></script>
 
 </body>
 </html>

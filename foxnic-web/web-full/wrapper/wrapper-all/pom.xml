@@ -121,12 +121,12 @@
         <!-- 当前项目业务模块 -->
         <dependency>
             <groupId>com.github.foxnic.example.web-full</groupId>
-            <artifactId>service-example</artifactId>
+            <artifactId>web-full-service-example</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.github.foxnic.example.web-full</groupId>
-            <artifactId>view-example</artifactId>
+            <artifactId>web-full-view-example</artifactId>
             <version>${project.version}</version>
         </dependency>
 

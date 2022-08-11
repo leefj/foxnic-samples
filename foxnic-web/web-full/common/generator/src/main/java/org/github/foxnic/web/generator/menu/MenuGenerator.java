@@ -11,8 +11,9 @@ import com.github.foxnic.dao.spec.DAO;
 import com.github.foxnic.generator.builder.business.ControllerProxyFile;
 import com.github.foxnic.sql.meta.DBTable;
 import com.github.foxnic.sql.meta.DBType;
+import com.leefj.webfull.constants.db.WebFullTables;
 import com.leefj.webfull.example.page.AddressPageController;
-import org.github.foxnic.web.constants.db.ExampleTables;
+import com.leefj.webfull.proxy.example.AddressServiceProxy;
 import org.github.foxnic.web.constants.db.FoxnicWeb;
 import org.github.foxnic.web.constants.enums.system.AccessType;
 import org.github.foxnic.web.constants.enums.system.MenuType;
@@ -21,7 +22,6 @@ import org.github.foxnic.web.domain.oauth.MenuResource;
 import org.github.foxnic.web.domain.oauth.Resourze;
 import org.github.foxnic.web.domain.oauth.RoleMenu;
 import org.github.foxnic.web.generator.config.WebFullConfigs;
-import org.github.foxnic.web.proxy.example.AddressServiceProxy;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.io.File;
@@ -54,8 +54,8 @@ public class MenuGenerator {
 //		mg=new MenuGenerator(ExampleTables.EXAMPLE_GOODS.$TABLE, GoodsServiceProxy.class, GoodsPageController.class);
 //		mg.generate("583014848745439232");
 
-		mg=new MenuGenerator(ExampleTables.EXAMPLE_ADDRESS.$TABLE, AddressServiceProxy.class, AddressPageController.class);
-		mg.generate("583014848745439232");
+		mg=new MenuGenerator(WebFullTables.WEBFULL_EXAMPLE_ADDRESS.$TABLE, AddressServiceProxy.class, AddressPageController.class);
+		mg.generate("610152639237193728");
 //		mg.removeByBatchId("608188281577799680");
 
 //		mg=new MenuGenerator(FoxnicWeb.BPM_PROCESS_DEFINITION.$TABLE, ProcessDefinitionServiceProxy.class, ProcessDefinitionPageController.class);
@@ -264,7 +264,7 @@ public class MenuGenerator {
 	private String roleId;
 
 	private MenuGenerator(DBTable table,Class proxyType,Class pageType) {
-		this("service-system",SUPER_ADMIN_ROLE_ID,table,proxyType,pageType);
+		this("service-example",SUPER_ADMIN_ROLE_ID,table,proxyType,pageType);
 	}
 
 	public MenuGenerator(String appId,String roleId,DBTable table,Class proxyType,Class pageType) {

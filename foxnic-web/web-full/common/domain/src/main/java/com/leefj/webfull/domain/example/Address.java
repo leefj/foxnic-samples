@@ -1,16 +1,17 @@
 package com.leefj.webfull.domain.example;
 
-import com.github.foxnic.dao.entity.Entity;
-import javax.persistence.Table;
-import com.github.foxnic.sql.meta.DBTable;
-import com.leefj.webfull.constants.db.WebFullTables.EXAMPLE_ADDRESS;
-import javax.persistence.Id;
-import io.swagger.annotations.ApiModelProperty;
-import java.util.Date;
-import javax.persistence.Transient;
 import com.github.foxnic.commons.lang.DataParser;
-import java.util.Map;
+import com.github.foxnic.dao.entity.Entity;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.github.foxnic.sql.meta.DBTable;
+import com.leefj.webfull.constants.db.WebFullTables.WEBFULL_EXAMPLE_ADDRESS;
+import io.swagger.annotations.ApiModelProperty;
+
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+import java.util.Date;
+import java.util.Map;
 
 
 
@@ -27,69 +28,69 @@ public class Address extends Entity {
 
 	private static final long serialVersionUID = 1L;
 
-	public static final DBTable TABLE =EXAMPLE_ADDRESS.$TABLE;
-	
+	public static final DBTable TABLE =WEBFULL_EXAMPLE_ADDRESS.$TABLE;
+
 	/**
 	 * 主键：主键
 	*/
 	@Id
 	@ApiModelProperty(required = true,value="主键" , notes = "主键")
 	private String id;
-	
+
 	/**
 	 * 收件人姓名：收件人姓名
 	*/
 	@ApiModelProperty(required = false,value="收件人姓名" , notes = "收件人姓名")
 	private String name;
-	
+
 	/**
 	 * 收件人手机：收件人手机
 	*/
 	@ApiModelProperty(required = false,value="收件人手机" , notes = "收件人手机")
 	private String phoneNumber;
-	
+
 	/**
 	 * 收件地址：收件地址
 	*/
 	@ApiModelProperty(required = false,value="收件地址" , notes = "收件地址")
 	private String address;
-	
+
 	/**
 	 * 类型：A:国内；B:国外
 	*/
 	@ApiModelProperty(required = true,value="类型" , notes = "A:国内；B:国外")
 	private String regionType;
-	
+
 	/**
 	 * 地区位置：东北、华北等
 	*/
 	@ApiModelProperty(required = false,value="地区位置" , notes = "东北、华北等")
 	private String regionLocation;
-	
+
 	/**
 	 * 创建人ID：创建人ID
 	*/
 	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
 	private String createBy;
-	
+
 	/**
 	 * 创建时间：创建时间
 	*/
 	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
 	private Date createTime;
-	
+
 	/**
 	 * 修改人ID：修改人ID
 	*/
 	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
 	private String updateBy;
-	
+
 	/**
 	 * 修改时间：修改时间
 	*/
 	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
 	private Date updateTime;
-	
+
 	/**
 	 * 是否已删除：是否已删除
 	*/
@@ -97,25 +98,25 @@ public class Address extends Entity {
 	private Integer deleted;
 	@Transient
 	private Boolean deletedBool;
-	
+
 	/**
 	 * 删除人ID：删除人ID
 	*/
 	@ApiModelProperty(required = false,value="删除人ID" , notes = "删除人ID")
 	private String deleteBy;
-	
+
 	/**
 	 * 删除时间：删除时间
 	*/
 	@ApiModelProperty(required = false,value="删除时间" , notes = "删除时间")
 	private Date deleteTime;
-	
+
 	/**
 	 * 版本：版本
 	*/
 	@ApiModelProperty(required = true,value="版本" , notes = "版本")
 	private Integer version;
-	
+
 	/**
 	 * 获得 主键<br>
 	 * 主键
@@ -124,7 +125,7 @@ public class Address extends Entity {
 	public String getId() {
 		return id;
 	}
-	
+
 	/**
 	 * 设置 主键
 	 * @param id 主键
@@ -134,7 +135,7 @@ public class Address extends Entity {
 		this.id=id;
 		return this;
 	}
-	
+
 	/**
 	 * 获得 收件人姓名<br>
 	 * 收件人姓名
@@ -143,7 +144,7 @@ public class Address extends Entity {
 	public String getName() {
 		return name;
 	}
-	
+
 	/**
 	 * 设置 收件人姓名
 	 * @param name 收件人姓名
@@ -153,7 +154,7 @@ public class Address extends Entity {
 		this.name=name;
 		return this;
 	}
-	
+
 	/**
 	 * 获得 收件人手机<br>
 	 * 收件人手机
@@ -162,7 +163,7 @@ public class Address extends Entity {
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
-	
+
 	/**
 	 * 设置 收件人手机
 	 * @param phoneNumber 收件人手机
@@ -172,7 +173,7 @@ public class Address extends Entity {
 		this.phoneNumber=phoneNumber;
 		return this;
 	}
-	
+
 	/**
 	 * 获得 收件地址<br>
 	 * 收件地址
@@ -181,7 +182,7 @@ public class Address extends Entity {
 	public String getAddress() {
 		return address;
 	}
-	
+
 	/**
 	 * 设置 收件地址
 	 * @param address 收件地址
@@ -191,7 +192,7 @@ public class Address extends Entity {
 		this.address=address;
 		return this;
 	}
-	
+
 	/**
 	 * 获得 类型<br>
 	 * A:国内；B:国外
@@ -200,7 +201,7 @@ public class Address extends Entity {
 	public String getRegionType() {
 		return regionType;
 	}
-	
+
 	/**
 	 * 设置 类型
 	 * @param regionType 类型
@@ -210,7 +211,7 @@ public class Address extends Entity {
 		this.regionType=regionType;
 		return this;
 	}
-	
+
 	/**
 	 * 获得 地区位置<br>
 	 * 东北、华北等
@@ -219,7 +220,7 @@ public class Address extends Entity {
 	public String getRegionLocation() {
 		return regionLocation;
 	}
-	
+
 	/**
 	 * 设置 地区位置
 	 * @param regionLocation 地区位置
@@ -229,7 +230,7 @@ public class Address extends Entity {
 		this.regionLocation=regionLocation;
 		return this;
 	}
-	
+
 	/**
 	 * 获得 创建人ID<br>
 	 * 创建人ID
@@ -238,7 +239,7 @@ public class Address extends Entity {
 	public String getCreateBy() {
 		return createBy;
 	}
-	
+
 	/**
 	 * 设置 创建人ID
 	 * @param createBy 创建人ID
@@ -248,7 +249,7 @@ public class Address extends Entity {
 		this.createBy=createBy;
 		return this;
 	}
-	
+
 	/**
 	 * 获得 创建时间<br>
 	 * 创建时间
@@ -257,7 +258,7 @@ public class Address extends Entity {
 	public Date getCreateTime() {
 		return createTime;
 	}
-	
+
 	/**
 	 * 设置 创建时间
 	 * @param createTime 创建时间
@@ -267,7 +268,7 @@ public class Address extends Entity {
 		this.createTime=createTime;
 		return this;
 	}
-	
+
 	/**
 	 * 获得 修改人ID<br>
 	 * 修改人ID
@@ -276,7 +277,7 @@ public class Address extends Entity {
 	public String getUpdateBy() {
 		return updateBy;
 	}
-	
+
 	/**
 	 * 设置 修改人ID
 	 * @param updateBy 修改人ID
@@ -286,7 +287,7 @@ public class Address extends Entity {
 		this.updateBy=updateBy;
 		return this;
 	}
-	
+
 	/**
 	 * 获得 修改时间<br>
 	 * 修改时间
@@ -295,7 +296,7 @@ public class Address extends Entity {
 	public Date getUpdateTime() {
 		return updateTime;
 	}
-	
+
 	/**
 	 * 设置 修改时间
 	 * @param updateTime 修改时间
@@ -305,7 +306,7 @@ public class Address extends Entity {
 		this.updateTime=updateTime;
 		return this;
 	}
-	
+
 	/**
 	 * 获得 是否已删除<br>
 	 * 是否已删除
@@ -314,7 +315,7 @@ public class Address extends Entity {
 	public Integer getDeleted() {
 		return deleted;
 	}
-	
+
 	/**
 	 * 获得 是否已删除 的投影属性<br>
 	 * 等价于 getDeleted 方法，获得对应的枚举类型
@@ -327,7 +328,7 @@ public class Address extends Entity {
 		}
 		return this.deletedBool ;
 	}
-	
+
 	/**
 	 * 设置 是否已删除
 	 * @param deleted 是否已删除
@@ -338,7 +339,7 @@ public class Address extends Entity {
 		this.deletedBool=DataParser.parseBoolean(deleted);
 		return this;
 	}
-	
+
 	/**
 	 * 设置 是否已删除的投影属性，等同于设置 是否已删除
 	 * @param deletedBool 是否已删除
@@ -354,7 +355,7 @@ public class Address extends Entity {
 		this.deletedBool=deletedBool;
 		return this;
 	}
-	
+
 	/**
 	 * 获得 删除人ID<br>
 	 * 删除人ID
@@ -363,7 +364,7 @@ public class Address extends Entity {
 	public String getDeleteBy() {
 		return deleteBy;
 	}
-	
+
 	/**
 	 * 设置 删除人ID
 	 * @param deleteBy 删除人ID
@@ -373,7 +374,7 @@ public class Address extends Entity {
 		this.deleteBy=deleteBy;
 		return this;
 	}
-	
+
 	/**
 	 * 获得 删除时间<br>
 	 * 删除时间
@@ -382,7 +383,7 @@ public class Address extends Entity {
 	public Date getDeleteTime() {
 		return deleteTime;
 	}
-	
+
 	/**
 	 * 设置 删除时间
 	 * @param deleteTime 删除时间
@@ -392,7 +393,7 @@ public class Address extends Entity {
 		this.deleteTime=deleteTime;
 		return this;
 	}
-	
+
 	/**
 	 * 获得 版本<br>
 	 * 版本
@@ -401,7 +402,7 @@ public class Address extends Entity {
 	public Integer getVersion() {
 		return version;
 	}
-	
+
 	/**
 	 * 设置 版本
 	 * @param version 版本
