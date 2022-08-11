@@ -7,7 +7,7 @@ server:
       http-only: true
       # 会话超时时间，如 30s , 20m 等
       timeout: 28800s
-  port: 1899
+  port: 6899
 
 
 
@@ -136,8 +136,8 @@ develop:
   start-relation-monitor: true
   deploy:
     enable: true
-    # 可以使用以当前项目为基础的相对路径，指定静态资源自动部署的项目目录
-    projects:  ../view/view-console ,../view/view-example ,../../foxnic-web-advance/view/view-bpm
+    # 可以使用以当前项目为基础的相对路径，指定静态资源自动部署的项目目录，多个路径以逗号隔开
+    projects:  ../view/view-example
 
 
 foxnic:
@@ -254,9 +254,9 @@ security:
   # mode=session 时配置的登录页面
   login-page: /login.html
   jwt:
-    key-location: demo.jks
-    key-alias: foxnic-web
-    key-pass: fox-123456-nic
+    key-location: web-full.jks
+    key-alias: webfull
+    key-pass: webfull-123456
     # 缓存类型  local/remote/both
     cache-type: local
     # 发布者

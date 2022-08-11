@@ -5,7 +5,6 @@ import com.github.foxnic.generator.builder.view.option.FormWindowOptions;
 import com.github.foxnic.generator.builder.view.option.SearchAreaOptions;
 import com.github.foxnic.generator.builder.view.option.ViewOptions;
 import com.github.foxnic.generator.config.WriteMode;
-import org.github.foxnic.web.constants.db.FoxnicWeb.*;
 import org.github.foxnic.web.generator.module.BaseCodeConfig;
 
 public class CodeExampleStudentConfig extends BaseCodeConfig<SYS_CODE_EXAMPLE_STUDENT> {
