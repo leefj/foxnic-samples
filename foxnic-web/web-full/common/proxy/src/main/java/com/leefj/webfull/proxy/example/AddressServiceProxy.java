@@ -4,8 +4,8 @@ import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
 import com.leefj.webfull.domain.example.Address;
 import com.leefj.webfull.domain.example.AddressVO;
+import com.leefj.webfull.proxy.WebFullServiceNames;
 import org.github.foxnic.web.proxy.FeignConfiguration;
-import org.github.foxnic.web.proxy.MicroServiceNames;
 import org.github.foxnic.web.proxy.api.APIProxy;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,15 +18,15 @@ import java.util.List;
  * 订单地址  控制器服务代理
  * </p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-08-11 16:24:31
+ * @since 2022-08-11 16:45:44
  */
-@FeignClient(value = MicroServiceNames.EXAMPLE, contextId = AddressServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
+@FeignClient(value = WebFullServiceNames.EXAMPLE, contextId = AddressServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface AddressServiceProxy {
 
     /**
-     * 基础路径 , service-example
+     * 基础路径 , webfull-service-example
      */
-    public static final String API_BASIC_PATH = "service-example";
+    public static final String API_BASIC_PATH = "webfull-service-example";
 
     /**
      * API 上下文路径 , example-address

@@ -3,9 +3,9 @@ package org.github.foxnic.web.generator.module;
 import com.github.foxnic.generator.config.ModuleContext;
 import com.github.foxnic.generator.util.ModuleCodeConfig;
 import com.github.foxnic.sql.meta.DBTable;
+import com.leefj.webfull.proxy.WebFullServiceNames;
 import org.github.foxnic.web.generator.config.WebFullConfigs;
 import org.github.foxnic.web.generator.config.WebFullConfigs.ProjectConfigs;
-import org.github.foxnic.web.proxy.MicroServiceNames;
 
 public abstract class BaseCodeConfig<T extends DBTable> extends ModuleCodeConfig<T> {
 
@@ -63,7 +63,7 @@ public abstract class BaseCodeConfig<T extends DBTable> extends ModuleCodeConfig
         //设置DAO名称常量
         mdu.setDAONameConsts(procfg.getDAONameConst());
         //设置微服务命名常量
-        mdu.setMicroServiceNameConst(MicroServiceNames.class.getName()+"."+procfg.getAppMicroServiceNameConst());
+        mdu.setMicroServiceNameConst(WebFullServiceNames.class.getName()+"."+procfg.getAppMicroServiceNameConst());
 
         return mdu;
 

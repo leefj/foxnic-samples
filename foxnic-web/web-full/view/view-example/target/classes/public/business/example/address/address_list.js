@@ -1,7 +1,7 @@
 /**
  * 订单地址 列表页 JS 脚本
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-08-11 16:24:34
+ * @since 2022-08-11 16:45:47
  */
 
 
@@ -9,7 +9,7 @@ function ListPage() {
 
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect;
 	//模块基础路径
-	const moduleURL="/service-example/example-address";
+	const moduleURL="/webfull-service-example/example-address";
 	var dataTable=null;
 	var sort=null;
 	/**
