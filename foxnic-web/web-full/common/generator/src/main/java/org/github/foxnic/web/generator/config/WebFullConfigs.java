@@ -10,11 +10,11 @@ import com.github.foxnic.dao.spec.DAO;
 import com.github.foxnic.dao.spec.DAOBuilder;
 import com.github.foxnic.generator.config.GlobalSettings;
 import com.github.foxnic.sql.treaty.DBTreaty;
+import com.leefj.webfull.framework.support.datasource.DAOConfig;
+import com.leefj.webfull.framework.support.datasource.DatasourceConfig;
 import org.github.foxnic.web.framework.dao.DBConfigs;
 import org.github.foxnic.web.framework.nacos.NacosConfig;
 import org.github.foxnic.web.relation.FoxnicWebRelationManager;
-import org.github.foxnic.web.wrapper.support.datasource.DAOConfig;
-import org.github.foxnic.web.wrapper.support.datasource.DatasourceConfig;
 
 import java.io.File;
 import java.util.HashMap;

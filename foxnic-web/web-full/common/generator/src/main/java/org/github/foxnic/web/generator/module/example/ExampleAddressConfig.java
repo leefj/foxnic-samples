@@ -25,7 +25,7 @@ public class ExampleAddressConfig extends BaseCodeConfig<EXAMPLE_ADDRESS> {
 //		poType.addListProperty(Goods.class,"goodsList","订单明细商品","订单明细商品");
 //		poType.addListProperty(OrderItem.class,"itemList","订单明细","订单明细");
 //		poType.addListProperty(Order.class,"orderList","订单","订单");
-
+		com.leefj.webfull.example.controller.AddressController xx;
 
 		PojoClassFile addressModel=context.createPojo("AddressModel");
 		addressModel.setSuperType(Entity.class);
