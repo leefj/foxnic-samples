@@ -8,8 +8,8 @@ import com.github.foxnic.commons.collection.MapUtil;
 import java.util.Arrays;
 
 
-import org.github.foxnic.web.domain.example.Address;
-import org.github.foxnic.web.domain.example.AddressVO;
+import com.leefj.webfull.domain.example.Address;
+import com.leefj.webfull.domain.example.AddressVO;
 import java.util.List;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
@@ -22,10 +22,12 @@ import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.dao.excel.ExcelWriter;
 import com.github.foxnic.dao.excel.ValidateResult;
 import com.github.foxnic.dao.excel.ExcelStructure;
+import java.io.InputStream;
 import com.github.foxnic.sql.meta.DBField;
 import com.github.foxnic.dao.data.SaveMode;
 import com.github.foxnic.dao.meta.DBColumnMeta;
 import com.github.foxnic.sql.expr.Select;
+import java.util.ArrayList;
 import com.leefj.webfull.example.service.IAddressService;
 import org.github.foxnic.web.framework.dao.DBConfigs;
 import java.util.Date;
@@ -36,7 +38,7 @@ import java.util.Map;
  * 订单地址 服务实现
  * </p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-08-09 16:26:20
+ * @since 2022-08-11 16:09:58
 */
 
 
@@ -46,7 +48,7 @@ public class AddressServiceImpl extends SuperService<Address> implements IAddres
 	/**
 	 * 注入DAO对象
 	 * */
-	@Resource(name=DBConfigs.PRIMARY_DAO)
+	@Resource(name=DBConfigs.PRIMARY_DAO) 
 	private DAO dao=null;
 
 	/**
@@ -94,7 +96,7 @@ public class AddressServiceImpl extends SuperService<Address> implements IAddres
 		return super.insertList(addressList);
 	}
 
-
+	
 	/**
 	 * 按主键删除 订单地址
 	 *
@@ -115,7 +117,7 @@ public class AddressServiceImpl extends SuperService<Address> implements IAddres
 			return r;
 		}
 	}
-
+	
 	/**
 	 * 按主键删除 订单地址
 	 *
@@ -175,7 +177,7 @@ public class AddressServiceImpl extends SuperService<Address> implements IAddres
 		return super.updateList(addressList , mode);
 	}
 
-
+	
 	/**
 	 * 按主键更新字段 订单地址
 	 *
@@ -189,7 +191,7 @@ public class AddressServiceImpl extends SuperService<Address> implements IAddres
 		return suc>0;
 	}
 
-
+	
 	/**
 	 * 按主键获取 订单地址
 	 *

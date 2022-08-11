@@ -1,4 +1,4 @@
-package org.github.foxnic.web.proxy.example;
+package com.leefj.webfull.proxy.example;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.github.foxnic.web.proxy.api.APIProxy;
@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.github.foxnic.web.domain.example.Address;
-import org.github.foxnic.web.domain.example.AddressVO;
+import com.leefj.webfull.domain.example.Address;
+import com.leefj.webfull.domain.example.AddressVO;
 import java.util.List;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
@@ -19,7 +19,7 @@ import org.github.foxnic.web.proxy.MicroServiceNames;
  * 订单地址  控制器服务代理
  * </p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-08-11 15:36:18
+ * @since 2022-08-11 16:09:58
  */
 @FeignClient(value = MicroServiceNames.EXAMPLE, contextId = AddressServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface AddressServiceProxy {
@@ -141,7 +141,7 @@ public interface AddressServiceProxy {
     /**
      * 控制器类名
      */
-    public static final String CONTROLLER_CLASS_NAME = "org.github.foxnic.web.example.controller.AddressController";
+    public static final String CONTROLLER_CLASS_NAME = "com.leefj.webfull.example.controller.AddressController";
 
     /**
      * 统一的调用接口，实现在单体应用和微服务应用下的无差异调用

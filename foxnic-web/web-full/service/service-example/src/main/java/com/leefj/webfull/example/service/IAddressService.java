@@ -4,8 +4,8 @@ import com.github.foxnic.dao.entity.ISimpleIdService;
 
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.dao.entity.ISuperService;
-import org.github.foxnic.web.domain.example.Address;
-import org.github.foxnic.web.domain.example.AddressVO;
+import com.leefj.webfull.domain.example.Address;
+import com.leefj.webfull.domain.example.AddressVO;
 import java.util.List;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
@@ -23,7 +23,7 @@ import java.util.Map;
  * 订单地址 服务接口
  * </p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-08-09 16:26:20
+ * @since 2022-08-11 16:09:57
 */
 
 public interface IAddressService extends  ISimpleIdService<Address,String> {
@@ -53,7 +53,7 @@ public interface IAddressService extends  ISimpleIdService<Address,String> {
 	Result insertList(List<Address> addressList);
 
 
-
+		
 	/**
 	 * 按主键删除 订单地址
 	 *
@@ -61,7 +61,7 @@ public interface IAddressService extends  ISimpleIdService<Address,String> {
 	 * @return 删除是否成功
 	 */
 	Result deleteByIdPhysical(String id);
-
+	
 	/**
 	 * 按主键删除 订单地址
 	 *
@@ -84,7 +84,7 @@ public interface IAddressService extends  ISimpleIdService<Address,String> {
 	 * */
 	<T> Result deleteByIdsLogical(List<T> ids);
 
-
+		
 	/**
 	 * 按主键更新字段 订单地址
 	 *
@@ -154,7 +154,7 @@ public interface IAddressService extends  ISimpleIdService<Address,String> {
 	 * */
 	boolean checkExists(Address address,DBField... field);
 
-
+		
 	/**
 	 * 按主键获取 订单地址
 	 *

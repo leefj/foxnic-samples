@@ -37,7 +37,7 @@ applications:
     # service 的项目路径
     serviceProjectPath: /service/service-example
     # 包名
-    packageName: org.github.foxnic.web.example
+    packageName: com.leefj.webfull.example
     # 主数据源配置键
     primaryDatasourceConfigKey: spring.datasource.druid.primary
     # 微服务常量名
