@@ -8,9 +8,9 @@ import feign.*;
 
 @Configuration
 public class FeignConfiguration {
-	
+
 	/**
-     * 日志级别
+     * 日志级别1
      *
      * @return
      */
