@@ -11,7 +11,7 @@ import com.github.foxnic.sql.parameter.BatchParamBuilder;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.EmployeePosition;
 import org.github.foxnic.web.domain.hrm.Person;
-import org.github.foxnic.web.generator.config.FoxnicWebConfigs;
+import org.github.foxnic.web.generator.config.WebFullConfigs;
 
 import java.io.File;
 import java.util.HashSet;
@@ -20,8 +20,6 @@ import java.util.HashSet;
  * 为以usr_开头的表生成代码
  */
 public class DataGenerator  {
-
-
 
 	public static void main(String[] args) throws Exception {
 		DataGenerator g = new DataGenerator();
@@ -38,11 +36,11 @@ public class DataGenerator  {
 		//
 	}
 
-	private FoxnicWebConfigs configs;
+	private WebFullConfigs configs;
 	private DAO dao;
 
 	public DataGenerator() {
-		this.configs=new FoxnicWebConfigs("service-system");
+		this.configs=new WebFullConfigs("service-example");
 		this.dao=this.configs.getDAO();
 	}
 

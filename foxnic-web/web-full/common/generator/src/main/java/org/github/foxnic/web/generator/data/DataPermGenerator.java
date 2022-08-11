@@ -11,7 +11,7 @@ import com.github.foxnic.dao.sql.SQLBuilder;
 import com.github.foxnic.sql.expr.Insert;
 import com.github.foxnic.sql.expr.SQL;
 import com.github.foxnic.sql.expr.Update;
-import org.github.foxnic.web.generator.config.FoxnicWebConfigs;
+import org.github.foxnic.web.generator.config.WebFullConfigs;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -32,11 +32,11 @@ public class DataPermGenerator {
 
 	}
 
-	private FoxnicWebConfigs configs;
+	private WebFullConfigs configs;
 	private DAO dao;
 
 	public DataPermGenerator() {
-		this.configs=new FoxnicWebConfigs("service-system");
+		this.configs=new WebFullConfigs("service-system");
 		this.dao=this.configs.getDAO();
 	}
 

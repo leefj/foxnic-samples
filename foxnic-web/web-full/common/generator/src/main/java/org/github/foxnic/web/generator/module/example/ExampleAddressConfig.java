@@ -8,7 +8,7 @@ import com.github.foxnic.generator.builder.model.PojoClassFile;
 import com.github.foxnic.generator.builder.model.VoClassFile;
 import com.github.foxnic.generator.builder.view.option.*;
 import com.github.foxnic.generator.config.WriteMode;
-import org.github.foxnic.web.constants.db.ExampleTables.EXAMPLE_ADDRESS;
+import com.leefj.webfull.constants.db.WebFullTables.EXAMPLE_ADDRESS;
 import org.github.foxnic.web.generator.module.BaseCodeConfig;
 
 

@@ -9,7 +9,7 @@ source:
   #DAO常量名
   daoNameConst: org.github.foxnic.web.framework.dao.DBConfigs.PRIMARY_DAO
   #系统常量包名
-  domainConstantsPackage: org.github.foxnic.web.constants
+  domainConstantsPackage: com.leefj.webfull.constants
 
 #使用不同的机器码对应到作者
 authors:
@@ -27,116 +27,6 @@ compoments:
 
 #应用清单
 applications:
-  #系统服务
-  service-system:
-    # 如果使用 nacos 指定分组
-    nacosGroup: service
-    # 如果使用 nacos 指定 dataId
-    nacosDataId: service-system.yml
-    # 服务项目路径
-    serviceProjectPath:  /service/service-system
-    packageName: org.github.foxnic.web.system
-    primaryDatasourceConfigKey: spring.datasource.druid.primary
-    microServiceNameConst: SYSTEM
-    viewProjectPath: /view/view-console
-    viewPrefixPath: public/business/system
-    wrapperProjectPath:  /wrapper/wrapper-service-system
-  #存储服务
-  service-storage:
-    nacosGroup: service
-    nacosDataId: service-storage.yml
-    serviceProjectPath:  /service/service-storage
-    packageName: org.github.foxnic.web.storage
-    primaryDatasourceConfigKey: spring.datasource.druid.primary
-    microServiceNameConst: STORAGE
-    viewProjectPath: /view/view-console
-    viewPrefixPath: public/business/storage
-    wrapperProjectPath:  /wrapper/wrapper-all-service
-  #存储服务
-  service-oauth:
-    nacosGroup: service
-    nacosDataId: service-oauth.yml
-    serviceProjectPath:  /service/service-oauth
-    packageName: org.github.foxnic.web.oauth
-    primaryDatasourceConfigKey: spring.datasource.druid.primary
-    microServiceNameConst: OAUTH
-    viewProjectPath: /view/view-console
-    viewPrefixPath: public/business/oauth
-    wrapperProjectPath:  /wrapper/wrapper-service-oauth
-  #HRM
-  service-hrm:
-    nacosGroup: service
-    nacosDataId: service-hrm.yml
-    serviceProjectPath:  /service/service-hrm
-    packageName: org.github.foxnic.web.hrm
-    primaryDatasourceConfigKey: spring.datasource.druid.primary
-    microServiceNameConst: HRM
-    viewProjectPath: /view/view-console
-    viewPrefixPath: public/business/hrm
-    wrapperProjectPath:  /wrapper/wrapper-all-service
-  #PCM  属性自定义服务
-  service-pcm:
-    # 非开源
-    advance: true
-    nacosGroup: service
-    nacosDataId: service-pcm.yml
-    serviceProjectPath: /service/service-pcm
-    packageName: org.github.foxnic.web.pcm
-    primaryDatasourceConfigKey: spring.datasource.druid.primary
-    microServiceNameConst: PCM
-    viewProjectPath: /view/view-pcm
-    viewPrefixPath: public/business/pcm
-    wrapperProjectPath:  /wrapper/wrapper-all-service
-  #Changes  变更服务
-  service-changes:
-    # 非开源
-    advance: true
-    nacosGroup: service
-    nacosDataId: service-changes.yml
-    serviceProjectPath: /service/service-changes
-    packageName: org.github.foxnic.web.changes
-    primaryDatasourceConfigKey: spring.datasource.druid.primary
-    microServiceNameConst: CHS
-    viewProjectPath: /view/view-changes
-    viewPrefixPath: public/business/changes
-    wrapperProjectPath:  /wrapper/wrapper-all-service
-  #流程服务
-  service-bpm:
-    # 非开源
-    advance: true
-    nacosGroup: service
-    nacosDataId: service-bpm.yml
-    serviceProjectPath: /service/service-bpm
-    packageName: org.github.foxnic.web.bpm
-    primaryDatasourceConfigKey: spring.datasource.druid.primary
-    microServiceNameConst: BPM
-    viewProjectPath: /view/view-bpm
-    viewPrefixPath: public/business/bpm
-    wrapperProjectPath:  /wrapper/wrapper-all-service
-  #数据权限
-  service-dataperm:
-    advance: true
-    nacosGroup: service
-    nacosDataId: service-dataperm.yml
-    serviceProjectPath: /service/service-dataperm
-    packageName: org.github.foxnic.web.dataperm
-    primaryDatasourceConfigKey: spring.datasource.druid.primary
-    microServiceNameConst: DATA_PERM
-    viewProjectPath: /view/view-dataperm
-    viewPrefixPath: public/business/dataperm
-    wrapperProjectPath:  /wrapper/wrapper-all-service
-  #计划任务
-  service-job:
-    nacosGroup: service
-    nacosDataId: service-job.yml
-    serviceProjectPath: /service/service-job
-    packageName: org.github.foxnic.web.job
-    primaryDatasourceConfigKey: spring.datasource.druid.primary
-    microServiceNameConst: JOB
-    viewProjectPath: /view/view-console
-    viewPrefixPath: public/business/job
-    wrapperProjectPath:  /wrapper/wrapper-all-service
-  #示例
   service-example:
     # 是否为高级项目
     advance: false,

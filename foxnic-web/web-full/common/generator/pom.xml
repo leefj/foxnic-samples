@@ -104,6 +104,11 @@
             <version>${foxnic.web.version}</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>com.github.foxnic.example.web-full</groupId>
+            <artifactId>web-full-domain</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
     <build>
         <defaultGoal>compile</defaultGoal>

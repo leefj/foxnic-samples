@@ -11,7 +11,6 @@ import com.github.foxnic.dao.spec.DAO;
 import com.github.foxnic.generator.builder.business.ControllerProxyFile;
 import com.github.foxnic.sql.meta.DBTable;
 import com.github.foxnic.sql.meta.DBType;
-import org.github.foxnic.web.bpm.page.ProcessErrorPageController;
 import org.github.foxnic.web.constants.db.ExampleTables;
 import org.github.foxnic.web.constants.db.FoxnicWeb;
 import org.github.foxnic.web.constants.enums.system.AccessType;
@@ -21,8 +20,7 @@ import org.github.foxnic.web.domain.oauth.MenuResource;
 import org.github.foxnic.web.domain.oauth.Resourze;
 import org.github.foxnic.web.domain.oauth.RoleMenu;
 import org.github.foxnic.web.example.page.AddressPageController;
-import org.github.foxnic.web.generator.config.FoxnicWebConfigs;
-import org.github.foxnic.web.proxy.bpm.ProcessErrorServiceProxy;
+import org.github.foxnic.web.generator.config.WebFullConfigs;
 import org.github.foxnic.web.proxy.example.AddressServiceProxy;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -252,7 +250,7 @@ public class MenuGenerator {
 
 
 
-	private FoxnicWebConfigs configs;
+	private WebFullConfigs configs;
 	private DAO dao;
 	private DBTable table;
 	private Class proxyType;
@@ -270,7 +268,7 @@ public class MenuGenerator {
 	}
 
 	public MenuGenerator(String appId,String roleId,DBTable table,Class proxyType,Class pageType) {
-		this.configs=new FoxnicWebConfigs(appId);
+		this.configs=new WebFullConfigs(appId);
 		this.dao=this.configs.getDAO();
 		this.table=table;
 		this.proxyType =proxyType;
