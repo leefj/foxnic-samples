@@ -34,3 +34,4 @@ hs_err_pid*
 /foxnic-web/web-full/view/view-example/target
 /foxnic-web/web-full/wrapper/wrapper-all/target
 /foxnic-web/web-full/wrapper/wrapper-camunda/target
+/foxnic-web/web-full/common/generator/target
