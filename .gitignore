@@ -21,3 +21,16 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+/foxnic-web/web-full/wrapper/wrapper-all/target/webfull-wrapper-all-1.0.0.jar.original
+/foxnic-web/web-full/view/view-example/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+/foxnic-web/web-full/view/view-example/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+/foxnic-web/web-full/view/view-example/target/maven-archiver/pom.properties
+/foxnic-web/web-full/common/domain/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+/foxnic-web/web-full/common/domain/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+/foxnic-web/web-full/common/domain/target/maven-archiver/pom.properties
+/foxnic-web/web-full/common/framework/target
+/foxnic-web/web-full/common/proxy/target
+/foxnic-web/web-full/service/service-example/target
+/foxnic-web/web-full/view/view-example/target
+/foxnic-web/web-full/wrapper/wrapper-all/target
+/foxnic-web/web-full/wrapper/wrapper-camunda/target
