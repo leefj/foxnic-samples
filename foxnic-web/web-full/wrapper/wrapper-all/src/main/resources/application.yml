@@ -254,7 +254,7 @@ security:
   # mode=session 时配置的登录页面
   login-page: /login.html
   jwt:
-    key-location: web-full.jks
+    key-location: webfull.jks
     key-alias: webfull
     key-pass: webfull-123456
     # 缓存类型  local/remote/both

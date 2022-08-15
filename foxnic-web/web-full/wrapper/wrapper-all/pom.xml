@@ -3,14 +3,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.github.foxnic.example.web-full</groupId>
-        <artifactId>web-full</artifactId>
+        <groupId>com.github.foxnic.example.webfull</groupId>
+        <artifactId>webfull</artifactId>
         <version>1.0.0</version>
         <relativePath>../../pom.xml</relativePath>
         <!-- lookup parent from repository -->
     </parent>
-    <artifactId>web-full-wrapper-all</artifactId>
-    <name>web-full-wrapper-all</name>
+    <artifactId>webfull-wrapper-all</artifactId>
+    <name>webfull-wrapper-all</name>
     <description>Wrapper-All</description>
     <dependencies>
         <dependency>
@@ -113,20 +113,20 @@
             <artifactId>spring-boot-starter-undertow</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.github.foxnic.example.web-full</groupId>
-            <artifactId>web-full-framework</artifactId>
+            <groupId>com.github.foxnic.example.webfull</groupId>
+            <artifactId>webfull-framework</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <!-- 当前项目业务模块 -->
         <dependency>
-            <groupId>com.github.foxnic.example.web-full</groupId>
-            <artifactId>web-full-service-example</artifactId>
+            <groupId>com.github.foxnic.example.webfull</groupId>
+            <artifactId>webfull-service-example</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.github.foxnic.example.web-full</groupId>
-            <artifactId>web-full-view-example</artifactId>
+            <groupId>com.github.foxnic.example.webfull</groupId>
+            <artifactId>webfull-view-example</artifactId>
             <version>${project.version}</version>
         </dependency>
 

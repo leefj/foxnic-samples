@@ -8,12 +8,12 @@
         <version>2.3.3.RELEASE</version>
     </parent>
 
-    <groupId>com.github.foxnic.example.web-full</groupId>
-    <artifactId>web-full</artifactId>
+    <groupId>com.github.foxnic.example.webfull</groupId>
+    <artifactId>webfull</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>
-    <name>web-full</name>
-    <description>web-full</description>
+    <name>webfull</name>
+    <description>webfull</description>
 
     <modules>
         <!-- 通用模块 -->
