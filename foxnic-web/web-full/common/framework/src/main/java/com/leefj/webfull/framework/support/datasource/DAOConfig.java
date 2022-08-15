@@ -11,7 +11,6 @@ import com.github.foxnic.springboot.spring.SpringUtil;
 import com.github.foxnic.sql.meta.DBDataType;
 import com.github.foxnic.sql.treaty.DBTreaty;
 import org.github.foxnic.web.constants.db.FoxnicWeb;
-import com.leefj.webfull.constants.enums.DictEnum;
 import org.github.foxnic.web.domain.changes.ChangeInstance;
 import org.github.foxnic.web.domain.system.DictItem;
 import org.github.foxnic.web.domain.system.DictItemVO;
@@ -106,7 +105,7 @@ public class DAOConfig {
 		//注册全局环境变量(示例：sexDictCodes )
 		dataPermManager.registerGlobalContextGetter(List.class,"sexDictCodes",()->{
 			DictItemVO sample=new DictItemVO();
-			sample.setDictCode(DictEnum.SEX.code());
+//			sample.setDictCode(DictEnum.SEX.code());
 			List<DictItem> dictItems= DictItemServiceProxy.api().queryList(sample).data();
 			List<String> codes= CollectorUtil.collectList(dictItems,(x)->{return x.getCode();});
 			return codes;
@@ -139,7 +138,7 @@ public class DAOConfig {
 		//注册Po的本地环境变量(示例)
 		dataPermManager.registerLocalContextGetter(ChangeInstance.class,List.class,"sexDictCodes",()->{
 			DictItemVO sample=new DictItemVO();
-			sample.setDictCode(DictEnum.SEX.code());
+//			sample.setDictCode(DictEnum.SEX.code());
 			List<DictItem> dictItems= DictItemServiceProxy.api().queryList(sample).data();
 			List<String> codes= CollectorUtil.collectList(dictItems,(x)->{return x.getCode();});
 			return codes;

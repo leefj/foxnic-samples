@@ -27,7 +27,7 @@ compoments:
 
 #应用清单
 applications:
-  service-example:
+  webfull-service-example:
     # 是否为高级项目
     advance: false,
     # 如果使用 nacos 指定分组
@@ -41,7 +41,7 @@ applications:
     # 主数据源配置键
     primaryDatasourceConfigKey: spring.datasource.druid.primary
     # 微服务常量名
-    microServiceNameConst: EXAMPLE
+    microServiceNameConst: WEBFULL_EXAMPLE
     # 视图项目路径
     viewProjectPath: /view/view-example
     # 视图代码路径前缀

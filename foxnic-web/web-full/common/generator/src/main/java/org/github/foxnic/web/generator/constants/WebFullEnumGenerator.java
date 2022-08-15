@@ -37,7 +37,7 @@ public class WebFullEnumGenerator  {
 	private DAO dao;
 
 	public WebFullEnumGenerator() {
-		this.configs=new WebFullConfigs("service-example");
+		this.configs=new WebFullConfigs("webfull-service-example");
 		this.dao=this.configs.getDAO();
 	}
 
@@ -50,15 +50,15 @@ public class WebFullEnumGenerator  {
 		String dcp=this.configs.getProjectConfigs().getDomainConstantsPackage();
 
 		//系统配置 sys_config
-		EnumConfig info=new EnumConfig(SYS_CONFIG.CODE,SYS_CONFIG.NAME , new ConditionExpr("deleted=0 and code not like 'EAM_%' and code not like 'OPS_%'"));
-		new EnumClassFile(dao,configs.getDomainProject(),info,dcp,"SystemConfigEnum").save(true);
+		EnumConfig info=new EnumConfig(SYS_CONFIG.CODE,SYS_CONFIG.NAME , new ConditionExpr("deleted=0 and code like 'webfull%'"));
+		new EnumClassFile(dao,configs.getDomainProject(),info,dcp,"WebFullConfigEnum").save(true);
 
 		//字典 sys_dict
-		info=new EnumConfig(SYS_DICT.CODE, SYS_DICT.NAME , new ConditionExpr("deleted=0 and module in ('system','hrm','463397133957988352')"));
-		new EnumClassFile(dao,configs.getDomainProject(),info,dcp,"DictEnum").save(true);
+		info=new EnumConfig(SYS_DICT.CODE, SYS_DICT.NAME , new ConditionExpr("deleted=0 and module in ('610152549789466624')"));
+		new EnumClassFile(dao,configs.getDomainProject(),info,dcp,"WebFullDictEnum").save(true);
 
 		//生成字典枚举
-		RcdSet rs=dao.query("select * from sys_dict_item where deleted=0 and dict_id in (select id from sys_dict where deleted=0 and module in ('system','hrm','463397133957988352') ) order by dict_code,sort asc");
+		RcdSet rs=dao.query("select * from sys_dict_item where deleted=0 and dict_id in (select id from sys_dict where deleted=0 and module in ('610152549789466624') ) order by dict_code,sort asc");
 		Map<String,List<Rcd>> gps=rs.getGroupedMap(SYS_DICT_ITEM.DICT_CODE,String.class);
 		for (String dictCode : gps.keySet()) {
 			List<Rcd> g=gps.get(dictCode);

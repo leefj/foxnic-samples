@@ -9,16 +9,6 @@ import org.github.foxnic.web.generator.config.WebFullConfigs.ProjectConfigs;
 
 public abstract class BaseCodeConfig<T extends DBTable> extends ModuleCodeConfig<T> {
 
-    public static final String PREFIX_SYSTEM="service-system";
-    public static final String PREFIX_STORAGE="service-storage";
-    public static final String PREFIX_HRM="service-hrm";
-    public static final String PREFIX_OAUTH="service-oauth";
-    public static final String PREFIX_PCM="service-pcm";
-    public static final String PREFIX_CHANGES="service-changes";
-    public static final String PREFIX_BPM="service-bpm";
-    public static final String PREFIX_DATA_PERM="service-dataperm";
-    public static final String PREFIX_JOB="service-job";
-
 
     private WebFullConfigs configs;
     private int apiSort;

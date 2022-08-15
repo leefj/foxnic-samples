@@ -11,9 +11,6 @@ import com.github.foxnic.dao.spec.DAO;
 import com.github.foxnic.generator.builder.business.ControllerProxyFile;
 import com.github.foxnic.sql.meta.DBTable;
 import com.github.foxnic.sql.meta.DBType;
-import com.leefj.webfull.constants.db.WebFullTables;
-import com.leefj.webfull.example.page.AddressPageController;
-import com.leefj.webfull.proxy.example.AddressServiceProxy;
 import org.github.foxnic.web.constants.db.FoxnicWeb;
 import org.github.foxnic.web.constants.enums.system.AccessType;
 import org.github.foxnic.web.constants.enums.system.MenuType;
@@ -54,8 +51,8 @@ public class MenuGenerator {
 //		mg=new MenuGenerator(ExampleTables.EXAMPLE_GOODS.$TABLE, GoodsServiceProxy.class, GoodsPageController.class);
 //		mg.generate("583014848745439232");
 
-		mg=new MenuGenerator(WebFullTables.WEBFULL_EXAMPLE_ADDRESS.$TABLE, AddressServiceProxy.class, AddressPageController.class);
-		mg.generate("610152639237193728");
+//		mg=new MenuGenerator(WebFullTables.WEBFULL_EXAMPLE_ADDRESS.$TABLE, AddressServiceProxy.class, AddressPageController.class);
+//		mg.generate("610152639237193728");
 //		mg.removeByBatchId("608188281577799680");
 
 //		mg=new MenuGenerator(FoxnicWeb.BPM_PROCESS_DEFINITION.$TABLE, ProcessDefinitionServiceProxy.class, ProcessDefinitionPageController.class);

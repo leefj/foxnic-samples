@@ -8,11 +8,11 @@ import com.github.foxnic.generator.builder.model.PojoClassFile;
 import com.github.foxnic.generator.builder.model.VoClassFile;
 import com.github.foxnic.generator.builder.view.option.*;
 import com.github.foxnic.generator.config.WriteMode;
-import com.leefj.webfull.constants.db.WebFullTables.WEBFULL_EXAMPLE_ADDRESS;
+import org.github.foxnic.web.constants.db.ExampleTables;
 import org.github.foxnic.web.generator.module.BaseCodeConfig;
 
 
-public class ExampleAddressConfig extends BaseCodeConfig<WEBFULL_EXAMPLE_ADDRESS> {
+public class ExampleAddressConfig extends BaseCodeConfig<ExampleTables.EXAMPLE_ADDRESS> {
 
 
 
@@ -25,7 +25,7 @@ public class ExampleAddressConfig extends BaseCodeConfig<WEBFULL_EXAMPLE_ADDRESS
 //		poType.addListProperty(Goods.class,"goodsList","订单明细商品","订单明细商品");
 //		poType.addListProperty(OrderItem.class,"itemList","订单明细","订单明细");
 //		poType.addListProperty(Order.class,"orderList","订单","订单");
-		com.leefj.webfull.example.controller.AddressController xx;
+//		com.leefj.webfull.example.controller.AddressController xx;
 
 		PojoClassFile addressModel=context.createPojo("AddressModel");
 		addressModel.setSuperType(Entity.class);
@@ -90,7 +90,7 @@ public class ExampleAddressConfig extends BaseCodeConfig<WEBFULL_EXAMPLE_ADDRESS
 	@Override
 	public void configList(ViewOptions view,ListOptions list) {
 
-		list.sort(WEBFULL_EXAMPLE_ADDRESS.PHONE_NUMBER,true);
+		list.sort(ExampleTables.EXAMPLE_ADDRESS.PHONE_NUMBER,true);
 
 	}
 
@@ -120,7 +120,7 @@ public class ExampleAddressConfig extends BaseCodeConfig<WEBFULL_EXAMPLE_ADDRESS
 
 
 	public ExampleAddressConfig() {
-		super("service-example", WEBFULL_EXAMPLE_ADDRESS.$TABLE,"webfull_example_", 3);
+		super("webfull-service-example", ExampleTables.EXAMPLE_ADDRESS.$TABLE,"webfull_example_", 3);
 	}
 
 

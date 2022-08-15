@@ -20,7 +20,7 @@ public class WebFullDBMetaGenerator {
 
 	public WebFullDBMetaGenerator() {
 		// 这里无所谓，service-system 可以不修改
-		this.configs=new WebFullConfigs("service-example");
+		this.configs=new WebFullConfigs("webfull-service-example");
 		this.dao=this.configs.getDAO();
 	}
 
