@@ -1,6 +1,6 @@
 # Foxnic-Samples
 
-![Foxnic](foxnic-web/web-full/view/view-example/src/main/resources/static/images/foxnic-250.jpg)
+![Foxnic](foxnic-web/webfull/view/view-example/src/main/resources/static/images/foxnic-250.jpg)
 
 
 ## 项目介绍
