@@ -1,6 +1,6 @@
 # Foxnic-Samples
 
-![Foxnic](foxnic-web/web-full/view/view-example/src/main/resources/static/images/foxnic-250.jpg)
+![Foxnic](foxnic-web/webfull/view/view-example/src/main/resources/static/images/foxnic-250.jpg)
 
 
 ## 项目介绍
@@ -26,6 +26,12 @@
 2. [foxnic-web](https://gitee.com/LeeFJ/foxnic-web)
 3. [foxnic-eam](https://gitee.com/lank/eam)
 
+
+## 二次开发相关的视频与文档集合
+- 1、官网文档集合 http://foxnicweb.com/docs/doc.html
+- 2、B站资料集合 https://space.bilibili.com/1796475412
+- 3、知乎视频资料集合 https://www.zhihu.com/people/leefj/zvideos
+- 4、知乎文档集合 https://www.zhihu.com/people/leefj/posts
 
 ## 沟通交流 
 
