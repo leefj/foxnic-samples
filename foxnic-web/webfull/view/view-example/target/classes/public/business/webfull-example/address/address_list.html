@@ -2,7 +2,7 @@
 /**
  * 订单地址 列表页 JS 脚本
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-08-19 17:30:26
+ * @since 2022-08-20 14:30:15
  */
  -->
  <!DOCTYPE html>
@@ -41,39 +41,41 @@
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
                     <!-- 收件人 , name ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style=""><span th:text="${lang.translate('收件人')}" class="search-label name-label">收件人</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:65px"><span th:text="${lang.translate('收件人')}" class="search-label name-label">收件人</span><span class="search-colon">:</span></div>
                         <input id="name" class="layui-input search-input" style="width: 140px" type="text" />
                     </div>
+                    <!-- 备注 , notes ,typeName=text_area, isHideInSearch=true -->
                     <!-- 手机号码 , phoneNumber ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style=""><span th:text="${lang.translate('手机号码')}" class="search-label phoneNumber-label">手机号码</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:75px"><span th:text="${lang.translate('手机号码')}" class="search-label phoneNumber-label">手机号码</span><span class="search-colon">:</span></div>
                         <input id="phoneNumber" class="layui-input search-input" style="width: 140px" type="text" />
                     </div>
                     <!-- 收件地址 , address ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style=""><span th:text="${lang.translate('收件地址')}" class="search-label address-label">收件地址</span><span class="search-colon">:</span></div>
-                        <input id="address" class="layui-input search-input" style="width: 140px" type="text" />
+                        <div class="search-label-div" style="width:75px"><span th:text="${lang.translate('收件地址')}" class="search-label address-label">收件地址</span><span class="search-colon">:</span></div>
+                        <input id="address" class="layui-input search-input" style="width: 296px" type="text" />
                     </div>
-                    <!-- 类型 , regionType ,typeName=check_box, isHideInSearch=false -->
+
+
+                </div>
+                <!-- 搜索输入区域 -->
+                <div class="layui-form toolbar search-inputs">
+                    <!-- 类型 , regionType ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style=""><span th:text="${lang.translate('类型')}" class="search-label regionType-label">类型</span><span class="search-colon">:</span></div>
-
-
-                                <div id="regionType" th:data="${enum.toArray('com.leefj.webfull.constants.enums.example.RegionType')}" style="width:140px"></div>
-
+                        <div class="search-label-div" style="width:65px"><span th:text="${lang.translate('类型')}" class="search-label regionType-label">类型</span><span class="search-colon">:</span></div>
+                        <div id="regionType" th:data="${enum.toArray('com.leefj.webfull.constants.enums.example.RegionType')}" style="width:140px" extraParam="{}"></div>
                     </div>
                     <!-- 地区位置 , regionLocation ,typeName=check_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style=""><span th:text="${lang.translate('地区位置')}" class="search-label regionLocation-label">地区位置</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:75px"><span th:text="${lang.translate('地区位置')}" class="search-label regionLocation-label">地区位置</span><span class="search-colon">:</span></div>
 
                                 <div id="regionLocation" th:data="${dict.toArray('region_location')}" style="width:140px"></div>
 
 
                     </div>
-                    <!-- 备注 , notes ,typeName=text_area, isHideInSearch=true -->
                     <!-- 创建时间 , createTime ,typeName=date_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style=""><span th:text="${lang.translate('创建时间')}" class="search-label createTime-label">创建时间</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:75px"><span th:text="${lang.translate('创建时间')}" class="search-label createTime-label">创建时间</span><span class="search-colon">:</span></div>
                             <input type="text" id="createTime-begin" style="width: 140px" lay-verify="date" th:placeholder="${lang.translate('开始日期')}" autocomplete="off" class="layui-input search-input search-date-input"  readonly >
                             <span class="search-dash">-</span>
                             <input type="text" id="createTime-end"  style="width: 140px"  lay-verify="date" th:placeholder="${lang.translate('结束日期')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>
@@ -90,7 +92,7 @@
             </div>
         </div>
 
-        <div id="table-area" style="margin-top: 42px ">
+        <div id="table-area" style="margin-top: 84px ">
             <table class="layui-table" id="data-table" lay-filter="data-table"></table>
         </div>
 
@@ -125,7 +127,7 @@
 
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
-    var CHECK_REGIONTYPE_DATA = [[${enum.toArray('com.leefj.webfull.constants.enums.example.RegionType')}]];
+    var SELECT_REGIONTYPE_DATA = [[${enum.toArray('com.leefj.webfull.constants.enums.example.RegionType')}]];
     var CHECK_REGIONLOCATION_DATA = [[${dict.toArray('region_location')}]];
     var AUTH_PREFIX="webfull_example_address";
 

@@ -10,8 +10,8 @@ import java.util.Date;
 
 /**
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-08-19 15:50:57
- * @sign 2B4438D4C1A72FC9F2BCCD10904593CB
+ * @since 2022-08-20 13:32:34
+ * @sign 1DCFDE5BE3B79EDE7F78E478BFBBD5CF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -108,6 +108,16 @@ public class AddressVOMeta extends AddressMeta {
 	public static final BeanProperty<com.leefj.webfull.domain.example.AddressVO,java.lang.String> IDS_PROP = new BeanProperty(com.leefj.webfull.domain.example.AddressVO.class ,IDS, java.util.List.class, "主键清单", "用于接收批量主键参数", java.lang.String.class, null);
 	
 	/**
+	 * 关键字 , 查询关键字 , 类型: java.lang.String
+	*/
+	public static final String KEYWORD="keyword";
+	
+	/**
+	 * 关键字 , 查询关键字 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.leefj.webfull.domain.example.AddressVO,java.lang.String> KEYWORD_PROP = new BeanProperty(com.leefj.webfull.domain.example.AddressVO.class ,KEYWORD, java.lang.String.class, "关键字", "查询关键字", java.lang.String.class, null);
+	
+	/**
 	 * 主键 , 类型: java.lang.String
 	*/
 	public static final String ID="id";
@@ -166,6 +176,16 @@ public class AddressVOMeta extends AddressMeta {
 	 * 地区位置 , 东北、华北等 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.leefj.webfull.domain.example.AddressVO,java.lang.String> REGION_LOCATION_PROP = new BeanProperty(com.leefj.webfull.domain.example.AddressVO.class ,REGION_LOCATION, java.lang.String.class, "地区位置", "东北、华北等", java.lang.String.class, null);
+	
+	/**
+	 * 备注 , 类型: java.lang.String
+	*/
+	public static final String NOTES="notes";
+	
+	/**
+	 * 备注 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.leefj.webfull.domain.example.AddressVO,java.lang.String> NOTES_PROP = new BeanProperty(com.leefj.webfull.domain.example.AddressVO.class ,NOTES, java.lang.String.class, "备注", "备注", java.lang.String.class, null);
 	
 	/**
 	 * 创建人ID , 类型: java.lang.String
@@ -258,19 +278,9 @@ public class AddressVOMeta extends AddressMeta {
 	public static final BeanProperty<com.leefj.webfull.domain.example.AddressVO,java.lang.Integer> ORDER_COUNT_PROP = new BeanProperty(com.leefj.webfull.domain.example.AddressVO.class ,ORDER_COUNT, java.lang.Integer.class, "订单量", "每年收到的订单数量", java.lang.Integer.class, null);
 	
 	/**
-	 * 关键字 , 查询关键字 , 类型: java.lang.String
-	*/
-	public static final String KEYWORD="keyword";
-	
-	/**
-	 * 关键字 , 查询关键字 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.leefj.webfull.domain.example.AddressVO,java.lang.String> KEYWORD_PROP = new BeanProperty(com.leefj.webfull.domain.example.AddressVO.class ,KEYWORD, java.lang.String.class, "关键字", "查询关键字", java.lang.String.class, null);
-	
-	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , NAME , PHONE_NUMBER , ADDRESS , REGION_TYPE , REGION_LOCATION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , ORDER_COUNT , KEYWORD };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , KEYWORD , ID , NAME , PHONE_NUMBER , ADDRESS , REGION_TYPE , REGION_LOCATION , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , ORDER_COUNT };
 	
 	/**
 	 * 代理类
@@ -380,6 +390,17 @@ public class AddressVOMeta extends AddressMeta {
 		}
 		
 		/**
+		 * 设置 关键字
+		 * @param keyword 关键字
+		 * @return 当前对象
+		*/
+		public AddressVO setKeyword(String keyword) {
+			super.change(KEYWORD,super.getKeyword(),keyword);
+			super.setKeyword(keyword);
+			return this;
+		}
+		
+		/**
 		 * 设置 主键
 		 * @param id 主键
 		 * @return 当前对象
@@ -442,6 +463,17 @@ public class AddressVOMeta extends AddressMeta {
 		public Address setRegionLocation(String regionLocation) {
 			super.change(REGION_LOCATION,super.getRegionLocation(),regionLocation);
 			super.setRegionLocation(regionLocation);
+			return this;
+		}
+		
+		/**
+		 * 设置 备注
+		 * @param notes 备注
+		 * @return 当前对象
+		*/
+		public Address setNotes(String notes) {
+			super.change(NOTES,super.getNotes(),notes);
+			super.setNotes(notes);
 			return this;
 		}
 		
@@ -541,17 +573,6 @@ public class AddressVOMeta extends AddressMeta {
 		public Address setOrderCount(Integer orderCount) {
 			super.change(ORDER_COUNT,super.getOrderCount(),orderCount);
 			super.setOrderCount(orderCount);
-			return this;
-		}
-		
-		/**
-		 * 设置 关键字
-		 * @param keyword 关键字
-		 * @return 当前对象
-		*/
-		public Address setKeyword(String keyword) {
-			super.change(KEYWORD,super.getKeyword(),keyword);
-			super.setKeyword(keyword);
 			return this;
 		}
 	}

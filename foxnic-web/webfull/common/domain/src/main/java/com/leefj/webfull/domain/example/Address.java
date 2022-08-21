@@ -17,8 +17,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 订单地址
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-08-19 16:30:03
- * @sign DE7EBAC28E312C71D8D5100C518F107B
+ * @since 2022-08-20 13:32:34
+ * @sign ECBAC43BBB55CF099B8D084BD30689BD
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -127,12 +127,6 @@ public class Address extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="订单量" , notes = "每年收到的订单数量")
 	private Integer orderCount;
-	
-	/**
-	 * 关键字：查询关键字
-	*/
-	@ApiModelProperty(required = false,value="关键字" , notes = "查询关键字")
-	private String keyword;
 	
 	/**
 	 * 获得 主键<br>
@@ -465,25 +459,6 @@ public class Address extends Entity {
 	*/
 	public Address setOrderCount(Integer orderCount) {
 		this.orderCount=orderCount;
-		return this;
-	}
-	
-	/**
-	 * 获得 关键字<br>
-	 * 查询关键字
-	 * @return 关键字
-	*/
-	public String getKeyword() {
-		return keyword;
-	}
-	
-	/**
-	 * 设置 关键字
-	 * @param keyword 关键字
-	 * @return 当前对象
-	*/
-	public Address setKeyword(String keyword) {
-		this.keyword=keyword;
 		return this;
 	}
 

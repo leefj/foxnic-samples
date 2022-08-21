@@ -13,8 +13,8 @@ import com.github.foxnic.commons.bean.BeanUtil;
 /**
  * 订单地址
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-08-19 15:50:57
- * @sign 2B4438D4C1A72FC9F2BCCD10904593CB
+ * @since 2022-08-20 13:32:34
+ * @sign 1DCFDE5BE3B79EDE7F78E478BFBBD5CF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -75,6 +75,12 @@ public class AddressVO extends Address {
 	*/
 	@ApiModelProperty(required = false,value="主键清单" , notes = "用于接收批量主键参数")
 	private List<String> ids;
+	
+	/**
+	 * 关键字：查询关键字
+	*/
+	@ApiModelProperty(required = false,value="关键字" , notes = "查询关键字")
+	private String keyword;
 	
 	/**
 	 * 获得 页码<br>
@@ -258,6 +264,25 @@ public class AddressVO extends Address {
 	public AddressVO addId(String... id) {
 		if(this.ids==null) ids=new ArrayList<>();
 		this.ids.addAll(Arrays.asList(id));
+		return this;
+	}
+	
+	/**
+	 * 获得 关键字<br>
+	 * 查询关键字
+	 * @return 关键字
+	*/
+	public String getKeyword() {
+		return keyword;
+	}
+	
+	/**
+	 * 设置 关键字
+	 * @param keyword 关键字
+	 * @return 当前对象
+	*/
+	public AddressVO setKeyword(String keyword) {
+		this.keyword=keyword;
 		return this;
 	}
 	@Transient

@@ -1,7 +1,7 @@
 /**
  * 订单地址 列表页 JS 脚本
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-08-19 17:30:26
+ * @since 2022-08-20 14:30:15
  */
 
 
@@ -51,9 +51,6 @@ function ListPage() {
 		function renderTableInternal() {
 
 			var ps={searchField: "$composite"};
-			ps.sortField="phone_number";
-			ps.sortType="asc";
-			sort={ field : ps.sortField,type : ps.sortType} ;
 			var contitions={};
 
 			if(window.pageExt.list.beforeQuery){
@@ -84,7 +81,7 @@ function ListPage() {
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('收件人') , templet: function (d) { return templet('name',d.name,d);}  }
 					,{ field: 'phoneNumber', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('手机号码') , templet: function (d) { return templet('phoneNumber',d.phoneNumber,d);}  }
 					,{ field: 'address', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('收件地址') , templet: function (d) { return templet('address',d.address,d);}  }
-					,{ field: 'regionType', align:"center",fixed:false,  hide:false, sort: true  , title: fox.translate('类型'), templet:function (d){ return templet('regionType',fox.getEnumText(CHECK_REGIONTYPE_DATA,d.regionType,'','regionType'),d);}}
+					,{ field: 'regionType', align:"center",fixed:false,  hide:false, sort: true  , title: fox.translate('类型'), templet:function (d){ return templet('regionType',fox.getEnumText(SELECT_REGIONTYPE_DATA,d.regionType,'','regionType'),d);}}
 					,{ field: 'regionLocation', align:"center",fixed:false,  hide:false, sort: true  , title: fox.translate('地区位置'), templet:function (d){ return templet('regionLocation',fox.getDictText(CHECK_REGIONLOCATION_DATA,d.regionLocation,'','regionLocation'),d);}}
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
@@ -139,7 +136,7 @@ function ListPage() {
 		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.phoneNumber={ inputType:"button",value: $("#phoneNumber").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.address={ inputType:"button",value: $("#address").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
-		value.regionType={ inputType:"check_box", value: getSelectedValue("#regionType","value"), label:getSelectedValue("#regionType","nameStr") };
+		value.regionType={ inputType:"select_box", value: getSelectedValue("#regionType","value"), label:getSelectedValue("#regionType","nameStr") };
 		value.regionLocation={ inputType:"check_box", value: getSelectedValue("#regionLocation","value"), label:getSelectedValue("#regionLocation","nameStr") };
 		value.createTime={ inputType:"date_input", begin: $("#createTime-begin").val(), end: $("#createTime-end").val() ,matchType:"auto" };
 		var ps={searchField:"$composite"};
@@ -155,12 +152,7 @@ function ListPage() {
 			if(sort) {
 				ps.sortField=sort.field;
 				ps.sortType=sort.type;
-			} else {
-				ps.sortField="phone_number";
-				ps.sortType="asc";
-				sort={ field : sortField,type : sortType} ;
-			}
-		}
+			} 		}
 		if(reset) {
 			table.reload('data-table', { where : ps , page:{ curr:1 } });
 		} else {
@@ -191,13 +183,14 @@ function ListPage() {
 
 	function initSearchFields() {
 
-		fox.switchSearchRow(1);
+		fox.switchSearchRow(2);
 
-		//渲染 regionType 搜索框
+		//渲染 regionType 下拉字段
 		fox.renderSelectBox({
 			el: "regionType",
-			size: "small",
 			radio: false,
+			size: "small",
+			filterable: false,
 			on: function(data){
 				setTimeout(function () {
 					if(data.change && data.change.length>0) {
@@ -206,16 +199,16 @@ function ListPage() {
 					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("regionType",data.arr,data.change,data.isAdd);
 				},1);
 			},
-			//toolbar: {show:true,showIcon:true,list:["CLEAR","REVERSE"]},
-				transform:function(data) {
-					//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-					var opts=[];
-					if(!data) return opts;
-					for (var i = 0; i < data.length; i++) {
-						opts.push({data:data[i],name:data[i].text,value:data[i].code});
-					}
-					return opts;
+			//转换数据
+			transform:function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					opts.push({data:data[i],name:data[i].text,value:data[i].code});
 				}
+				return opts;
+			}
 		});
 		//渲染 regionLocation 搜索框
 		fox.renderSelectBox({
@@ -284,7 +277,7 @@ function ListPage() {
 
 		// 搜索按钮点击事件
 		$('#search-button-advance').click(function () {
-			fox.switchSearchRow(1,function (ex){
+			fox.switchSearchRow(2,function (ex){
 				if(ex=="1") {
 					$('#search-button-advance span').text("关闭");
 				} else {
@@ -455,7 +448,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["500px",height+"px"],
+			area: ["700px",height+"px"],
 			type: 2,
 			id:"webfull-example-address-form-data-win",
 			content: '/business/webfull-example/address/address_form.html' + (queryString?("?"+queryString):""),

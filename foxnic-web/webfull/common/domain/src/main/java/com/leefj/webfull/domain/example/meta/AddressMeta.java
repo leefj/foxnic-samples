@@ -8,8 +8,8 @@ import java.util.Date;
 
 /**
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-08-19 16:30:03
- * @sign DE7EBAC28E312C71D8D5100C518F107B
+ * @since 2022-08-20 13:32:34
+ * @sign ECBAC43BBB55CF099B8D084BD30689BD
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -176,19 +176,9 @@ public class AddressMeta {
 	public static final BeanProperty<com.leefj.webfull.domain.example.Address,java.lang.Integer> ORDER_COUNT_PROP = new BeanProperty(com.leefj.webfull.domain.example.Address.class ,ORDER_COUNT, java.lang.Integer.class, "订单量", "每年收到的订单数量", java.lang.Integer.class, null);
 	
 	/**
-	 * 关键字 , 查询关键字 , 类型: java.lang.String
-	*/
-	public static final String KEYWORD="keyword";
-	
-	/**
-	 * 关键字 , 查询关键字 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.leefj.webfull.domain.example.Address,java.lang.String> KEYWORD_PROP = new BeanProperty(com.leefj.webfull.domain.example.Address.class ,KEYWORD, java.lang.String.class, "关键字", "查询关键字", java.lang.String.class, null);
-	
-	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , NAME , PHONE_NUMBER , ADDRESS , REGION_TYPE , REGION_LOCATION , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , ORDER_COUNT , KEYWORD };
+	public static final String[] $PROPS={ ID , NAME , PHONE_NUMBER , ADDRESS , REGION_TYPE , REGION_LOCATION , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , ORDER_COUNT };
 	
 	/**
 	 * 代理类
@@ -371,17 +361,6 @@ public class AddressMeta {
 		public Address setOrderCount(Integer orderCount) {
 			super.change(ORDER_COUNT,super.getOrderCount(),orderCount);
 			super.setOrderCount(orderCount);
-			return this;
-		}
-		
-		/**
-		 * 设置 关键字
-		 * @param keyword 关键字
-		 * @return 当前对象
-		*/
-		public Address setKeyword(String keyword) {
-			super.change(KEYWORD,super.getKeyword(),keyword);
-			super.setKeyword(keyword);
 			return this;
 		}
 	}

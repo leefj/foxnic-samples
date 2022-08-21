@@ -35,14 +35,14 @@ public class ExampleAddressConfig extends BaseCodeConfig<WEBFULL_EXAMPLE_ADDRESS
 
 
         // 2、为 vo 添加属性
-        poType.addSimpleProperty(String.class, "keyword", "关键字", "查询关键字");
+        voType.addSimpleProperty(String.class, "keyword", "关键字", "查询关键字");
 
         // 3、单独创建一个 Model
         PojoClassFile addressModel = context.createPojo("AddressModel");
-        // 添加一个自定义属性
-        addressModel.addSimpleProperty(String.class, "myProperty", "自定义属性", "我的自定义属性");
         // 使继承自 Entity
         addressModel.setSuperType(Entity.class);
+        // 添加一个自定义属性
+        addressModel.addSimpleProperty(String.class, "myProperty", "自定义属性", "我的自定义属性");
         // 使用字段构建器构建
         FieldsBuilder fields = this.createFieldsBuilder();
         fields.addAll().removeDBTreatyFields();
@@ -131,9 +131,9 @@ public class ExampleAddressConfig extends BaseCodeConfig<WEBFULL_EXAMPLE_ADDRESS
                 // 表单：指定表单编辑器为单选框，并指定数据源，默认值
                 // .form().radioBox().enumType(RegionType.class).defaultIndex(0)
                 // 表单：指定表单编辑器为下拉选择，并指定数据源，默认值
-                //.form().selectBox().enumType(RegionType.class).defaultValue(RegionType.INLAND)
+                .form().selectBox().enumType(RegionType.class).defaultValue(RegionType.INLAND)
                 // 表单：指定表单编辑器为复选框，并指定数据源，默认值
-                .form().checkBox().enumType(RegionType.class).defaultValue(RegionType.INLAND,RegionType.FOREIGN)
+                // .form().checkBox().enumType(RegionType.class).defaultValue(RegionType.INLAND,RegionType.FOREIGN)
                 // 搜索：多选搜索，触发查询
                 .search().selectMuliti(true).triggerOnSelect(true);
         ;
@@ -164,9 +164,74 @@ public class ExampleAddressConfig extends BaseCodeConfig<WEBFULL_EXAMPLE_ADDRESS
         ;
 
 
+    }
+
+    /**
+     * 配置搜索
+     */
+    @Override
+    public void configSearch(ViewOptions view, SearchAreaOptions search) {
+
+        // 搜索布局
+        search.inputLayout(new Object[]{
+                WEBFULL_EXAMPLE_ADDRESS.NAME,WEBFULL_EXAMPLE_ADDRESS.PHONE_NUMBER,WEBFULL_EXAMPLE_ADDRESS.ADDRESS
+        },new Object[]{
+                WEBFULL_EXAMPLE_ADDRESS.REGION_TYPE,WEBFULL_EXAMPLE_ADDRESS.REGION_LOCATION,WEBFULL_EXAMPLE_ADDRESS.CREATE_TIME
+        });
+
+
+
+        // 设置标签宽度
+        search.labelWidth(1,65);
+        // 设置标签宽度
+        search.labelWidth(2,75);
+        // 设置标签宽度
+        search.labelWidth(3,75);
+
+        // 个别输入框宽度调整
+        view.field(WEBFULL_EXAMPLE_ADDRESS.ADDRESS).search().inputWidth(296);
 
 
     }
+
+    /**
+     * 配置 List 表格
+     */
+    @Override
+    public void configList(ViewOptions view, ListOptions list) {
+
+        // 设置默认排序
+        list.sort(WEBFULL_EXAMPLE_ADDRESS.PHONE_NUMBER, true);
+
+    }
+
+    /**
+     * 配置表单
+     */
+    @Override
+    public void configForm(ViewOptions view, FormOptions form, FormWindowOptions formWindow) {
+
+        formWindow.width("700px");
+
+        form.labelWidth(85);
+
+        form.addGroup("基本信息",new Object[]{
+                WEBFULL_EXAMPLE_ADDRESS.NAME,
+        },new Object[]{
+                WEBFULL_EXAMPLE_ADDRESS.PHONE_NUMBER,
+        });
+        form.addGroup("扩展信息",new Object[]{
+                WEBFULL_EXAMPLE_ADDRESS.ADDRESS,
+                WEBFULL_EXAMPLE_ADDRESS.REGION_TYPE,
+                WEBFULL_EXAMPLE_ADDRESS.REGION_LOCATION,
+                WEBFULL_EXAMPLE_ADDRESS.NOTES
+        });
+
+
+
+    }
+
+
 
 
     /**
@@ -193,39 +258,11 @@ public class ExampleAddressConfig extends BaseCodeConfig<WEBFULL_EXAMPLE_ADDRESS
     }
 
 
-    /**
-     * 配置 List 表格
-     */
-    @Override
-    public void configList(ViewOptions view, ListOptions list) {
 
-        list.sort(ExampleTables.EXAMPLE_ADDRESS.PHONE_NUMBER, true);
 
-    }
 
-    /**
-     * 配置表单
-     */
-    @Override
-    public void configForm(ViewOptions view, FormOptions form, FormWindowOptions formWindow) {
 
-//		form.
 
-//		form.columnLayout(new Object[]{
-//				EXAMPLE_NEWS.TITLE,
-//				EXAMPLE_NEWS.EXPIRE_DATE,
-//				EXAMPLE_NEWS.CONTENT,
-//				EXAMPLE_NEWS.AUTHOR
-//		});
-    }
-
-    /**
-     * 配置搜索
-     */
-    @Override
-    public void configSearch(ViewOptions view, SearchAreaOptions search) {
-
-    }
 
 
     public ExampleAddressConfig() {

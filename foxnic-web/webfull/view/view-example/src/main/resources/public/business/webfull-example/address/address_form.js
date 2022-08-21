@@ -1,7 +1,7 @@
 /**
  * 订单地址 列表页 JS 脚本
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-08-19 17:30:26
+ * @since 2022-08-20 14:30:15
  */
 
 function FormPage() {
@@ -111,12 +111,33 @@ function FormPage() {
 	function renderFormFields() {
 		fox.renderFormInputs(form);
 
-		form.on('checkbox(regionType)', function(data){
-			var checked=[];
-			$('input[type=checkbox][lay-filter=regionType]:checked').each(function() {
-				checked.push($(this).val());
-			});
-			window.pageExt.form.onCheckBoxChanged && window.pageExt.form.onCheckBoxChanged("regionType",data ,checked);
+		//渲染 regionType 下拉字段
+		fox.renderSelectBox({
+			el: "regionType",
+			radio: true,
+			filterable: false,
+			layVerify: 'required',
+			layVerType: 'msg',
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("regionType",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform:function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "inland".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					opts.push({data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+				}
+				return opts;
+			}
 		});
 		form.on('checkbox(regionLocation)', function(data){
 			var checked=[];
@@ -174,10 +195,6 @@ function FormPage() {
 
 
 
-			//设置 类型 显示复选框勾选
-		    if(formData["regionType"]) {
-				fox.setCheckedValue("regionType",formData["regionType"]);
-		    }
 			//设置 地区位置 显示复选框勾选
 		    if(formData["regionLocation"]) {
 				fox.setCheckedValue("regionLocation",formData["regionLocation"]);
@@ -185,6 +202,8 @@ function FormPage() {
 
 
 
+			//设置  类型 设置下拉框勾选
+			fox.setSelectValue4Enum("#regionType",formData.regionType,SELECT_REGIONTYPE_DATA);
 
 			//处理fillBy
 
@@ -235,11 +254,11 @@ function FormPage() {
 		var data=form.val("data-form");
 
 
-		//处理 类型 默认值
-		data["regionType"]=fox.getCheckedValue("regionType").join(",");
 		//处理 地区位置 默认值
 		data["regionLocation"]=fox.getCheckedValue("regionLocation").join(",");
 
+		//获取 类型 下拉框的值
+		data["regionType"]=fox.getSelectedValue("regionType",false);
 
 		return data;
 	}
