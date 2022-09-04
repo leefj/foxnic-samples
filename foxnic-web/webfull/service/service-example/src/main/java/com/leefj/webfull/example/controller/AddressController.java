@@ -4,6 +4,7 @@ package com.leefj.webfull.example.controller;
 import java.util.List;
 import java.util.ArrayList;
 
+import com.github.foxnic.sql.expr.ConditionExpr;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,7 +50,8 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 订单地址 接口控制器
  * </p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-08-20 14:30:15
+ * @since 2022-09-04 08:11:57
+ * @version 20221004
 */
 
 @Api(tags = "订单地址")
@@ -290,8 +292,14 @@ public class AddressController extends SuperController {
 	@SentinelResource(value = AddressServiceProxy.QUERY_PAGED_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(AddressServiceProxy.QUERY_PAGED_LIST)
 	public Result<PagedList<Address>> queryPagedList(AddressVO sample) {
+		String keyword1=sample.getKeyword();
+		String keyword=(String) sample.getCompositeParameter().getValue("keyword");
+
+		ConditionExpr where=new ConditionExpr();
+		where.and("name like ? or phone_number like ? or address like ?","%"+keyword+"%","%"+keyword+"%","%"+keyword+"%");
+
 		Result<PagedList<Address>> result=new Result<>();
-		PagedList<Address> list=addressService.queryPagedList(sample,sample.getPageSize(),sample.getPageIndex());
+		PagedList<Address> list=addressService.queryPagedList(sample,where,sample.getPageSize(),sample.getPageIndex());
 		result.success(true).data(list);
 		return result;
 	}

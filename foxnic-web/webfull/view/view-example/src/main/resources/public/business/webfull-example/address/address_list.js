@@ -1,7 +1,7 @@
 /**
  * 订单地址 列表页 JS 脚本
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-08-20 14:30:15
+ * @since 2022-09-04 08:12:00
  */
 
 
@@ -51,6 +51,9 @@ function ListPage() {
 		function renderTableInternal() {
 
 			var ps={searchField: "$composite"};
+			ps.sortField="phone_number";
+			ps.sortType="asc";
+			sort={ field : ps.sortField,type : ps.sortType} ;
 			var contitions={};
 
 			if(window.pageExt.list.beforeQuery){
@@ -85,6 +88,7 @@ function ListPage() {
 					,{ field: 'regionLocation', align:"center",fixed:false,  hide:false, sort: true  , title: fox.translate('地区位置'), templet:function (d){ return templet('regionLocation',fox.getDictText(CHECK_REGIONLOCATION_DATA,d.regionLocation,'','regionLocation'),d);}}
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
+					,{ field: 'keyword', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('keyword') , templet: function (d) { return templet('keyword',d.keyword,d);}  }
 					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 160 }
 				]],
@@ -139,6 +143,7 @@ function ListPage() {
 		value.regionType={ inputType:"select_box", value: getSelectedValue("#regionType","value"), label:getSelectedValue("#regionType","nameStr") };
 		value.regionLocation={ inputType:"check_box", value: getSelectedValue("#regionLocation","value"), label:getSelectedValue("#regionLocation","nameStr") };
 		value.createTime={ inputType:"date_input", begin: $("#createTime-begin").val(), end: $("#createTime-end").val() ,matchType:"auto" };
+		value.keyword={ inputType:"button",value: $("#keyword").val()};
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -152,7 +157,12 @@ function ListPage() {
 			if(sort) {
 				ps.sortField=sort.field;
 				ps.sortType=sort.type;
-			} 		}
+			} else {
+				ps.sortField="phone_number";
+				ps.sortType="asc";
+				sort={ field : sortField,type : sortType} ;
+			}
+		}
 		if(reset) {
 			table.reload('data-table', { where : ps , page:{ curr:1 } });
 		} else {
@@ -239,9 +249,7 @@ function ListPage() {
 			trigger:"click",
 			done: function(value, date, endDate) {
 				setTimeout(function () {
-					if(data.change && data.change.length>0) {
 						refreshTableData();
-					}
 					window.pageExt.list.onDatePickerChanged && window.pageExt.list.onDatePickerChanged("createTime",value, date, endDate);
 				},1);
 			}
