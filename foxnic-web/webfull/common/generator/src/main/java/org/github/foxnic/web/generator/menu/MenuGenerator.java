@@ -13,7 +13,9 @@ import com.github.foxnic.sql.meta.DBTable;
 import com.github.foxnic.sql.meta.DBType;
 import com.leefj.webfull.constants.db.WebFullTables;
 import com.leefj.webfull.example.page.AddressPageController;
+import com.leefj.webfull.example.page.GoodsPageController;
 import com.leefj.webfull.proxy.example.AddressServiceProxy;
+import com.leefj.webfull.proxy.example.GoodsServiceProxy;
 import org.github.foxnic.web.constants.db.FoxnicWeb;
 import org.github.foxnic.web.constants.enums.system.AccessType;
 import org.github.foxnic.web.constants.enums.system.MenuType;
@@ -54,7 +56,8 @@ public class MenuGenerator {
 //		mg=new MenuGenerator(ExampleTables.EXAMPLE_GOODS.$TABLE, GoodsServiceProxy.class, GoodsPageController.class);
 //		mg.generate("583014848745439232");
 
-		mg=new MenuGenerator(WebFullTables.WEBFULL_EXAMPLE_ADDRESS.$TABLE, AddressServiceProxy.class, AddressPageController.class);
+//		mg=new MenuGenerator(WebFullTables.WEBFULL_EXAMPLE_ADDRESS.$TABLE, AddressServiceProxy.class, AddressPageController.class);
+		mg=new MenuGenerator(WebFullTables.WEBFULL_EXAMPLE_GOODS.$TABLE, GoodsServiceProxy.class, GoodsPageController.class);
 		mg.generate("610152639237193728");
 		// mg.removeByBatchId("608188281577799680");
 
@@ -264,7 +267,7 @@ public class MenuGenerator {
 	private String roleId;
 
 	private MenuGenerator(DBTable table,Class proxyType,Class pageType) {
-		this("service-example",SUPER_ADMIN_ROLE_ID,table,proxyType,pageType);
+		this("webfull-service-example",SUPER_ADMIN_ROLE_ID,table,proxyType,pageType);
 	}
 
 	public MenuGenerator(String appId,String roleId,DBTable table,Class proxyType,Class pageType) {
