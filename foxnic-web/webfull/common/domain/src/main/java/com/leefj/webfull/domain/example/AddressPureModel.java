@@ -12,7 +12,7 @@ import com.github.foxnic.dao.entity.Entity;
 /**
  * 订单地址
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-08-19 16:30:03
+ * @since 2022-09-16 06:12:50
  * @sign FC1F5458E0CE2C2B2BF0A60795FB794C
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -229,6 +229,39 @@ public class AddressPureModel {
 		AddressPureModel po = new AddressPureModel();
 		BeanUtil.copy(pojo,po,true);
 		return po;
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public AddressPureModel duplicate(boolean all) {
+		AddressPureModel inst = new AddressPureModel();
+		inst.setPhoneNumber(this.getPhoneNumber());
+		inst.setAddress(this.getAddress());
+		inst.setNotes(this.getNotes());
+		inst.setRegionType(this.getRegionType());
+		inst.setName(this.getName());
+		inst.setId(this.getId());
+		inst.setRegionLocation(this.getRegionLocation());
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AddressPureModel clone() {
+		return BeanUtil.clone(this,false);
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AddressPureModel clone(boolean deep) {
+		return BeanUtil.clone(this,deep);
 	}
 
 	/**

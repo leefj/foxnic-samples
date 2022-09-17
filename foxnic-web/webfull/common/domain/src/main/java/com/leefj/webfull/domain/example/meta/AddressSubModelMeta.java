@@ -3,12 +3,13 @@ package com.leefj.webfull.domain.example.meta;
 import com.github.foxnic.api.bean.BeanProperty;
 import com.leefj.webfull.domain.example.AddressSubModel;
 import com.leefj.webfull.domain.example.AddressModel;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-08-19 15:50:57
+ * @since 2022-09-16 06:12:50
  * @sign 2D524AA15B0CEA67203758F0084B2AC9
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -106,9 +107,19 @@ public class AddressSubModelMeta {
 	public static final BeanProperty<com.leefj.webfull.domain.example.AddressSubModel,java.lang.String> REGION_LOCATION_PROP = new BeanProperty(com.leefj.webfull.domain.example.AddressSubModel.class ,REGION_LOCATION, java.lang.String.class, "地区位置", "地区位置，东北、华北等", java.lang.String.class, null);
 	
 	/**
+	 * 备注 , 类型: java.lang.String
+	*/
+	public static final String NOTES="notes";
+	
+	/**
+	 * 备注 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.leefj.webfull.domain.example.AddressSubModel,java.lang.String> NOTES_PROP = new BeanProperty(com.leefj.webfull.domain.example.AddressSubModel.class ,NOTES, java.lang.String.class, "备注", "备注", java.lang.String.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ POST_CODE1 , POST_CODE2 , MY_PROPERTY , ID , NAME , PHONE_NUMBER , ADDRESS , REGION_TYPE , REGION_LOCATION };
+	public static final String[] $PROPS={ POST_CODE1 , POST_CODE2 , MY_PROPERTY , ID , NAME , PHONE_NUMBER , ADDRESS , REGION_TYPE , REGION_LOCATION , NOTES };
 	
 	/**
 	 * 代理类
@@ -216,5 +227,48 @@ public class AddressSubModelMeta {
 			super.setRegionLocation(regionLocation);
 			return this;
 		}
+		
+		/**
+		 * 设置 备注
+		 * @param notes 备注
+		 * @return 当前对象
+		*/
+		public AddressModel setNotes(String notes) {
+			super.change(NOTES,super.getNotes(),notes);
+			super.setNotes(notes);
+			return this;
+		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public AddressSubModel clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public AddressSubModel duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setPhoneNumber(this.getPhoneNumber());
+			inst.setAddress(this.getAddress());
+			inst.setNotes(this.getNotes());
+			inst.setRegionType(this.getRegionType());
+			inst.setName(this.getName());
+			inst.setId(this.getId());
+			inst.setRegionLocation(this.getRegionLocation());
+			if(all) {
+				inst.setPostCode2(this.getPostCode2());
+				inst.setPostCode1(this.getPostCode1());
+				inst.setMyProperty(this.getMyProperty());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

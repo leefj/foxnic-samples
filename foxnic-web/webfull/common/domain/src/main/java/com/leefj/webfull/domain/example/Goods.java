@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
@@ -18,7 +19,7 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 商品
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-09-14 06:26:52
+ * @since 2022-09-16 06:12:45
  * @sign C98473D743B459B0685316BD1117E3A3
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -259,6 +260,7 @@ public class Goods extends Entity {
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public Goods setDeleted(Integer deleted) {
 		this.deleted=deleted;
 		this.deletedBool=DataParser.parseBoolean(deleted);
@@ -413,7 +415,9 @@ public class Goods extends Entity {
 	@Transient
 	public static Goods createFrom(Map<String,Object> goodsMap) {
 		if(goodsMap==null) return null;
-		Goods po = EntityContext.create(Goods.class, goodsMap);
+		Goods po = create();
+		EntityContext.copyProperties(po,goodsMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -425,7 +429,9 @@ public class Goods extends Entity {
 	@Transient
 	public static Goods createFrom(Object pojo) {
 		if(pojo==null) return null;
-		Goods po = EntityContext.create(Goods.class,pojo);
+		Goods po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -435,6 +441,6 @@ public class Goods extends Entity {
 	*/
 	@Transient
 	public static Goods create() {
-		return EntityContext.create(Goods.class);
+		return new com.leefj.webfull.domain.example.meta.GoodsMeta.$$proxy$$();
 	}
 }

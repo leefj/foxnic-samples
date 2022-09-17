@@ -2,12 +2,13 @@ package com.leefj.webfull.domain.example.meta;
 
 import com.github.foxnic.api.bean.BeanProperty;
 import com.leefj.webfull.domain.example.AddressModel;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-08-19 16:30:03
+ * @since 2022-09-16 06:12:50
  * @sign 8C5453A926F1CFD20310681A88DDBD24
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -194,5 +195,35 @@ public class AddressModelMeta {
 			super.setNotes(notes);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public AddressModel clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public AddressModel duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setPhoneNumber(this.getPhoneNumber());
+			inst.setAddress(this.getAddress());
+			inst.setNotes(this.getNotes());
+			inst.setRegionType(this.getRegionType());
+			inst.setName(this.getName());
+			inst.setId(this.getId());
+			inst.setRegionLocation(this.getRegionLocation());
+			if(all) {
+				inst.setMyProperty(this.getMyProperty());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

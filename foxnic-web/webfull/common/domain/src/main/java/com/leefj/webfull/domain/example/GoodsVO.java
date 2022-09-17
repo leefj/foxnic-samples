@@ -9,13 +9,14 @@ import javax.persistence.Transient;
 import com.github.foxnic.commons.bean.BeanUtil;
 import com.github.foxnic.dao.entity.EntityContext;
 import com.github.foxnic.dao.entity.Entity;
+import java.util.Map;
 
 
 
 /**
  * 商品
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-09-14 06:26:52
+ * @since 2022-09-16 06:12:45
  * @sign D5EC66A9CF3A8FEF67AE01CD4DE75E9E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -353,6 +354,20 @@ public class GoodsVO extends Goods {
 	}
 
 	/**
+	 * 将 Map 转换成 GoodsVO
+	 * @param goodsMap 包含实体信息的 Map 对象
+	 * @return GoodsVO , 转换好的的 Goods 对象
+	*/
+	@Transient
+	public static GoodsVO createFrom(Map<String,Object> goodsMap) {
+		if(goodsMap==null) return null;
+		GoodsVO vo = create();
+		EntityContext.copyProperties(vo,goodsMap);
+		vo.clearModifies();
+		return vo;
+	}
+
+	/**
 	 * 将 Pojo 转换成 GoodsVO
 	 * @param pojo 包含实体信息的 Pojo 对象
 	 * @return GoodsVO , 转换好的的 Goods 对象
@@ -360,8 +375,10 @@ public class GoodsVO extends Goods {
 	@Transient
 	public static GoodsVO createFrom(Object pojo) {
 		if(pojo==null) return null;
-		GoodsVO po = EntityContext.create(GoodsVO.class,pojo);
-		return po;
+		GoodsVO vo = create();
+		EntityContext.copyProperties(vo,pojo);
+		vo.clearModifies();
+		return vo;
 	}
 
 	/**
@@ -370,6 +387,6 @@ public class GoodsVO extends Goods {
 	*/
 	@Transient
 	public static GoodsVO create() {
-		return EntityContext.create(GoodsVO.class);
+		return new com.leefj.webfull.domain.example.meta.GoodsVOMeta.$$proxy$$();
 	}
 }

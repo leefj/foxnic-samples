@@ -23,7 +23,7 @@ import java.util.Map;
  * 商品表 服务接口
  * </p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-09-14 06:31:31
+ * @since 2022-09-16 06:12:46
 */
 
 public interface IGoodsService extends  ISimpleIdService<Goods,String> {
