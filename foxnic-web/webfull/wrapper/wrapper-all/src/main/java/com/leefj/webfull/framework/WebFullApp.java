@@ -14,6 +14,7 @@ import org.springframework.context.annotation.ComponentScan;
 		FoxnicWebMeta.SERVICE_HRM_PACKAGE,FoxnicWebMeta.SERVICE_PCM_PACKAGE,
 		FoxnicWebMeta.SERVICE_CHANGES_PACKAGE,
 		FoxnicWebMeta.SERVICE_BPM_PACKAGE,
+		FoxnicWebMeta.SERVICE_DOCS_PACKAGE,
 		FoxnicWebMeta.SERVICE_DATA_PERM_PACKAGE,
 		// 自身项目的功能模块
 		WebFullMeta.FRAMEWORK_PACKAGE,WebFullMeta.SERVICE_EXAMPLE_PACKAGE

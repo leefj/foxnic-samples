@@ -39,10 +39,18 @@ spring:
             mac: /Users/Shared/foxnic/passwd.txt
             linux: /foxnic/passwd.txt
 
-        driver-class-name: com.mysql.cj.jdbc.Driver
-        url: ai+mCm8asbK9SNrQDk7ac29neidjdgHp2jFU7HYbZZOmvbR4OKNXb877AJzdYToBGLgN+etaRMM4wzovFLMULMH6brIo3zgsyub026w4Il4Oqg9jzyYsLaa6LNyznmYm5kKoS17K9XHBX8e0lDuik9pcc/DfdjaUkhm0MmOALUM86dHiyURHUP5hfQ4otf/kE9gVP+GO1G7fUdc4JBLDYylfBzmp9SNKQcTLQ/5AkWcnbm89+5pAz4JNnCJILF0B
+        # 8.x
+        #driver-class-name: com.mysql.cj.jdbc.Driver
+        # 5.x
+        driver-class-name: com.mysql.jdbc.Driver
+        # db-1
+        url: ai+mCm8asbK9SNrQDk7ac29neidjdgHp2jFU7HYbZZM7XPIVnc3jn040SCi2ghsOJmvzo7Z8DsMWz0GJtHzk5fVkSVq8PVTLpt97W7e4//KN1tJ8luj3f2R4xGk6d01pnyaG7DyU2tsIMcGZTOl8T0kLJom6Izu9ePptW1UPa7MuTPWKDKUSCYKdQSv51ASxJE99hLodGgxEtGeRBhnlDigwekNCLkMQGvjVKTeDRDsro2ghN1qDTzmyCaGJQxMq
         username: tD5wkJAfnCt04A+Y+QN5GA==
         password: ODGx5F84xpWJgfRFnzAaYhViHJqrTO3uxxDZ2lRlZNk=
+        # db-2
+        #url: ai+mCm8asbK9SNrQDk7acwFudx/85JSmGG0oO6UIbEQuHyAECjhpYNu498VsI+yuzMJGjNdFWmZBFeX1CBxN/JCMveiHfB5RycbYXosZS2zowedyYWd66RDP6lRhDjg8uDRtWUDh6WEHC5jVLjUaEr94jv61Uh7brCMbsQbY3ihNAcM79lGwTfV3of3ALwDHSEyVtgHG6PMpk+u00M7B6nRY9KzXnzkCErTbNtU2GaGcYi+ey3SpL9kQx7eGv7Fy
+        #username: IJ4ZT+NqsHTkfq9MMjSAxw==
+        #password: WwvxnxIYA86yquXUpqrVFw==
 
 #        driver-class-name: dm.jdbc.driver.DmDriver
 #        url: sI2+hq2vWmNtpey9cP6SoymBrYAzdXtCIvGGIofc5SGKCQylHa3KjkVCCXiSiE8E
@@ -86,6 +94,11 @@ spring:
         maxPoolPreparedStatementPerConnectionSize: -1
         # 是否打印语句，生产环境建议关闭
         printSQL: true
+        # 是否使用简单模式输出日志
+        printSQLSimple: false
+        # 是否输出调用栈
+        printSQLCallstack: true
+
   thymeleaf:
     prefix: classpath:/public/
     check-template-location: true
@@ -245,6 +258,19 @@ foxnic:
         enable: true
         # 多个节点时用逗号隔开,格式： 地址,权重 | 地址,权重 | ...
         end-points: http://127.0.0.1:1899,1 | http://127.0.0.1:1899,2
+  language:
+    translator:
+      enable: true
+      encrypt:
+        enable: true
+        file:
+          windows: d:/foxnic/passwd.txt
+          mac: /Users/Shared/foxnic/passwd.txt
+          linux: /foxnic/passwd.txt
+      baidu:
+        appId: oEXl3F7Mx4VZch8pcOZGRatfDPJIGqQrMFHEnN8aMH8=
+        securityKey: TyrKCb6TgvTWU78ARppPs9dCs1VrZjGRYHqGIlkZ/14=
+
 
 security:
   # 模式：session / jwt
@@ -253,6 +279,8 @@ security:
   ignored-urls: /console/** , /assets/** , /pages/** , /*.ico , /module/** ,  /**/*.css , /**/*.js , /error , /demo/** ,/druid/** ,/service-system/unit-test/**
   # mode=session 时配置的登录页面
   login-page: /login.html
+  # 配置登录标识的范围与优先级,可选值在 LoginIdentityType 枚举中定义
+  login-identity-priority: employee_badge,user_account,user_phone,user_id
   jwt:
     key-location: webfull.jks
     key-alias: webfull

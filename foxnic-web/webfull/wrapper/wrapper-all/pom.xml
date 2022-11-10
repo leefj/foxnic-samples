@@ -87,6 +87,17 @@
             <version>${foxnic.web.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.github.foxnic.web</groupId>
+            <artifactId>service-docs</artifactId>
+            <version>${foxnic.web.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.foxnic.web</groupId>
+            <artifactId>view-docs</artifactId>
+            <version>${foxnic.web.version}</version>
+        </dependency>
+
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
