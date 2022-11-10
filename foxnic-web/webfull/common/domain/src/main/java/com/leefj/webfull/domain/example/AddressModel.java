@@ -11,7 +11,7 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 订单地址
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-08-19 16:30:03
+ * @since 2022-09-16 06:12:50
  * @sign 8C5453A926F1CFD20310681A88DDBD24
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -221,15 +221,6 @@ public class AddressModel extends Entity {
 	}
 
 	/**
-	 * 创建一个 AddressModel，等同于 new
-	 * @return AddressModel 对象
-	*/
-	@Transient
-	public static AddressModel create() {
-		return EntityContext.create(AddressModel.class);
-	}
-
-	/**
 	 * 将 Map 转换成 AddressModel
 	 * @param addressMap 包含实体信息的 Map 对象
 	 * @return AddressModel , 转换好的的 Address 对象
@@ -237,7 +228,9 @@ public class AddressModel extends Entity {
 	@Transient
 	public static AddressModel createFrom(Map<String,Object> addressMap) {
 		if(addressMap==null) return null;
-		AddressModel po = EntityContext.create(AddressModel.class, addressMap);
+		AddressModel po = create();
+		EntityContext.copyProperties(po,addressMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -249,8 +242,47 @@ public class AddressModel extends Entity {
 	@Transient
 	public static AddressModel createFrom(Object pojo) {
 		if(pojo==null) return null;
-		AddressModel po = EntityContext.create(AddressModel.class,pojo);
+		AddressModel po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public AddressModel duplicate(boolean all) {
+		com.leefj.webfull.domain.example.meta.AddressModelMeta.$$proxy$$ inst = new com.leefj.webfull.domain.example.meta.AddressModelMeta.$$proxy$$();
+		inst.setPhoneNumber(this.getPhoneNumber());
+		inst.setAddress(this.getAddress());
+		inst.setNotes(this.getNotes());
+		inst.setRegionType(this.getRegionType());
+		inst.setName(this.getName());
+		inst.setId(this.getId());
+		inst.setRegionLocation(this.getRegionLocation());
+		if(all) {
+			inst.setMyProperty(this.getMyProperty());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AddressModel clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AddressModel clone(boolean deep) {
+		return EntityContext.clone(AddressModel.class,this,deep);
 	}
 
 	/**
@@ -270,5 +302,14 @@ public class AddressModel extends Entity {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	/**
+	 * 创建一个 AddressModel，等同于 new
+	 * @return AddressModel 对象
+	*/
+	@Transient
+	public static AddressModel create() {
+		return new com.leefj.webfull.domain.example.meta.AddressModelMeta.$$proxy$$();
 	}
 }

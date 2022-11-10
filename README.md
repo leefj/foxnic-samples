@@ -7,7 +7,7 @@
 用于展示和提供 Foxnic 相关的示例工程和模版代码
 
 ## 演示地址
-[访问在线示例项目](http://eam-demo.rainbooow.com:26788/login.html)
+[访问在线示例项目](http://eam-demo.rainbooow.com:8089/login.html)
 
 ## 目录结构
 

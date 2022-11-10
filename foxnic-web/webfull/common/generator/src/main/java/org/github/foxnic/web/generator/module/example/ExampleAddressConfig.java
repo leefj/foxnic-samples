@@ -163,6 +163,12 @@ public class ExampleAddressConfig extends BaseCodeConfig<WEBFULL_EXAMPLE_ADDRESS
                 .triggerOnSelect(true)
         ;
 
+        // ADDRESS 字段，单行文本框
+        view.field("keyword")
+                // 搜索栏：设置模糊搜索
+                .search().label("关键字")
+        ;
+
 
     }
 
@@ -174,7 +180,7 @@ public class ExampleAddressConfig extends BaseCodeConfig<WEBFULL_EXAMPLE_ADDRESS
 
         // 搜索布局
         search.inputLayout(new Object[]{
-                WEBFULL_EXAMPLE_ADDRESS.NAME,WEBFULL_EXAMPLE_ADDRESS.PHONE_NUMBER,WEBFULL_EXAMPLE_ADDRESS.ADDRESS
+                WEBFULL_EXAMPLE_ADDRESS.NAME,WEBFULL_EXAMPLE_ADDRESS.PHONE_NUMBER,WEBFULL_EXAMPLE_ADDRESS.ADDRESS,"keyword"
         },new Object[]{
                 WEBFULL_EXAMPLE_ADDRESS.REGION_TYPE,WEBFULL_EXAMPLE_ADDRESS.REGION_LOCATION,WEBFULL_EXAMPLE_ADDRESS.CREATE_TIME
         });

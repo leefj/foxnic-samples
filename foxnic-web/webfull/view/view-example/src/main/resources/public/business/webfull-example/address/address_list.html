@@ -2,7 +2,7 @@
 /**
  * 订单地址 列表页 JS 脚本
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-08-20 14:30:15
+ * @since 2022-09-16 06:12:51
  */
  -->
  <!DOCTYPE html>
@@ -54,6 +54,11 @@
                     <div class="search-unit">
                         <div class="search-label-div" style="width:75px"><span th:text="${lang.translate('收件地址')}" class="search-label address-label">收件地址</span><span class="search-colon">:</span></div>
                         <input id="address" class="layui-input search-input" style="width: 296px" type="text" />
+                    </div>
+                    <!-- 关键字 , keyword ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('关键字')}" class="search-label keyword-label">关键字</span><span class="search-colon">:</span></div>
+                        <input id="keyword" class="layui-input search-input" style="width: 140px" type="text" />
                     </div>
 
 

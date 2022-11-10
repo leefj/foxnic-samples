@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2022-08-20 13:16:23
+ * @since 2022-09-16 08:04:49
  * @author 李方捷 , leefangjie@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -16,7 +16,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 public class WebFullTables {
 	
 	/**
-	 * 订单地址
+	 * 订单地址表
 	*/
 	public static class WEBFULL_EXAMPLE_ADDRESS extends DBTable {
 		
@@ -101,12 +101,13 @@ public class WebFullTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","版本","版本",false,false,false);
 		
 		public WEBFULL_EXAMPLE_ADDRESS() {
-			this.init($NAME,"订单地址" , ID , NAME , PHONE_NUMBER , ADDRESS , REGION_TYPE , REGION_LOCATION , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"订单地址表" , ID , NAME , PHONE_NUMBER , ADDRESS , REGION_TYPE , REGION_LOCATION , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final WEBFULL_EXAMPLE_ADDRESS $TABLE=new WEBFULL_EXAMPLE_ADDRESS();
 	}
 	
 	/**
+	 * 商品表
 	*/
 	public static class WEBFULL_EXAMPLE_GOODS extends DBTable {
 		
@@ -170,12 +171,13 @@ public class WebFullTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
 		
 		public WEBFULL_EXAMPLE_GOODS() {
-			this.init($NAME,"" , ID , NAME , PRICE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"商品表" , ID , NAME , PRICE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final WEBFULL_EXAMPLE_GOODS $TABLE=new WEBFULL_EXAMPLE_GOODS();
 	}
 	
 	/**
+	 * 订单表
 	*/
 	public static class WEBFULL_EXAMPLE_ORDER extends DBTable {
 		
@@ -244,12 +246,13 @@ public class WebFullTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
 		
 		public WEBFULL_EXAMPLE_ORDER() {
-			this.init($NAME,"" , ID , ORDER_NO , AMOUNT , ADDRESS_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"订单表" , ID , ORDER_NO , AMOUNT , ADDRESS_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final WEBFULL_EXAMPLE_ORDER $TABLE=new WEBFULL_EXAMPLE_ORDER();
 	}
 	
 	/**
+	 * 订单明细表
 	*/
 	public static class WEBFULL_EXAMPLE_ORDER_ITEM extends DBTable {
 		
@@ -272,6 +275,11 @@ public class WebFullTables {
 		 * 商品ID
 		*/
 		public static final DBField GOODS_ID = new DBField(DBDataType.STRING , "goods_id","goodsId","商品ID","商品ID",false,false,true);
+		
+		/**
+		 * 数量
+		*/
+		public static final DBField AMOUNT = new DBField(DBDataType.INTEGER , "amount","amount","数量","数量",false,false,true);
 		
 		/**
 		 * 创建人ID
@@ -313,7 +321,7 @@ public class WebFullTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
 		
 		public WEBFULL_EXAMPLE_ORDER_ITEM() {
-			this.init($NAME,"" , ID , ORDER_ID , GOODS_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"订单明细表" , ID , ORDER_ID , GOODS_ID , AMOUNT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final WEBFULL_EXAMPLE_ORDER_ITEM $TABLE=new WEBFULL_EXAMPLE_ORDER_ITEM();
 	}

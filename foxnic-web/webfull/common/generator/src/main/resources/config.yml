@@ -47,5 +47,5 @@ applications:
     # 视图代码路径前缀
     viewPrefixPath: public/business/webfull-example
     # 聚合项目，用于读取配置
-    wrapperProjectPath:  /wrapper/wrapper-all-service
+    wrapperProjectPath:  /wrapper/wrapper-all
 

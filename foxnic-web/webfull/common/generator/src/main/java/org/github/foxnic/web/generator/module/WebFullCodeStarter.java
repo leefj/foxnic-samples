@@ -2,8 +2,12 @@ package org.github.foxnic.web.generator.module;
 
 import com.github.foxnic.commons.io.FileUtil;
 import com.github.foxnic.generator.util.ModuleCodeGenerator;
+import org.github.foxnic.web.domain.changes.ExampleOrderItem;
 import org.github.foxnic.web.generator.data.DataGenerator;
 import org.github.foxnic.web.generator.module.example.ExampleAddressConfig;
+import org.github.foxnic.web.generator.module.example.ExampleGoodsConfig;
+import org.github.foxnic.web.generator.module.example.ExampleOrderConfig;
+import org.github.foxnic.web.generator.module.example.ExampleOrderItemConfig;
 
 import java.io.File;
 
@@ -38,8 +42,10 @@ public class WebFullCodeStarter extends ModuleCodeGenerator {
 
 //        this.addConfig(new ExampleOrderConfig());
 //        this.addConfig(new ExampleOrderItemConfig());
-//        this.addConfig(new ExampleGoodsConfig());
+        this.addConfig(new ExampleGoodsConfig());
         this.addConfig(new ExampleAddressConfig());
+        this.addConfig(new ExampleOrderConfig());
+        this.addConfig(new ExampleOrderItemConfig());
 
     }
 
