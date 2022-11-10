@@ -1,5 +1,6 @@
 package com.leefj.webfull.domain.example;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.List;
 import java.util.ArrayList;
@@ -10,17 +11,24 @@ import com.github.foxnic.commons.bean.BeanUtil;
 import com.github.foxnic.dao.entity.EntityContext;
 import com.github.foxnic.dao.entity.Entity;
 import java.util.Map;
+import com.leefj.webfull.domain.example.meta.OrderVOMeta;
+import com.github.foxnic.commons.lang.DataParser;
+import java.math.BigDecimal;
+import java.util.Date;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
- * 订单
+ * 订单VO类型
+ * <p>订单 , 数据表 webfull_example_order 的通用VO类型</p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-09-16 19:09:34
+ * @since 2022-11-10 10:39:40
  * @sign F4B835442BB12CC66DC3398FF917F133
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
+@ApiModel(description = "订单VO类型 ; 订单 , 数据表 webfull_example_order 的通用VO类型" , parent = Order.class)
 public class OrderVO extends Order {
 
 	private static final long serialVersionUID = 1L;
@@ -390,5 +398,109 @@ public class OrderVO extends Order {
 	@Transient
 	public static OrderVO create() {
 		return new com.leefj.webfull.domain.example.meta.OrderVOMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setAmount(DataParser.parse(BigDecimal.class, map.get(OrderVOMeta.AMOUNT)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(OrderVOMeta.CREATE_BY)));
+			this.setOrderNo(DataParser.parse(String.class, map.get(OrderVOMeta.ORDER_NO)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(OrderVOMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(OrderVOMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(OrderVOMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(OrderVOMeta.DELETE_TIME)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(OrderVOMeta.DELETE_BY)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(OrderVOMeta.UPDATE_TIME)));
+			this.setId(DataParser.parse(String.class, map.get(OrderVOMeta.ID)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(OrderVOMeta.VERSION)));
+			this.setAddressId(DataParser.parse(String.class, map.get(OrderVOMeta.ADDRESS_ID)));
+			// others
+			this.setAddress(DataParser.parse(Address.class, map.get(OrderVOMeta.ADDRESS)));
+			this.setSearchField(DataParser.parse(String.class, map.get(OrderVOMeta.SEARCH_FIELD)));
+			this.setPageIndex(DataParser.parse(Integer.class, map.get(OrderVOMeta.PAGE_INDEX)));
+			this.setSortType(DataParser.parse(String.class, map.get(OrderVOMeta.SORT_TYPE)));
+			this.setFuzzyField(DataParser.parse(String.class, map.get(OrderVOMeta.FUZZY_FIELD)));
+			this.setSortField(DataParser.parse(String.class, map.get(OrderVOMeta.SORT_FIELD)));
+			this.setPageSize(DataParser.parse(Integer.class, map.get(OrderVOMeta.PAGE_SIZE)));
+			this.setSearchValue(DataParser.parse(String.class, map.get(OrderVOMeta.SEARCH_VALUE)));
+			return true;
+		} else {
+			try {
+				this.setAmount( (BigDecimal)map.get(OrderVOMeta.AMOUNT));
+				this.setCreateBy( (String)map.get(OrderVOMeta.CREATE_BY));
+				this.setOrderNo( (String)map.get(OrderVOMeta.ORDER_NO));
+				this.setDeleted( (Integer)map.get(OrderVOMeta.DELETED));
+				this.setCreateTime( (Date)map.get(OrderVOMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(OrderVOMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(OrderVOMeta.DELETE_TIME));
+				this.setDeleteBy( (String)map.get(OrderVOMeta.DELETE_BY));
+				this.setUpdateTime( (Date)map.get(OrderVOMeta.UPDATE_TIME));
+				this.setId( (String)map.get(OrderVOMeta.ID));
+				this.setVersion( (Integer)map.get(OrderVOMeta.VERSION));
+				this.setAddressId( (String)map.get(OrderVOMeta.ADDRESS_ID));
+				// others
+				this.setAddress( (Address)map.get(OrderVOMeta.ADDRESS));
+				this.setSearchField( (String)map.get(OrderVOMeta.SEARCH_FIELD));
+				this.setPageIndex( (Integer)map.get(OrderVOMeta.PAGE_INDEX));
+				this.setSortType( (String)map.get(OrderVOMeta.SORT_TYPE));
+				this.setFuzzyField( (String)map.get(OrderVOMeta.FUZZY_FIELD));
+				this.setSortField( (String)map.get(OrderVOMeta.SORT_FIELD));
+				this.setPageSize( (Integer)map.get(OrderVOMeta.PAGE_SIZE));
+				this.setSearchValue( (String)map.get(OrderVOMeta.SEARCH_VALUE));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setAmount(DataParser.parse(BigDecimal.class, r.getValue(OrderVOMeta.AMOUNT)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(OrderVOMeta.CREATE_BY)));
+			this.setOrderNo(DataParser.parse(String.class, r.getValue(OrderVOMeta.ORDER_NO)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(OrderVOMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(OrderVOMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(OrderVOMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(OrderVOMeta.DELETE_TIME)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(OrderVOMeta.DELETE_BY)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(OrderVOMeta.UPDATE_TIME)));
+			this.setId(DataParser.parse(String.class, r.getValue(OrderVOMeta.ID)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(OrderVOMeta.VERSION)));
+			this.setAddressId(DataParser.parse(String.class, r.getValue(OrderVOMeta.ADDRESS_ID)));
+			return true;
+		} else {
+			try {
+				this.setAmount( (BigDecimal)r.getValue(OrderVOMeta.AMOUNT));
+				this.setCreateBy( (String)r.getValue(OrderVOMeta.CREATE_BY));
+				this.setOrderNo( (String)r.getValue(OrderVOMeta.ORDER_NO));
+				this.setDeleted( (Integer)r.getValue(OrderVOMeta.DELETED));
+				this.setCreateTime( (Date)r.getValue(OrderVOMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(OrderVOMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(OrderVOMeta.DELETE_TIME));
+				this.setDeleteBy( (String)r.getValue(OrderVOMeta.DELETE_BY));
+				this.setUpdateTime( (Date)r.getValue(OrderVOMeta.UPDATE_TIME));
+				this.setId( (String)r.getValue(OrderVOMeta.ID));
+				this.setVersion( (Integer)r.getValue(OrderVOMeta.VERSION));
+				this.setAddressId( (String)r.getValue(OrderVOMeta.ADDRESS_ID));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

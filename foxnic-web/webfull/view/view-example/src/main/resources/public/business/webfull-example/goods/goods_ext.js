@@ -1,7 +1,7 @@
 /**
  * 商品 列表页 JS 脚本
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-09-16 06:12:46
+ * @since 2022-11-10 10:39:34
  */
 
 layui.config({

@@ -35,10 +35,10 @@ import java.util.Map;
 
 /**
  * <p>
- * 商品表 服务实现
+ * 商品服务实现
  * </p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-09-16 06:12:46
+ * @since 2022-11-10 10:39:34
 */
 
 
@@ -98,7 +98,7 @@ public class GoodsServiceImpl extends SuperService<Goods> implements IGoodsServi
 
 	
 	/**
-	 * 按主键删除 商品
+	 * 按主键删除商品
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -119,7 +119,7 @@ public class GoodsServiceImpl extends SuperService<Goods> implements IGoodsServi
 	}
 	
 	/**
-	 * 按主键删除 商品
+	 * 按主键删除商品
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -179,7 +179,7 @@ public class GoodsServiceImpl extends SuperService<Goods> implements IGoodsServi
 
 	
 	/**
-	 * 按主键更新字段 商品
+	 * 按主键更新商品
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -193,7 +193,7 @@ public class GoodsServiceImpl extends SuperService<Goods> implements IGoodsServi
 
 	
 	/**
-	 * 按主键获取 商品
+	 * 按主键获取商品
 	 *
 	 * @param id 主键
 	 * @return Goods 数据对象

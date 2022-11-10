@@ -18,6 +18,7 @@ public abstract class BaseCodeConfig<T extends DBTable> extends ModuleCodeConfig
         super(table,tablePrefix);
         this.apiSort=apiSort;
         this.configs=new WebFullConfigs(appConfigPrefix);
+        this.init();
     }
 
 

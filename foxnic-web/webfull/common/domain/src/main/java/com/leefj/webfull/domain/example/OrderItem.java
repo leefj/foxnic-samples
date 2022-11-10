@@ -1,6 +1,7 @@
 package com.leefj.webfull.domain.example;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.leefj.webfull.constants.db.WebFullTables.WEBFULL_EXAMPLE_ORDER_ITEM;
@@ -8,22 +9,27 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.leefj.webfull.domain.example.meta.OrderItemMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 订单明细
+ * <p>订单明细 , 数据表 webfull_example_order_item 的PO类型</p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-09-16 19:09:36
+ * @since 2022-11-10 10:39:41
  * @sign 4B1F7EB11CDE08174CC74090E8224F5F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "webfull_example_order_item")
+@ApiModel(description = "订单明细 ; 订单明细 , 数据表 webfull_example_order_item 的PO类型")
 public class OrderItem extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -34,19 +40,19 @@ public class OrderItem extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "1")
 	private String id;
 	
 	/**
 	 * 订单ID：订单ID
 	*/
-	@ApiModelProperty(required = false,value="订单ID" , notes = "订单ID")
+	@ApiModelProperty(required = false,value="订单ID" , notes = "订单ID" , example = "583028022102200320")
 	private String orderId;
 	
 	/**
 	 * 商品ID：商品ID
 	*/
-	@ApiModelProperty(required = false,value="商品ID" , notes = "商品ID")
+	@ApiModelProperty(required = false,value="商品ID" , notes = "商品ID" , example = "583020804682289152")
 	private String goodsId;
 	
 	/**
@@ -82,9 +88,10 @@ public class OrderItem extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
+	@EnumFor("deleted")
 	private Boolean deletedBool;
 	
 	/**
@@ -102,7 +109,7 @@ public class OrderItem extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
 	private Integer version;
 	
 	/**
@@ -495,5 +502,95 @@ public class OrderItem extends Entity {
 	@Transient
 	public static OrderItem create() {
 		return new com.leefj.webfull.domain.example.meta.OrderItemMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setAmount(DataParser.parse(Integer.class, map.get(OrderItemMeta.AMOUNT)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(OrderItemMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(OrderItemMeta.DELETED)));
+			this.setOrderId(DataParser.parse(String.class, map.get(OrderItemMeta.ORDER_ID)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(OrderItemMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(OrderItemMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(OrderItemMeta.DELETE_TIME)));
+			this.setGoodsId(DataParser.parse(String.class, map.get(OrderItemMeta.GOODS_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(OrderItemMeta.DELETE_BY)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(OrderItemMeta.UPDATE_TIME)));
+			this.setId(DataParser.parse(String.class, map.get(OrderItemMeta.ID)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(OrderItemMeta.VERSION)));
+			// others
+			this.setGoods(DataParser.parse(Goods.class, map.get(OrderItemMeta.GOODS)));
+			return true;
+		} else {
+			try {
+				this.setAmount( (Integer)map.get(OrderItemMeta.AMOUNT));
+				this.setCreateBy( (String)map.get(OrderItemMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(OrderItemMeta.DELETED));
+				this.setOrderId( (String)map.get(OrderItemMeta.ORDER_ID));
+				this.setCreateTime( (Date)map.get(OrderItemMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(OrderItemMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(OrderItemMeta.DELETE_TIME));
+				this.setGoodsId( (String)map.get(OrderItemMeta.GOODS_ID));
+				this.setDeleteBy( (String)map.get(OrderItemMeta.DELETE_BY));
+				this.setUpdateTime( (Date)map.get(OrderItemMeta.UPDATE_TIME));
+				this.setId( (String)map.get(OrderItemMeta.ID));
+				this.setVersion( (Integer)map.get(OrderItemMeta.VERSION));
+				// others
+				this.setGoods( (Goods)map.get(OrderItemMeta.GOODS));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setAmount(DataParser.parse(Integer.class, r.getValue(OrderItemMeta.AMOUNT)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(OrderItemMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(OrderItemMeta.DELETED)));
+			this.setOrderId(DataParser.parse(String.class, r.getValue(OrderItemMeta.ORDER_ID)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(OrderItemMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(OrderItemMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(OrderItemMeta.DELETE_TIME)));
+			this.setGoodsId(DataParser.parse(String.class, r.getValue(OrderItemMeta.GOODS_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(OrderItemMeta.DELETE_BY)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(OrderItemMeta.UPDATE_TIME)));
+			this.setId(DataParser.parse(String.class, r.getValue(OrderItemMeta.ID)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(OrderItemMeta.VERSION)));
+			return true;
+		} else {
+			try {
+				this.setAmount( (Integer)r.getValue(OrderItemMeta.AMOUNT));
+				this.setCreateBy( (String)r.getValue(OrderItemMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(OrderItemMeta.DELETED));
+				this.setOrderId( (String)r.getValue(OrderItemMeta.ORDER_ID));
+				this.setCreateTime( (Date)r.getValue(OrderItemMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(OrderItemMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(OrderItemMeta.DELETE_TIME));
+				this.setGoodsId( (String)r.getValue(OrderItemMeta.GOODS_ID));
+				this.setDeleteBy( (String)r.getValue(OrderItemMeta.DELETE_BY));
+				this.setUpdateTime( (Date)r.getValue(OrderItemMeta.UPDATE_TIME));
+				this.setId( (String)r.getValue(OrderItemMeta.ID));
+				this.setVersion( (Integer)r.getValue(OrderItemMeta.VERSION));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

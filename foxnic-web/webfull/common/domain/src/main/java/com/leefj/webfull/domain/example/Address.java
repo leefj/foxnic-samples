@@ -1,6 +1,7 @@
 package com.leefj.webfull.domain.example;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.leefj.webfull.constants.db.WebFullTables.WEBFULL_EXAMPLE_ADDRESS;
@@ -8,22 +9,27 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.leefj.webfull.domain.example.meta.AddressMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 订单地址
+ * <p>订单地址 , 数据表 webfull_example_address 的PO类型</p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-09-16 06:12:50
+ * @since 2022-11-10 10:39:38
  * @sign ECBAC43BBB55CF099B8D084BD30689BD
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "webfull_example_address")
+@ApiModel(description = "订单地址 ; 订单地址 , 数据表 webfull_example_address 的PO类型")
 public class Address extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -34,25 +40,25 @@ public class Address extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "583028267108274176")
 	private String id;
 	
 	/**
 	 * 收件人姓名：收件人姓名
 	*/
-	@ApiModelProperty(required = false,value="收件人姓名" , notes = "收件人姓名")
+	@ApiModelProperty(required = false,value="收件人姓名" , notes = "收件人姓名" , example = "李方捷")
 	private String name;
 	
 	/**
 	 * 收件人手机：收件人手机
 	*/
-	@ApiModelProperty(required = false,value="收件人手机" , notes = "收件人手机")
+	@ApiModelProperty(required = false,value="收件人手机" , notes = "收件人手机" , example = "1234567333")
 	private String phoneNumber;
 	
 	/**
 	 * 收件地址：收件地址
 	*/
-	@ApiModelProperty(required = false,value="收件地址" , notes = "收件地址")
+	@ApiModelProperty(required = false,value="收件地址" , notes = "收件地址" , example = "浙江省宁波市鄞州区鄞县大道二号")
 	private String address;
 	
 	/**
@@ -76,33 +82,34 @@ public class Address extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2022-05-28 08:26:11")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2022-06-11 06:44:28")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
+	@EnumFor("deleted")
 	private Boolean deletedBool;
 	
 	/**
@@ -120,7 +127,7 @@ public class Address extends Entity {
 	/**
 	 * 版本：版本
 	*/
-	@ApiModelProperty(required = true,value="版本" , notes = "版本")
+	@ApiModelProperty(required = true,value="版本" , notes = "版本" , example = "2")
 	private Integer version;
 	
 	/**
@@ -573,5 +580,107 @@ public class Address extends Entity {
 	@Transient
 	public static Address create() {
 		return new com.leefj.webfull.domain.example.meta.AddressMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setAddress(DataParser.parse(String.class, map.get(AddressMeta.ADDRESS)));
+			this.setNotes(DataParser.parse(String.class, map.get(AddressMeta.NOTES)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(AddressMeta.UPDATE_TIME)));
+			this.setRegionLocation(DataParser.parse(String.class, map.get(AddressMeta.REGION_LOCATION)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(AddressMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(AddressMeta.CREATE_BY)));
+			this.setPhoneNumber(DataParser.parse(String.class, map.get(AddressMeta.PHONE_NUMBER)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(AddressMeta.DELETED)));
+			this.setRegionType(DataParser.parse(String.class, map.get(AddressMeta.REGION_TYPE)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(AddressMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(AddressMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(AddressMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, map.get(AddressMeta.NAME)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(AddressMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(AddressMeta.ID)));
+			// others
+			this.setOrderCount(DataParser.parse(Integer.class, map.get(AddressMeta.ORDER_COUNT)));
+			return true;
+		} else {
+			try {
+				this.setAddress( (String)map.get(AddressMeta.ADDRESS));
+				this.setNotes( (String)map.get(AddressMeta.NOTES));
+				this.setUpdateTime( (Date)map.get(AddressMeta.UPDATE_TIME));
+				this.setRegionLocation( (String)map.get(AddressMeta.REGION_LOCATION));
+				this.setVersion( (Integer)map.get(AddressMeta.VERSION));
+				this.setCreateBy( (String)map.get(AddressMeta.CREATE_BY));
+				this.setPhoneNumber( (String)map.get(AddressMeta.PHONE_NUMBER));
+				this.setDeleted( (Integer)map.get(AddressMeta.DELETED));
+				this.setRegionType( (String)map.get(AddressMeta.REGION_TYPE));
+				this.setCreateTime( (Date)map.get(AddressMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(AddressMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(AddressMeta.DELETE_TIME));
+				this.setName( (String)map.get(AddressMeta.NAME));
+				this.setDeleteBy( (String)map.get(AddressMeta.DELETE_BY));
+				this.setId( (String)map.get(AddressMeta.ID));
+				// others
+				this.setOrderCount( (Integer)map.get(AddressMeta.ORDER_COUNT));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setAddress(DataParser.parse(String.class, r.getValue(AddressMeta.ADDRESS)));
+			this.setNotes(DataParser.parse(String.class, r.getValue(AddressMeta.NOTES)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AddressMeta.UPDATE_TIME)));
+			this.setRegionLocation(DataParser.parse(String.class, r.getValue(AddressMeta.REGION_LOCATION)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(AddressMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(AddressMeta.CREATE_BY)));
+			this.setPhoneNumber(DataParser.parse(String.class, r.getValue(AddressMeta.PHONE_NUMBER)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AddressMeta.DELETED)));
+			this.setRegionType(DataParser.parse(String.class, r.getValue(AddressMeta.REGION_TYPE)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AddressMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AddressMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AddressMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, r.getValue(AddressMeta.NAME)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AddressMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(AddressMeta.ID)));
+			return true;
+		} else {
+			try {
+				this.setAddress( (String)r.getValue(AddressMeta.ADDRESS));
+				this.setNotes( (String)r.getValue(AddressMeta.NOTES));
+				this.setUpdateTime( (Date)r.getValue(AddressMeta.UPDATE_TIME));
+				this.setRegionLocation( (String)r.getValue(AddressMeta.REGION_LOCATION));
+				this.setVersion( (Integer)r.getValue(AddressMeta.VERSION));
+				this.setCreateBy( (String)r.getValue(AddressMeta.CREATE_BY));
+				this.setPhoneNumber( (String)r.getValue(AddressMeta.PHONE_NUMBER));
+				this.setDeleted( (Integer)r.getValue(AddressMeta.DELETED));
+				this.setRegionType( (String)r.getValue(AddressMeta.REGION_TYPE));
+				this.setCreateTime( (Date)r.getValue(AddressMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(AddressMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(AddressMeta.DELETE_TIME));
+				this.setName( (String)r.getValue(AddressMeta.NAME));
+				this.setDeleteBy( (String)r.getValue(AddressMeta.DELETE_BY));
+				this.setId( (String)r.getValue(AddressMeta.ID));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

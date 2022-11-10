@@ -16,10 +16,10 @@ import com.leefj.webfull.proxy.WebFullServiceNames;
 
 /**
  * <p>
- * 订单明细表  控制器服务代理
+ * 订单明细 控制器服务代理
  * </p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-09-16 19:09:36
+ * @since 2022-11-10 10:39:41
  */
 @FeignClient(value = WebFullServiceNames.WEBFULL_EXAMPLE, contextId = OrderItemServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface OrderItemServiceProxy {

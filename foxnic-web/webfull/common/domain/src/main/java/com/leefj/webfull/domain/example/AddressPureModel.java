@@ -1,22 +1,27 @@
 package com.leefj.webfull.domain.example;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import javax.persistence.Transient;
 import com.github.foxnic.commons.bean.BeanUtil;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
 import com.github.foxnic.dao.entity.Entity;
+import com.leefj.webfull.domain.example.meta.AddressPureModelMeta;
+import com.github.foxnic.commons.lang.DataParser;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 订单地址
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-09-16 06:12:50
+ * @since 2022-11-10 10:39:38
  * @sign FC1F5458E0CE2C2B2BF0A60795FB794C
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
+@ApiModel()
 public class AddressPureModel {
 
 	private static final long serialVersionUID = 1L;
@@ -280,6 +285,74 @@ public class AddressPureModel {
 			return pojo;
 		} catch (Exception e) {
 			throw new RuntimeException(e);
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setPhoneNumber(DataParser.parse(String.class, map.get(AddressPureModelMeta.PHONE_NUMBER)));
+			this.setAddress(DataParser.parse(String.class, map.get(AddressPureModelMeta.ADDRESS)));
+			this.setNotes(DataParser.parse(String.class, map.get(AddressPureModelMeta.NOTES)));
+			this.setRegionType(DataParser.parse(String.class, map.get(AddressPureModelMeta.REGION_TYPE)));
+			this.setName(DataParser.parse(String.class, map.get(AddressPureModelMeta.NAME)));
+			this.setId(DataParser.parse(String.class, map.get(AddressPureModelMeta.ID)));
+			this.setRegionLocation(DataParser.parse(String.class, map.get(AddressPureModelMeta.REGION_LOCATION)));
+			// others
+			return true;
+		} else {
+			try {
+				this.setPhoneNumber( (String)map.get(AddressPureModelMeta.PHONE_NUMBER));
+				this.setAddress( (String)map.get(AddressPureModelMeta.ADDRESS));
+				this.setNotes( (String)map.get(AddressPureModelMeta.NOTES));
+				this.setRegionType( (String)map.get(AddressPureModelMeta.REGION_TYPE));
+				this.setName( (String)map.get(AddressPureModelMeta.NAME));
+				this.setId( (String)map.get(AddressPureModelMeta.ID));
+				this.setRegionLocation( (String)map.get(AddressPureModelMeta.REGION_LOCATION));
+				// others
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setPhoneNumber(DataParser.parse(String.class, r.getValue(AddressPureModelMeta.PHONE_NUMBER)));
+			this.setAddress(DataParser.parse(String.class, r.getValue(AddressPureModelMeta.ADDRESS)));
+			this.setNotes(DataParser.parse(String.class, r.getValue(AddressPureModelMeta.NOTES)));
+			this.setRegionType(DataParser.parse(String.class, r.getValue(AddressPureModelMeta.REGION_TYPE)));
+			this.setName(DataParser.parse(String.class, r.getValue(AddressPureModelMeta.NAME)));
+			this.setId(DataParser.parse(String.class, r.getValue(AddressPureModelMeta.ID)));
+			this.setRegionLocation(DataParser.parse(String.class, r.getValue(AddressPureModelMeta.REGION_LOCATION)));
+			return true;
+		} else {
+			try {
+				this.setPhoneNumber( (String)r.getValue(AddressPureModelMeta.PHONE_NUMBER));
+				this.setAddress( (String)r.getValue(AddressPureModelMeta.ADDRESS));
+				this.setNotes( (String)r.getValue(AddressPureModelMeta.NOTES));
+				this.setRegionType( (String)r.getValue(AddressPureModelMeta.REGION_TYPE));
+				this.setName( (String)r.getValue(AddressPureModelMeta.NAME));
+				this.setId( (String)r.getValue(AddressPureModelMeta.ID));
+				this.setRegionLocation( (String)r.getValue(AddressPureModelMeta.REGION_LOCATION));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
 		}
 	}
 }

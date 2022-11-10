@@ -20,10 +20,10 @@ import java.util.Map;
 
 /**
  * <p>
- * 订单地址表 服务接口
+ * 订单地址服务接口
  * </p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-09-16 06:12:50
+ * @since 2022-11-10 10:39:38
 */
 
 public interface IAddressService extends  ISimpleIdService<Address,String> {
@@ -55,7 +55,7 @@ public interface IAddressService extends  ISimpleIdService<Address,String> {
 
 		
 	/**
-	 * 按主键删除 订单地址
+	 * 按主键删除订单地址
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -63,7 +63,7 @@ public interface IAddressService extends  ISimpleIdService<Address,String> {
 	Result deleteByIdPhysical(String id);
 	
 	/**
-	 * 按主键删除 订单地址
+	 * 按主键删除订单地址
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -86,7 +86,7 @@ public interface IAddressService extends  ISimpleIdService<Address,String> {
 
 		
 	/**
-	 * 按主键更新字段 订单地址
+	 * 按主键更新订单地址
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -156,7 +156,7 @@ public interface IAddressService extends  ISimpleIdService<Address,String> {
 
 		
 	/**
-	 * 按主键获取 订单地址
+	 * 按主键获取订单地址
 	 *
 	 * @param id 主键
 	 * @return Address 数据对象

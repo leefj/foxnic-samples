@@ -20,10 +20,10 @@ import java.util.Map;
 
 /**
  * <p>
- * 商品表 服务接口
+ * 商品服务接口
  * </p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-09-16 06:12:46
+ * @since 2022-11-10 10:39:34
 */
 
 public interface IGoodsService extends  ISimpleIdService<Goods,String> {
@@ -55,7 +55,7 @@ public interface IGoodsService extends  ISimpleIdService<Goods,String> {
 
 		
 	/**
-	 * 按主键删除 商品
+	 * 按主键删除商品
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -63,7 +63,7 @@ public interface IGoodsService extends  ISimpleIdService<Goods,String> {
 	Result deleteByIdPhysical(String id);
 	
 	/**
-	 * 按主键删除 商品
+	 * 按主键删除商品
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -86,7 +86,7 @@ public interface IGoodsService extends  ISimpleIdService<Goods,String> {
 
 		
 	/**
-	 * 按主键更新字段 商品
+	 * 按主键更新商品
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -156,7 +156,7 @@ public interface IGoodsService extends  ISimpleIdService<Goods,String> {
 
 		
 	/**
-	 * 按主键获取 商品
+	 * 按主键获取商品
 	 *
 	 * @param id 主键
 	 * @return Goods 数据对象

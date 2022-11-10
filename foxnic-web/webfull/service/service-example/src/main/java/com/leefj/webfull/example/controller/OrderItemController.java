@@ -1,19 +1,13 @@
 package com.leefj.webfull.example.controller;
 
-
-import java.util.List;
-import java.util.ArrayList;
-
+import java.util.*;
+import org.github.foxnic.web.framework.web.SuperController;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import org.github.foxnic.web.framework.web.SuperController;
+import com.github.foxnic.api.swagger.InDoc;
 import org.github.foxnic.web.framework.sentinel.SentinelExceptionUtil;
-import org.springframework.web.bind.annotation.RequestMapping;
-import javax.servlet.http.HttpServletResponse;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
+import com.github.foxnic.api.swagger.ApiParamSupport;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 
 
@@ -36,7 +30,6 @@ import java.io.InputStream;
 import com.leefj.webfull.domain.example.meta.OrderItemMeta;
 import com.leefj.webfull.domain.example.Goods;
 import io.swagger.annotations.Api;
-import com.github.xiaoymin.knife4j.annotations.ApiSort;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiImplicitParam;
@@ -47,14 +40,14 @@ import com.github.foxnic.api.validate.annotations.NotNull;
 
 /**
  * <p>
- * 订单明细表 接口控制器
+ * 订单明细接口控制器
  * </p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-09-16 19:09:36
+ * @since 2022-11-10 10:39:41
 */
 
+@InDoc
 @Api(tags = "订单明细")
-@ApiSort(0)
 @RestController("WebfullExampleOrderItemController")
 public class OrderItemController extends SuperController {
 
@@ -72,7 +65,8 @@ public class OrderItemController extends SuperController {
 		@ApiImplicitParam(name = OrderItemVOMeta.GOODS_ID , value = "商品ID" , required = false , dataTypeClass=String.class , example = "583020804682289152"),
 		@ApiImplicitParam(name = OrderItemVOMeta.AMOUNT , value = "数量" , required = false , dataTypeClass=Integer.class),
 	})
-	@ApiOperationSupport(order=1)
+	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true , ignorePrimaryKey = true)
+	@ApiOperationSupport(order=1 , author="李方捷 , leefangjie@qq.com")
 	@SentinelResource(value = OrderItemServiceProxy.INSERT , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(OrderItemServiceProxy.INSERT)
 	public Result insert(OrderItemVO orderItemVO) {
@@ -89,8 +83,7 @@ public class OrderItemController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = OrderItemVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1")
 	})
-	@ApiOperationSupport(order=2)
-	@NotNull(name = OrderItemVOMeta.ID)
+	@ApiOperationSupport(order=2 , author="李方捷 , leefangjie@qq.com")
 	@SentinelResource(value = OrderItemServiceProxy.DELETE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(OrderItemServiceProxy.DELETE)
 	public Result deleteById(String id) {
@@ -118,8 +111,7 @@ public class OrderItemController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = OrderItemVOMeta.IDS , value = "主键清单" , required = true , dataTypeClass=List.class , example = "[1,3,4]")
 	})
-	@ApiOperationSupport(order=3) 
-	@NotNull(name = OrderItemVOMeta.IDS)
+	@ApiOperationSupport(order=3 , author="李方捷 , leefangjie@qq.com") 
 	@SentinelResource(value = OrderItemServiceProxy.DELETE_BY_IDS , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(OrderItemServiceProxy.DELETE_BY_IDS)
 	public Result deleteByIds(List<String> ids) {
@@ -172,7 +164,8 @@ public class OrderItemController extends SuperController {
 		@ApiImplicitParam(name = OrderItemVOMeta.GOODS_ID , value = "商品ID" , required = false , dataTypeClass=String.class , example = "583020804682289152"),
 		@ApiImplicitParam(name = OrderItemVOMeta.AMOUNT , value = "数量" , required = false , dataTypeClass=Integer.class),
 	})
-	@ApiOperationSupport( order=4 , ignoreParameters = { OrderItemVOMeta.PAGE_INDEX , OrderItemVOMeta.PAGE_SIZE , OrderItemVOMeta.SEARCH_FIELD , OrderItemVOMeta.FUZZY_FIELD , OrderItemVOMeta.SEARCH_VALUE , OrderItemVOMeta.DIRTY_FIELDS , OrderItemVOMeta.SORT_FIELD , OrderItemVOMeta.SORT_TYPE , OrderItemVOMeta.IDS } )
+	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
+	@ApiOperationSupport( order=4 , author="李方捷 , leefangjie@qq.com" ,  ignoreParameters = { OrderItemVOMeta.PAGE_INDEX , OrderItemVOMeta.PAGE_SIZE , OrderItemVOMeta.SEARCH_FIELD , OrderItemVOMeta.FUZZY_FIELD , OrderItemVOMeta.SEARCH_VALUE , OrderItemVOMeta.DIRTY_FIELDS , OrderItemVOMeta.SORT_FIELD , OrderItemVOMeta.SORT_TYPE , OrderItemVOMeta.IDS } )
 	@SentinelResource(value = OrderItemServiceProxy.UPDATE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(OrderItemServiceProxy.UPDATE)
 	public Result update(OrderItemVO orderItemVO) {
@@ -191,8 +184,8 @@ public class OrderItemController extends SuperController {
 		@ApiImplicitParam(name = OrderItemVOMeta.GOODS_ID , value = "商品ID" , required = false , dataTypeClass=String.class , example = "583020804682289152"),
 		@ApiImplicitParam(name = OrderItemVOMeta.AMOUNT , value = "数量" , required = false , dataTypeClass=Integer.class),
 	})
+	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
 	@ApiOperationSupport(order=5 ,  ignoreParameters = { OrderItemVOMeta.PAGE_INDEX , OrderItemVOMeta.PAGE_SIZE , OrderItemVOMeta.SEARCH_FIELD , OrderItemVOMeta.FUZZY_FIELD , OrderItemVOMeta.SEARCH_VALUE , OrderItemVOMeta.DIRTY_FIELDS , OrderItemVOMeta.SORT_FIELD , OrderItemVOMeta.SORT_TYPE , OrderItemVOMeta.IDS } )
-	@NotNull(name = OrderItemVOMeta.ID)
 	@SentinelResource(value = OrderItemServiceProxy.SAVE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(OrderItemServiceProxy.SAVE)
 	public Result save(OrderItemVO orderItemVO) {
@@ -208,8 +201,7 @@ public class OrderItemController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = OrderItemVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
 	})
-	@ApiOperationSupport(order=6)
-	@NotNull(name = OrderItemVOMeta.ID)
+	@ApiOperationSupport(order=6 , author="李方捷 , leefangjie@qq.com")
 	@SentinelResource(value = OrderItemServiceProxy.GET_BY_ID , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(OrderItemServiceProxy.GET_BY_ID)
 	public Result<OrderItem> getById(String id) {
@@ -232,8 +224,7 @@ public class OrderItemController extends SuperController {
 		@ApiImplicitParams({
 				@ApiImplicitParam(name = OrderItemVOMeta.IDS , value = "主键清单" , required = true , dataTypeClass=List.class , example = "[1,3,4]")
 		})
-		@ApiOperationSupport(order=3) 
-		@NotNull(name = OrderItemVOMeta.IDS)
+		@ApiOperationSupport(order=3 , author="李方捷 , leefangjie@qq.com") 
 		@SentinelResource(value = OrderItemServiceProxy.GET_BY_IDS , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(OrderItemServiceProxy.GET_BY_IDS)
 	public Result<List<OrderItem>> getByIds(List<String> ids) {
@@ -254,7 +245,7 @@ public class OrderItemController extends SuperController {
 		@ApiImplicitParam(name = OrderItemVOMeta.GOODS_ID , value = "商品ID" , required = false , dataTypeClass=String.class , example = "583020804682289152"),
 		@ApiImplicitParam(name = OrderItemVOMeta.AMOUNT , value = "数量" , required = false , dataTypeClass=Integer.class),
 	})
-	@ApiOperationSupport(order=5 ,  ignoreParameters = { OrderItemVOMeta.PAGE_INDEX , OrderItemVOMeta.PAGE_SIZE } )
+	@ApiOperationSupport(order=5 , author="李方捷 , leefangjie@qq.com" ,  ignoreParameters = { OrderItemVOMeta.PAGE_INDEX , OrderItemVOMeta.PAGE_SIZE } )
 	@SentinelResource(value = OrderItemServiceProxy.QUERY_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(OrderItemServiceProxy.QUERY_LIST)
 	public Result<List<OrderItem>> queryList(OrderItemVO sample) {
@@ -275,7 +266,7 @@ public class OrderItemController extends SuperController {
 		@ApiImplicitParam(name = OrderItemVOMeta.GOODS_ID , value = "商品ID" , required = false , dataTypeClass=String.class , example = "583020804682289152"),
 		@ApiImplicitParam(name = OrderItemVOMeta.AMOUNT , value = "数量" , required = false , dataTypeClass=Integer.class),
 	})
-	@ApiOperationSupport(order=8)
+	@ApiOperationSupport(order=8 , author="李方捷 , leefangjie@qq.com")
 	@SentinelResource(value = OrderItemServiceProxy.QUERY_PAGED_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(OrderItemServiceProxy.QUERY_PAGED_LIST)
 	public Result<PagedList<OrderItem>> queryPagedList(OrderItemVO sample) {

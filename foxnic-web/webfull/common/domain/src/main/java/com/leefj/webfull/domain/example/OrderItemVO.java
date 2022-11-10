@@ -1,5 +1,6 @@
 package com.leefj.webfull.domain.example;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.List;
 import java.util.ArrayList;
@@ -10,17 +11,23 @@ import com.github.foxnic.commons.bean.BeanUtil;
 import com.github.foxnic.dao.entity.EntityContext;
 import com.github.foxnic.dao.entity.Entity;
 import java.util.Map;
+import com.leefj.webfull.domain.example.meta.OrderItemVOMeta;
+import com.github.foxnic.commons.lang.DataParser;
+import java.util.Date;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
- * 订单明细
+ * 订单明细VO类型
+ * <p>订单明细 , 数据表 webfull_example_order_item 的通用VO类型</p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-09-16 19:09:36
+ * @since 2022-11-10 10:39:41
  * @sign F1A87AD1DF163FF7F29F5EE169DBAA9B
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
+@ApiModel(description = "订单明细VO类型 ; 订单明细 , 数据表 webfull_example_order_item 的通用VO类型" , parent = OrderItem.class)
 public class OrderItemVO extends OrderItem {
 
 	private static final long serialVersionUID = 1L;
@@ -390,5 +397,109 @@ public class OrderItemVO extends OrderItem {
 	@Transient
 	public static OrderItemVO create() {
 		return new com.leefj.webfull.domain.example.meta.OrderItemVOMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setAmount(DataParser.parse(Integer.class, map.get(OrderItemVOMeta.AMOUNT)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(OrderItemVOMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(OrderItemVOMeta.DELETED)));
+			this.setOrderId(DataParser.parse(String.class, map.get(OrderItemVOMeta.ORDER_ID)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(OrderItemVOMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(OrderItemVOMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(OrderItemVOMeta.DELETE_TIME)));
+			this.setGoodsId(DataParser.parse(String.class, map.get(OrderItemVOMeta.GOODS_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(OrderItemVOMeta.DELETE_BY)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(OrderItemVOMeta.UPDATE_TIME)));
+			this.setId(DataParser.parse(String.class, map.get(OrderItemVOMeta.ID)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(OrderItemVOMeta.VERSION)));
+			// others
+			this.setSearchField(DataParser.parse(String.class, map.get(OrderItemVOMeta.SEARCH_FIELD)));
+			this.setPageIndex(DataParser.parse(Integer.class, map.get(OrderItemVOMeta.PAGE_INDEX)));
+			this.setSortType(DataParser.parse(String.class, map.get(OrderItemVOMeta.SORT_TYPE)));
+			this.setFuzzyField(DataParser.parse(String.class, map.get(OrderItemVOMeta.FUZZY_FIELD)));
+			this.setSortField(DataParser.parse(String.class, map.get(OrderItemVOMeta.SORT_FIELD)));
+			this.setGoods(DataParser.parse(Goods.class, map.get(OrderItemVOMeta.GOODS)));
+			this.setPageSize(DataParser.parse(Integer.class, map.get(OrderItemVOMeta.PAGE_SIZE)));
+			this.setSearchValue(DataParser.parse(String.class, map.get(OrderItemVOMeta.SEARCH_VALUE)));
+			return true;
+		} else {
+			try {
+				this.setAmount( (Integer)map.get(OrderItemVOMeta.AMOUNT));
+				this.setCreateBy( (String)map.get(OrderItemVOMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(OrderItemVOMeta.DELETED));
+				this.setOrderId( (String)map.get(OrderItemVOMeta.ORDER_ID));
+				this.setCreateTime( (Date)map.get(OrderItemVOMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(OrderItemVOMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(OrderItemVOMeta.DELETE_TIME));
+				this.setGoodsId( (String)map.get(OrderItemVOMeta.GOODS_ID));
+				this.setDeleteBy( (String)map.get(OrderItemVOMeta.DELETE_BY));
+				this.setUpdateTime( (Date)map.get(OrderItemVOMeta.UPDATE_TIME));
+				this.setId( (String)map.get(OrderItemVOMeta.ID));
+				this.setVersion( (Integer)map.get(OrderItemVOMeta.VERSION));
+				// others
+				this.setSearchField( (String)map.get(OrderItemVOMeta.SEARCH_FIELD));
+				this.setPageIndex( (Integer)map.get(OrderItemVOMeta.PAGE_INDEX));
+				this.setSortType( (String)map.get(OrderItemVOMeta.SORT_TYPE));
+				this.setFuzzyField( (String)map.get(OrderItemVOMeta.FUZZY_FIELD));
+				this.setSortField( (String)map.get(OrderItemVOMeta.SORT_FIELD));
+				this.setGoods( (Goods)map.get(OrderItemVOMeta.GOODS));
+				this.setPageSize( (Integer)map.get(OrderItemVOMeta.PAGE_SIZE));
+				this.setSearchValue( (String)map.get(OrderItemVOMeta.SEARCH_VALUE));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setAmount(DataParser.parse(Integer.class, r.getValue(OrderItemVOMeta.AMOUNT)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(OrderItemVOMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(OrderItemVOMeta.DELETED)));
+			this.setOrderId(DataParser.parse(String.class, r.getValue(OrderItemVOMeta.ORDER_ID)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(OrderItemVOMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(OrderItemVOMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(OrderItemVOMeta.DELETE_TIME)));
+			this.setGoodsId(DataParser.parse(String.class, r.getValue(OrderItemVOMeta.GOODS_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(OrderItemVOMeta.DELETE_BY)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(OrderItemVOMeta.UPDATE_TIME)));
+			this.setId(DataParser.parse(String.class, r.getValue(OrderItemVOMeta.ID)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(OrderItemVOMeta.VERSION)));
+			return true;
+		} else {
+			try {
+				this.setAmount( (Integer)r.getValue(OrderItemVOMeta.AMOUNT));
+				this.setCreateBy( (String)r.getValue(OrderItemVOMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(OrderItemVOMeta.DELETED));
+				this.setOrderId( (String)r.getValue(OrderItemVOMeta.ORDER_ID));
+				this.setCreateTime( (Date)r.getValue(OrderItemVOMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(OrderItemVOMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(OrderItemVOMeta.DELETE_TIME));
+				this.setGoodsId( (String)r.getValue(OrderItemVOMeta.GOODS_ID));
+				this.setDeleteBy( (String)r.getValue(OrderItemVOMeta.DELETE_BY));
+				this.setUpdateTime( (Date)r.getValue(OrderItemVOMeta.UPDATE_TIME));
+				this.setId( (String)r.getValue(OrderItemVOMeta.ID));
+				this.setVersion( (Integer)r.getValue(OrderItemVOMeta.VERSION));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

@@ -10,10 +10,10 @@ import com.leefj.webfull.proxy.example.GoodsServiceProxy;
 import javax.servlet.http.HttpServletRequest;
 /**
  * <p>
- * 商品表 模版页面控制器
+ * 商品模版页面控制器
  * </p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-09-16 06:12:46
+ * @since 2022-11-10 10:39:34
 */
 
 @Controller("WebfullExampleGoodsPageController")

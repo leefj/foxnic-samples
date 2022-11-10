@@ -1,6 +1,7 @@
 package com.leefj.webfull.domain.example;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.leefj.webfull.constants.db.WebFullTables.WEBFULL_EXAMPLE_ORDER;
@@ -9,22 +10,27 @@ import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.leefj.webfull.domain.example.meta.OrderMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 订单
+ * <p>订单 , 数据表 webfull_example_order 的PO类型</p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-09-16 19:09:34
+ * @since 2022-11-10 10:39:40
  * @sign 7B9254E3F571BFC7A4E5E63DB311DF60
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "webfull_example_order")
+@ApiModel(description = "订单 ; 订单 , 数据表 webfull_example_order 的PO类型")
 public class Order extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -35,37 +41,37 @@ public class Order extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "583028022102200320")
 	private String id;
 	
 	/**
 	 * 订单编号：订单编号
 	*/
-	@ApiModelProperty(required = false,value="订单编号" , notes = "订单编号")
+	@ApiModelProperty(required = false,value="订单编号" , notes = "订单编号" , example = "1123")
 	private String orderNo;
 	
 	/**
 	 * 订单金额：订单金额
 	*/
-	@ApiModelProperty(required = false,value="订单金额" , notes = "订单金额")
+	@ApiModelProperty(required = false,value="订单金额" , notes = "订单金额" , example = "56.00")
 	private BigDecimal amount;
 	
 	/**
 	 * 收件地址ID：收件地址ID
 	*/
-	@ApiModelProperty(required = false,value="收件地址ID" , notes = "收件地址ID")
+	@ApiModelProperty(required = false,value="收件地址ID" , notes = "收件地址ID" , example = "583028267108274176")
 	private String addressId;
 	
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2022-05-28 08:25:13")
 	private Date createTime;
 	
 	/**
@@ -83,9 +89,10 @@ public class Order extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
+	@EnumFor("deleted")
 	private Boolean deletedBool;
 	
 	/**
@@ -103,7 +110,7 @@ public class Order extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
 	private Integer version;
 	
 	/**
@@ -496,5 +503,95 @@ public class Order extends Entity {
 	@Transient
 	public static Order create() {
 		return new com.leefj.webfull.domain.example.meta.OrderMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setAmount(DataParser.parse(BigDecimal.class, map.get(OrderMeta.AMOUNT)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(OrderMeta.CREATE_BY)));
+			this.setOrderNo(DataParser.parse(String.class, map.get(OrderMeta.ORDER_NO)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(OrderMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(OrderMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(OrderMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(OrderMeta.DELETE_TIME)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(OrderMeta.DELETE_BY)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(OrderMeta.UPDATE_TIME)));
+			this.setId(DataParser.parse(String.class, map.get(OrderMeta.ID)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(OrderMeta.VERSION)));
+			this.setAddressId(DataParser.parse(String.class, map.get(OrderMeta.ADDRESS_ID)));
+			// others
+			this.setAddress(DataParser.parse(Address.class, map.get(OrderMeta.ADDRESS)));
+			return true;
+		} else {
+			try {
+				this.setAmount( (BigDecimal)map.get(OrderMeta.AMOUNT));
+				this.setCreateBy( (String)map.get(OrderMeta.CREATE_BY));
+				this.setOrderNo( (String)map.get(OrderMeta.ORDER_NO));
+				this.setDeleted( (Integer)map.get(OrderMeta.DELETED));
+				this.setCreateTime( (Date)map.get(OrderMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(OrderMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(OrderMeta.DELETE_TIME));
+				this.setDeleteBy( (String)map.get(OrderMeta.DELETE_BY));
+				this.setUpdateTime( (Date)map.get(OrderMeta.UPDATE_TIME));
+				this.setId( (String)map.get(OrderMeta.ID));
+				this.setVersion( (Integer)map.get(OrderMeta.VERSION));
+				this.setAddressId( (String)map.get(OrderMeta.ADDRESS_ID));
+				// others
+				this.setAddress( (Address)map.get(OrderMeta.ADDRESS));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setAmount(DataParser.parse(BigDecimal.class, r.getValue(OrderMeta.AMOUNT)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(OrderMeta.CREATE_BY)));
+			this.setOrderNo(DataParser.parse(String.class, r.getValue(OrderMeta.ORDER_NO)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(OrderMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(OrderMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(OrderMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(OrderMeta.DELETE_TIME)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(OrderMeta.DELETE_BY)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(OrderMeta.UPDATE_TIME)));
+			this.setId(DataParser.parse(String.class, r.getValue(OrderMeta.ID)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(OrderMeta.VERSION)));
+			this.setAddressId(DataParser.parse(String.class, r.getValue(OrderMeta.ADDRESS_ID)));
+			return true;
+		} else {
+			try {
+				this.setAmount( (BigDecimal)r.getValue(OrderMeta.AMOUNT));
+				this.setCreateBy( (String)r.getValue(OrderMeta.CREATE_BY));
+				this.setOrderNo( (String)r.getValue(OrderMeta.ORDER_NO));
+				this.setDeleted( (Integer)r.getValue(OrderMeta.DELETED));
+				this.setCreateTime( (Date)r.getValue(OrderMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(OrderMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(OrderMeta.DELETE_TIME));
+				this.setDeleteBy( (String)r.getValue(OrderMeta.DELETE_BY));
+				this.setUpdateTime( (Date)r.getValue(OrderMeta.UPDATE_TIME));
+				this.setId( (String)r.getValue(OrderMeta.ID));
+				this.setVersion( (Integer)r.getValue(OrderMeta.VERSION));
+				this.setAddressId( (String)r.getValue(OrderMeta.ADDRESS_ID));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

@@ -1,5 +1,6 @@
 package com.leefj.webfull.domain.example;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.List;
 import java.util.ArrayList;
@@ -10,17 +11,24 @@ import com.github.foxnic.commons.bean.BeanUtil;
 import com.github.foxnic.dao.entity.EntityContext;
 import com.github.foxnic.dao.entity.Entity;
 import java.util.Map;
+import com.leefj.webfull.domain.example.meta.GoodsVOMeta;
+import com.github.foxnic.commons.lang.DataParser;
+import java.util.Date;
+import java.math.BigDecimal;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
- * 商品
+ * 商品VO类型
+ * <p>商品 , 数据表 webfull_example_goods 的通用VO类型</p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-09-16 06:12:45
+ * @since 2022-11-10 10:39:34
  * @sign D5EC66A9CF3A8FEF67AE01CD4DE75E9E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
+@ApiModel(description = "商品VO类型 ; 商品 , 数据表 webfull_example_goods 的通用VO类型" , parent = Goods.class)
 public class GoodsVO extends Goods {
 
 	private static final long serialVersionUID = 1L;
@@ -388,5 +396,103 @@ public class GoodsVO extends Goods {
 	@Transient
 	public static GoodsVO create() {
 		return new com.leefj.webfull.domain.example.meta.GoodsVOMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setCreateBy(DataParser.parse(String.class, map.get(GoodsVOMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(GoodsVOMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(GoodsVOMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(GoodsVOMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(GoodsVOMeta.DELETE_TIME)));
+			this.setPrice(DataParser.parse(BigDecimal.class, map.get(GoodsVOMeta.PRICE)));
+			this.setName(DataParser.parse(String.class, map.get(GoodsVOMeta.NAME)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(GoodsVOMeta.DELETE_BY)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(GoodsVOMeta.UPDATE_TIME)));
+			this.setId(DataParser.parse(String.class, map.get(GoodsVOMeta.ID)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(GoodsVOMeta.VERSION)));
+			// others
+			this.setSearchField(DataParser.parse(String.class, map.get(GoodsVOMeta.SEARCH_FIELD)));
+			this.setPageIndex(DataParser.parse(Integer.class, map.get(GoodsVOMeta.PAGE_INDEX)));
+			this.setSortType(DataParser.parse(String.class, map.get(GoodsVOMeta.SORT_TYPE)));
+			this.setFuzzyField(DataParser.parse(String.class, map.get(GoodsVOMeta.FUZZY_FIELD)));
+			this.setSortField(DataParser.parse(String.class, map.get(GoodsVOMeta.SORT_FIELD)));
+			this.setPageSize(DataParser.parse(Integer.class, map.get(GoodsVOMeta.PAGE_SIZE)));
+			this.setSearchValue(DataParser.parse(String.class, map.get(GoodsVOMeta.SEARCH_VALUE)));
+			return true;
+		} else {
+			try {
+				this.setCreateBy( (String)map.get(GoodsVOMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(GoodsVOMeta.DELETED));
+				this.setCreateTime( (Date)map.get(GoodsVOMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(GoodsVOMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(GoodsVOMeta.DELETE_TIME));
+				this.setPrice( (BigDecimal)map.get(GoodsVOMeta.PRICE));
+				this.setName( (String)map.get(GoodsVOMeta.NAME));
+				this.setDeleteBy( (String)map.get(GoodsVOMeta.DELETE_BY));
+				this.setUpdateTime( (Date)map.get(GoodsVOMeta.UPDATE_TIME));
+				this.setId( (String)map.get(GoodsVOMeta.ID));
+				this.setVersion( (Integer)map.get(GoodsVOMeta.VERSION));
+				// others
+				this.setSearchField( (String)map.get(GoodsVOMeta.SEARCH_FIELD));
+				this.setPageIndex( (Integer)map.get(GoodsVOMeta.PAGE_INDEX));
+				this.setSortType( (String)map.get(GoodsVOMeta.SORT_TYPE));
+				this.setFuzzyField( (String)map.get(GoodsVOMeta.FUZZY_FIELD));
+				this.setSortField( (String)map.get(GoodsVOMeta.SORT_FIELD));
+				this.setPageSize( (Integer)map.get(GoodsVOMeta.PAGE_SIZE));
+				this.setSearchValue( (String)map.get(GoodsVOMeta.SEARCH_VALUE));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(GoodsVOMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(GoodsVOMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(GoodsVOMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(GoodsVOMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(GoodsVOMeta.DELETE_TIME)));
+			this.setPrice(DataParser.parse(BigDecimal.class, r.getValue(GoodsVOMeta.PRICE)));
+			this.setName(DataParser.parse(String.class, r.getValue(GoodsVOMeta.NAME)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(GoodsVOMeta.DELETE_BY)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(GoodsVOMeta.UPDATE_TIME)));
+			this.setId(DataParser.parse(String.class, r.getValue(GoodsVOMeta.ID)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(GoodsVOMeta.VERSION)));
+			return true;
+		} else {
+			try {
+				this.setCreateBy( (String)r.getValue(GoodsVOMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(GoodsVOMeta.DELETED));
+				this.setCreateTime( (Date)r.getValue(GoodsVOMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(GoodsVOMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(GoodsVOMeta.DELETE_TIME));
+				this.setPrice( (BigDecimal)r.getValue(GoodsVOMeta.PRICE));
+				this.setName( (String)r.getValue(GoodsVOMeta.NAME));
+				this.setDeleteBy( (String)r.getValue(GoodsVOMeta.DELETE_BY));
+				this.setUpdateTime( (Date)r.getValue(GoodsVOMeta.UPDATE_TIME));
+				this.setId( (String)r.getValue(GoodsVOMeta.ID));
+				this.setVersion( (Integer)r.getValue(GoodsVOMeta.VERSION));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

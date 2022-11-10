@@ -1,19 +1,13 @@
 package com.leefj.webfull.example.controller;
 
-
-import java.util.List;
-import java.util.ArrayList;
-
+import java.util.*;
+import org.github.foxnic.web.framework.web.SuperController;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import org.github.foxnic.web.framework.web.SuperController;
+import com.github.foxnic.api.swagger.InDoc;
 import org.github.foxnic.web.framework.sentinel.SentinelExceptionUtil;
-import org.springframework.web.bind.annotation.RequestMapping;
-import javax.servlet.http.HttpServletResponse;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
+import com.github.foxnic.api.swagger.ApiParamSupport;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 
 
@@ -36,7 +30,6 @@ import java.io.InputStream;
 import com.leefj.webfull.domain.example.meta.GoodsMeta;
 import java.math.BigDecimal;
 import io.swagger.annotations.Api;
-import com.github.xiaoymin.knife4j.annotations.ApiSort;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiImplicitParam;
@@ -47,14 +40,14 @@ import com.github.foxnic.api.validate.annotations.NotNull;
 
 /**
  * <p>
- * 商品表 接口控制器
+ * 商品接口控制器
  * </p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-09-16 06:12:46
+ * @since 2022-11-10 10:39:34
 */
 
+@InDoc
 @Api(tags = "商品")
-@ApiSort(0)
 @RestController("WebfullExampleGoodsController")
 public class GoodsController extends SuperController {
 
@@ -71,7 +64,8 @@ public class GoodsController extends SuperController {
 		@ApiImplicitParam(name = GoodsVOMeta.NAME , value = "商品名" , required = false , dataTypeClass=String.class , example = "苹果"),
 		@ApiImplicitParam(name = GoodsVOMeta.PRICE , value = "单价" , required = false , dataTypeClass=BigDecimal.class , example = "6.00"),
 	})
-	@ApiOperationSupport(order=1)
+	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true , ignorePrimaryKey = true)
+	@ApiOperationSupport(order=1 , author="李方捷 , leefangjie@qq.com")
 	@SentinelResource(value = GoodsServiceProxy.INSERT , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(GoodsServiceProxy.INSERT)
 	public Result insert(GoodsVO goodsVO) {
@@ -88,8 +82,7 @@ public class GoodsController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = GoodsVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "583020505427087360")
 	})
-	@ApiOperationSupport(order=2)
-	@NotNull(name = GoodsVOMeta.ID)
+	@ApiOperationSupport(order=2 , author="李方捷 , leefangjie@qq.com")
 	@SentinelResource(value = GoodsServiceProxy.DELETE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(GoodsServiceProxy.DELETE)
 	public Result deleteById(String id) {
@@ -117,8 +110,7 @@ public class GoodsController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = GoodsVOMeta.IDS , value = "主键清单" , required = true , dataTypeClass=List.class , example = "[1,3,4]")
 	})
-	@ApiOperationSupport(order=3) 
-	@NotNull(name = GoodsVOMeta.IDS)
+	@ApiOperationSupport(order=3 , author="李方捷 , leefangjie@qq.com") 
 	@SentinelResource(value = GoodsServiceProxy.DELETE_BY_IDS , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(GoodsServiceProxy.DELETE_BY_IDS)
 	public Result deleteByIds(List<String> ids) {
@@ -170,7 +162,8 @@ public class GoodsController extends SuperController {
 		@ApiImplicitParam(name = GoodsVOMeta.NAME , value = "商品名" , required = false , dataTypeClass=String.class , example = "苹果"),
 		@ApiImplicitParam(name = GoodsVOMeta.PRICE , value = "单价" , required = false , dataTypeClass=BigDecimal.class , example = "6.00"),
 	})
-	@ApiOperationSupport( order=4 , ignoreParameters = { GoodsVOMeta.PAGE_INDEX , GoodsVOMeta.PAGE_SIZE , GoodsVOMeta.SEARCH_FIELD , GoodsVOMeta.FUZZY_FIELD , GoodsVOMeta.SEARCH_VALUE , GoodsVOMeta.DIRTY_FIELDS , GoodsVOMeta.SORT_FIELD , GoodsVOMeta.SORT_TYPE , GoodsVOMeta.IDS } )
+	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
+	@ApiOperationSupport( order=4 , author="李方捷 , leefangjie@qq.com" ,  ignoreParameters = { GoodsVOMeta.PAGE_INDEX , GoodsVOMeta.PAGE_SIZE , GoodsVOMeta.SEARCH_FIELD , GoodsVOMeta.FUZZY_FIELD , GoodsVOMeta.SEARCH_VALUE , GoodsVOMeta.DIRTY_FIELDS , GoodsVOMeta.SORT_FIELD , GoodsVOMeta.SORT_TYPE , GoodsVOMeta.IDS } )
 	@SentinelResource(value = GoodsServiceProxy.UPDATE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(GoodsServiceProxy.UPDATE)
 	public Result update(GoodsVO goodsVO) {
@@ -188,8 +181,8 @@ public class GoodsController extends SuperController {
 		@ApiImplicitParam(name = GoodsVOMeta.NAME , value = "商品名" , required = false , dataTypeClass=String.class , example = "苹果"),
 		@ApiImplicitParam(name = GoodsVOMeta.PRICE , value = "单价" , required = false , dataTypeClass=BigDecimal.class , example = "6.00"),
 	})
+	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
 	@ApiOperationSupport(order=5 ,  ignoreParameters = { GoodsVOMeta.PAGE_INDEX , GoodsVOMeta.PAGE_SIZE , GoodsVOMeta.SEARCH_FIELD , GoodsVOMeta.FUZZY_FIELD , GoodsVOMeta.SEARCH_VALUE , GoodsVOMeta.DIRTY_FIELDS , GoodsVOMeta.SORT_FIELD , GoodsVOMeta.SORT_TYPE , GoodsVOMeta.IDS } )
-	@NotNull(name = GoodsVOMeta.ID)
 	@SentinelResource(value = GoodsServiceProxy.SAVE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(GoodsServiceProxy.SAVE)
 	public Result save(GoodsVO goodsVO) {
@@ -205,8 +198,7 @@ public class GoodsController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = GoodsVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
 	})
-	@ApiOperationSupport(order=6)
-	@NotNull(name = GoodsVOMeta.ID)
+	@ApiOperationSupport(order=6 , author="李方捷 , leefangjie@qq.com")
 	@SentinelResource(value = GoodsServiceProxy.GET_BY_ID , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(GoodsServiceProxy.GET_BY_ID)
 	public Result<Goods> getById(String id) {
@@ -225,8 +217,7 @@ public class GoodsController extends SuperController {
 		@ApiImplicitParams({
 				@ApiImplicitParam(name = GoodsVOMeta.IDS , value = "主键清单" , required = true , dataTypeClass=List.class , example = "[1,3,4]")
 		})
-		@ApiOperationSupport(order=3) 
-		@NotNull(name = GoodsVOMeta.IDS)
+		@ApiOperationSupport(order=3 , author="李方捷 , leefangjie@qq.com") 
 		@SentinelResource(value = GoodsServiceProxy.GET_BY_IDS , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(GoodsServiceProxy.GET_BY_IDS)
 	public Result<List<Goods>> getByIds(List<String> ids) {
@@ -246,7 +237,7 @@ public class GoodsController extends SuperController {
 		@ApiImplicitParam(name = GoodsVOMeta.NAME , value = "商品名" , required = false , dataTypeClass=String.class , example = "苹果"),
 		@ApiImplicitParam(name = GoodsVOMeta.PRICE , value = "单价" , required = false , dataTypeClass=BigDecimal.class , example = "6.00"),
 	})
-	@ApiOperationSupport(order=5 ,  ignoreParameters = { GoodsVOMeta.PAGE_INDEX , GoodsVOMeta.PAGE_SIZE } )
+	@ApiOperationSupport(order=5 , author="李方捷 , leefangjie@qq.com" ,  ignoreParameters = { GoodsVOMeta.PAGE_INDEX , GoodsVOMeta.PAGE_SIZE } )
 	@SentinelResource(value = GoodsServiceProxy.QUERY_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(GoodsServiceProxy.QUERY_LIST)
 	public Result<List<Goods>> queryList(GoodsVO sample) {
@@ -266,7 +257,7 @@ public class GoodsController extends SuperController {
 		@ApiImplicitParam(name = GoodsVOMeta.NAME , value = "商品名" , required = false , dataTypeClass=String.class , example = "苹果"),
 		@ApiImplicitParam(name = GoodsVOMeta.PRICE , value = "单价" , required = false , dataTypeClass=BigDecimal.class , example = "6.00"),
 	})
-	@ApiOperationSupport(order=8)
+	@ApiOperationSupport(order=8 , author="李方捷 , leefangjie@qq.com")
 	@SentinelResource(value = GoodsServiceProxy.QUERY_PAGED_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(GoodsServiceProxy.QUERY_PAGED_LIST)
 	public Result<PagedList<Goods>> queryPagedList(GoodsVO sample) {

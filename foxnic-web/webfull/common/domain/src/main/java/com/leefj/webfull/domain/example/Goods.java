@@ -1,6 +1,7 @@
 package com.leefj.webfull.domain.example;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.leefj.webfull.constants.db.WebFullTables.WEBFULL_EXAMPLE_GOODS;
@@ -9,22 +10,27 @@ import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.leefj.webfull.domain.example.meta.GoodsMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 商品
+ * <p>商品 , 数据表 webfull_example_goods 的PO类型</p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-09-16 06:12:45
+ * @since 2022-11-10 10:39:34
  * @sign C98473D743B459B0685316BD1117E3A3
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "webfull_example_goods")
+@ApiModel(description = "商品 ; 商品 , 数据表 webfull_example_goods 的PO类型")
 public class Goods extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -35,31 +41,31 @@ public class Goods extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "583020505427087360")
 	private String id;
 	
 	/**
 	 * 商品名：商品名
 	*/
-	@ApiModelProperty(required = false,value="商品名" , notes = "商品名")
+	@ApiModelProperty(required = false,value="商品名" , notes = "商品名" , example = "苹果")
 	private String name;
 	
 	/**
 	 * 单价：单价
 	*/
-	@ApiModelProperty(required = false,value="单价" , notes = "单价")
+	@ApiModelProperty(required = false,value="单价" , notes = "单价" , example = "6.00")
 	private BigDecimal price;
 	
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2022-05-28 07:55:20")
 	private Date createTime;
 	
 	/**
@@ -77,9 +83,10 @@ public class Goods extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
+	@EnumFor("deleted")
 	private Boolean deletedBool;
 	
 	/**
@@ -97,7 +104,7 @@ public class Goods extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
 	private Integer version;
 	
 	/**
@@ -442,5 +449,89 @@ public class Goods extends Entity {
 	@Transient
 	public static Goods create() {
 		return new com.leefj.webfull.domain.example.meta.GoodsMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setCreateBy(DataParser.parse(String.class, map.get(GoodsMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(GoodsMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(GoodsMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(GoodsMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(GoodsMeta.DELETE_TIME)));
+			this.setPrice(DataParser.parse(BigDecimal.class, map.get(GoodsMeta.PRICE)));
+			this.setName(DataParser.parse(String.class, map.get(GoodsMeta.NAME)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(GoodsMeta.DELETE_BY)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(GoodsMeta.UPDATE_TIME)));
+			this.setId(DataParser.parse(String.class, map.get(GoodsMeta.ID)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(GoodsMeta.VERSION)));
+			// others
+			return true;
+		} else {
+			try {
+				this.setCreateBy( (String)map.get(GoodsMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(GoodsMeta.DELETED));
+				this.setCreateTime( (Date)map.get(GoodsMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(GoodsMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(GoodsMeta.DELETE_TIME));
+				this.setPrice( (BigDecimal)map.get(GoodsMeta.PRICE));
+				this.setName( (String)map.get(GoodsMeta.NAME));
+				this.setDeleteBy( (String)map.get(GoodsMeta.DELETE_BY));
+				this.setUpdateTime( (Date)map.get(GoodsMeta.UPDATE_TIME));
+				this.setId( (String)map.get(GoodsMeta.ID));
+				this.setVersion( (Integer)map.get(GoodsMeta.VERSION));
+				// others
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(GoodsMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(GoodsMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(GoodsMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(GoodsMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(GoodsMeta.DELETE_TIME)));
+			this.setPrice(DataParser.parse(BigDecimal.class, r.getValue(GoodsMeta.PRICE)));
+			this.setName(DataParser.parse(String.class, r.getValue(GoodsMeta.NAME)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(GoodsMeta.DELETE_BY)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(GoodsMeta.UPDATE_TIME)));
+			this.setId(DataParser.parse(String.class, r.getValue(GoodsMeta.ID)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(GoodsMeta.VERSION)));
+			return true;
+		} else {
+			try {
+				this.setCreateBy( (String)r.getValue(GoodsMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(GoodsMeta.DELETED));
+				this.setCreateTime( (Date)r.getValue(GoodsMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(GoodsMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(GoodsMeta.DELETE_TIME));
+				this.setPrice( (BigDecimal)r.getValue(GoodsMeta.PRICE));
+				this.setName( (String)r.getValue(GoodsMeta.NAME));
+				this.setDeleteBy( (String)r.getValue(GoodsMeta.DELETE_BY));
+				this.setUpdateTime( (Date)r.getValue(GoodsMeta.UPDATE_TIME));
+				this.setId( (String)r.getValue(GoodsMeta.ID));
+				this.setVersion( (Integer)r.getValue(GoodsMeta.VERSION));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }
