@@ -1,19 +1,17 @@
-package org.github.foxnic.web.generator.module.example;
+package org.github.foxnic.web.generator.module.bpm;
 
+import com.github.foxnic.api.bpm.IntegrateMode;
 import com.github.foxnic.generator.builder.business.option.ServiceOptions;
 import com.github.foxnic.generator.builder.model.PoClassFile;
 import com.github.foxnic.generator.builder.model.VoClassFile;
 import com.github.foxnic.generator.builder.view.option.*;
 import com.github.foxnic.generator.config.WriteMode;
-import com.leefj.webfull.constants.db.WebFullTables.WEBFULL_EXAMPLE_ORDER;
-import com.leefj.webfull.domain.example.Address;
-import com.leefj.webfull.domain.example.meta.AddressMeta;
-import com.leefj.webfull.domain.example.meta.OrderMeta;
-import com.leefj.webfull.proxy.example.AddressServiceProxy;
+import com.leefj.webfull.constants.db.WebFullTables;
+import com.leefj.webfull.constants.db.WebFullTables.WEBFULL_EXAMPLE_REIMBURSEMENT;
 import org.github.foxnic.web.generator.module.BaseCodeConfig;
 
 
-public class ExampleOrderConfig extends BaseCodeConfig<WEBFULL_EXAMPLE_ORDER> {
+public class ExampleReimbursementConfig extends BaseCodeConfig<WebFullTables.WEBFULL_EXAMPLE_REIMBURSEMENT> {
 
 
     /**
@@ -22,7 +20,6 @@ public class ExampleOrderConfig extends BaseCodeConfig<WEBFULL_EXAMPLE_ORDER> {
     @Override
     public void configModel(PoClassFile poType, VoClassFile voType) {
 
-        poType.addSimpleProperty(Address.class,"address","收件地址","关联的收件地址对象");
 
     }
 
@@ -33,10 +30,10 @@ public class ExampleOrderConfig extends BaseCodeConfig<WEBFULL_EXAMPLE_ORDER> {
     public void configFields(ViewOptions view) {
 
         // ID 字段通常隐藏
-        view.field(WEBFULL_EXAMPLE_ORDER.ID).basic().hidden();
+        view.field(WEBFULL_EXAMPLE_REIMBURSEMENT.ID).basic().hidden();
 
         // NAME 字段，单行文本框
-        view.field(WEBFULL_EXAMPLE_ORDER.ORDER_NO)
+        view.field(WEBFULL_EXAMPLE_REIMBURSEMENT.TITLE)
                 // 搜索栏：设置模糊搜索
                 .search().fuzzySearch()
                 // 表格列：指定对齐方式
@@ -48,16 +45,13 @@ public class ExampleOrderConfig extends BaseCodeConfig<WEBFULL_EXAMPLE_ORDER> {
         ;
 
         // NAME 字段，单行文本框
-        view.field(WEBFULL_EXAMPLE_ORDER.ADDRESS_ID)
-                .basic().label("收件地址")
+        view.field(WEBFULL_EXAMPLE_REIMBURSEMENT.AMOUNT)
                 // 搜索栏：设置模糊搜索
-                // .search().range()
+                .search().range()
                 // 表格列：指定对齐方式
-                //.table().fillBy(OrderMeta.ADDRESS,AddressMeta.ADDRESS)
+                .table().alignRight()
                 // 表单：指定表单编辑器为文本输入框，并指定默认值
-                .form().selectBox()
-                .queryApi(AddressServiceProxy.QUERY_LIST).valueField("id").textField("address")
-                .fillWith(OrderMeta.ADDRESS)
+                .form().numberInput().decimal()
                 // 表单校验：必填
                 .form().validate().required()
         ;
@@ -67,16 +61,24 @@ public class ExampleOrderConfig extends BaseCodeConfig<WEBFULL_EXAMPLE_ORDER> {
 
     }
 
+    @Override
+    public void configBPM(BpmOptions bpm) {
+        bpm.integrate(IntegrateMode.FRONT);
+        bpm.form("webfull-reimbursement");
+    }
+
     /**
      * 配置搜索
      */
     @Override
     public void configSearch(ViewOptions view, SearchAreaOptions search) {
 
-        // 搜索布局
-        search.inputLayout(new Object[]{
-                WEBFULL_EXAMPLE_ORDER.ORDER_NO
-        });
+//        // 搜索布局
+//        search.inputLayout(new Object[]{
+//                WEBFULL_EXAMPLE_REIMBURSEMENT.NAME,WEBFULL_EXAMPLE_REIMBURSEMENT.PHONE_NUMBER,WEBFULL_EXAMPLE_REIMBURSEMENT.ADDRESS,"keyword"
+//        },new Object[]{
+//                WEBFULL_EXAMPLE_REIMBURSEMENT.REGION_TYPE,WEBFULL_EXAMPLE_REIMBURSEMENT.REGION_LOCATION,WEBFULL_EXAMPLE_REIMBURSEMENT.CREATE_TIME
+//        });
 //
 //
 //
@@ -88,7 +90,7 @@ public class ExampleOrderConfig extends BaseCodeConfig<WEBFULL_EXAMPLE_ORDER> {
 //        search.labelWidth(3,75);
 //
 //        // 个别输入框宽度调整
-//        view.field(WEBFULL_EXAMPLE_ORDER.ADDRESS).search().inputWidth(296);
+//        view.field(WEBFULL_EXAMPLE_REIMBURSEMENT.ADDRESS).search().inputWidth(296);
 
 
     }
@@ -98,7 +100,7 @@ public class ExampleOrderConfig extends BaseCodeConfig<WEBFULL_EXAMPLE_ORDER> {
      */
     @Override
     public void configList(ViewOptions view, ListOptions list) {
-        list.operationColumn().addActionButton("明细","openItems");
+
     }
 
     /**
@@ -107,9 +109,9 @@ public class ExampleOrderConfig extends BaseCodeConfig<WEBFULL_EXAMPLE_ORDER> {
     @Override
     public void configForm(ViewOptions view, FormOptions form, FormWindowOptions formWindow) {
 
-        formWindow.width("800px");
-
-        form.labelWidth(85);
+//        formWindow.width("700px");
+//
+        form.labelWidth(70);
 
 
 
@@ -151,8 +153,8 @@ public class ExampleOrderConfig extends BaseCodeConfig<WEBFULL_EXAMPLE_ORDER> {
 
 
 
-    public ExampleOrderConfig() {
-        super("webfull-service-example", WEBFULL_EXAMPLE_ORDER.$TABLE, "webfull_example_", 3);
+    public ExampleReimbursementConfig() {
+        super("webfull-service-example", WebFullTables.WEBFULL_EXAMPLE_REIMBURSEMENT.$TABLE, "webfull_example_", 3);
     }
 
 

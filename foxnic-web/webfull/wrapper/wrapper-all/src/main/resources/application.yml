@@ -186,7 +186,7 @@ foxnic:
     enable: true
     debug:
       enable: true
-      process-definition-code-list: foxnic-leave,p-expense-all,a-expense-all,a-expense-any,p-expense-any,fetchback-jump,draft-test
+      process-definition-code-list: webfull-reimbursement
   # 设置 Join 的二级缓存
   cache:
     # 默认配置
@@ -244,20 +244,20 @@ foxnic:
   # 配置集群节点简单替代注册中心，如果启用微服务，则一下配置无效
   cluster:
     # 节点间用于通信的 key，各节点要保持一致
-    key: FOXNIC-WEB-20220310-3398
+    key: FOXNIC-WEB-FULL-DEMO
     service:
       service-camunda:
         enable: true
         # 多个节点时用逗号隔开,格式： 地址,权重 | 地址,权重 | ...
-        end-points: http://127.0.0.1:1820,1 | http://127.0.0.1:1820,1
+        end-points: http://127.0.0.1:6877,1 | http://127.0.0.1:6877,1
       service-hrm:
         enable: true
         # 多个节点时用逗号隔开,格式： 地址,权重 | 地址,权重 | ...
-        end-points: http://127.0.0.1:1899,1 | http://127.0.0.1:1899,2
+        end-points: http://127.0.0.1:6899,1 | http://127.0.0.1:6899,2
       service-oauth:
         enable: true
         # 多个节点时用逗号隔开,格式： 地址,权重 | 地址,权重 | ...
-        end-points: http://127.0.0.1:1899,1 | http://127.0.0.1:1899,2
+        end-points: http://127.0.0.1:6899,1 | http://127.0.0.1:6899,2
   language:
     translator:
       enable: true

@@ -1,7 +1,8 @@
 /**
- * 商品 列表页 JS 脚本
+ * 费用报销单 列表页 JS 脚本
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-11-10 15:03:49
+ * @since 2022-11-10 15:23:50
+ * @version
  */
 
 layui.config({
@@ -12,14 +13,16 @@ layui.config({
     foxnicUpload: 'upload/foxnic-upload'
 })
 //
-layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','xmSelect','laydate','foxnicUpload','dropdown'],function () {
+layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','xmSelect','laydate','foxnicUpload','dropdown','bpm'],function () {
 
     var admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,laydate= layui.laydate,dropdown=layui.dropdown;
-    table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,foxup=layui.foxnicUpload;
+    table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,foxup=layui.foxnicUpload,bpm=layui.bpm;
 
     //模块基础路径
-    const moduleURL="/webfull-service-example/webfull-example-goods";
+    const moduleURL="/webfull-service-example/webfull-example-reimbursement";
 
+    var processId=QueryString.get("processId");
+    var processInstance=null;
 
     //列表页的扩展
     var list={
@@ -98,6 +101,28 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         makeFormQueryString:function(data,queryString,action) {
             return queryString;
+        },
+        /**
+         * 新建流程时返回流程表单需要预填的默认值  act : create/edit
+         * */
+        getBpmViewConfig:function (act) {
+            var user=settings.getUser();
+            // debugger
+            return {
+                title: user.user.displayName+"的费用报销单",
+                priority:"normal", // priority 的可选值 urgency，normal
+                labelWidth:77, // 标签宽度，用于对齐
+                displayTitle:true,  // 是否显示标题与优先级
+                displayPriority:true, // 是否显示优先级
+                displayDraftComment:true, // 是否显示起草节点的流程说明
+                displayApprovalComment:true // 是否显示签字意见
+            }
+        },
+        /**
+         * 表单没有关联的流程时的处理逻辑
+         * */
+        handleNoProcessBill:function(idValue) {
+            top.layer.msg('当前业务单据尚未关联流程', {icon: 2, time: 1500});
         },
         /**
          * 在新建或编辑窗口打开前调用，若返回 false 则不继续执行后续操作
@@ -182,6 +207,29 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeDataFill:function (data) {
             console.log('beforeDataFill',data);
+        },
+        /**
+         * 请求流程数据成功时
+         * */
+        onProcessInstanceReady:function (result) {
+            // 可根据流程状态、当前审批节点判断和控制表单页面
+            processInstance=result.data;
+            console.log("processInstance",processInstance)
+            // 获得所有待办节点
+            var todoNodes=bpm.getTodoNodes(processInstance);
+            console.log("todoNodes",todoNodes);
+            // 判断是否为待办节点
+            var isTodoNode=bpm.isTodoNodes(processInstance,"N1");
+            console.log("isTodoNode:N1",isTodoNode);
+            // 判断是否为当前账户的待办节点
+            var isMyTodoNode=bpm.isCurrentUserTodoNode(processInstance,"N1");
+            console.log("isMyTodoNode:N1",isMyTodoNode);
+        },
+        /**
+         * 请求流程数据错误时
+         * */
+        onProcessInstanceError:function (result) {
+            return true;
         },
         /**
          * 表单数据填充后

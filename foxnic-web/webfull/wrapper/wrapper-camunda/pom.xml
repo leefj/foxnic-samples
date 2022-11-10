@@ -6,12 +6,12 @@
         <groupId>com.github.foxnic.example.webfull</groupId>
         <artifactId>webfull</artifactId>
         <version>1.0.0</version>
-        <relativePath>../../../foxnic-web/pom.xml</relativePath>
+        <relativePath>../../pom.xml</relativePath>
         <!-- lookup parent from repository -->
     </parent>
-    <artifactId>wrapper-camunda</artifactId>
-    <name>wrapper-camunda</name>
-    <description>Wrapper Camunda</description>
+    <artifactId>WebFullBpmApp</artifactId>
+    <name>WebFull BPM App</name>
+    <description>WebFull BPM App</description>
     <dependencies>
         <dependency>
             <groupId>com.github.foxnic.web</groupId>
@@ -22,6 +22,11 @@
             <groupId>com.github.foxnic.web</groupId>
             <artifactId>service-camunda</artifactId>
             <version>${foxnic.web.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.foxnic.example.webfull</groupId>
+            <artifactId>webfull-framework</artifactId>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -46,11 +51,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-undertow</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.github.foxnic.web</groupId>
-            <artifactId>wrapper-support</artifactId>
-            <version>${foxnic.web.version}</version>
         </dependency>
         <!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-data-redis</artifactId>
 			</dependency> <dependency> <groupId>org.springframework.session</groupId>
@@ -103,7 +103,7 @@
                     <fork>true</fork>
                     <executable>true</executable>
                     <layout>ZIP</layout>
-                    <mainClass>org.github.foxnic.web.wrapper.WrapperCamundaApp</mainClass>
+                    <mainClass>org.github.foxnic.web.wrapper.WebFullBpmApp</mainClass>
                 </configuration>
                 <executions>
                     <execution>

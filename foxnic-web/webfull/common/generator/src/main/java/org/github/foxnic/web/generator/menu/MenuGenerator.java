@@ -12,14 +12,8 @@ import com.github.foxnic.generator.builder.business.ControllerProxyFile;
 import com.github.foxnic.sql.meta.DBTable;
 import com.github.foxnic.sql.meta.DBType;
 import com.leefj.webfull.constants.db.WebFullTables;
-import com.leefj.webfull.example.page.AddressPageController;
-import com.leefj.webfull.example.page.GoodsPageController;
-import com.leefj.webfull.example.page.OrderItemPageController;
-import com.leefj.webfull.example.page.OrderPageController;
-import com.leefj.webfull.proxy.example.AddressServiceProxy;
-import com.leefj.webfull.proxy.example.GoodsServiceProxy;
-import com.leefj.webfull.proxy.example.OrderItemServiceProxy;
-import com.leefj.webfull.proxy.example.OrderServiceProxy;
+import com.leefj.webfull.example.page.*;
+import com.leefj.webfull.proxy.example.*;
 import org.github.foxnic.web.constants.db.FoxnicWeb;
 import org.github.foxnic.web.constants.enums.system.AccessType;
 import org.github.foxnic.web.constants.enums.system.MenuType;
@@ -63,8 +57,9 @@ public class MenuGenerator {
 //		mg=new MenuGenerator(WebFullTables.WEBFULL_EXAMPLE_ADDRESS.$TABLE, AddressServiceProxy.class, AddressPageController.class);
 //		mg=new MenuGenerator(WebFullTables.WEBFULL_EXAMPLE_GOODS.$TABLE, GoodsServiceProxy.class, GoodsPageController.class);
 //		mg=new MenuGenerator(WebFullTables.WEBFULL_EXAMPLE_ORDER.$TABLE, OrderServiceProxy.class, OrderPageController.class);
-		mg=new MenuGenerator(WebFullTables.WEBFULL_EXAMPLE_ORDER_ITEM.$TABLE, OrderItemServiceProxy.class, OrderItemPageController.class);
-		mg.generate("610152639237193728");
+//		mg=new MenuGenerator(WebFullTables.WEBFULL_EXAMPLE_ORDER_ITEM.$TABLE, OrderItemServiceProxy.class, OrderItemPageController.class);
+		mg=new MenuGenerator(WebFullTables.WEBFULL_EXAMPLE_REIMBURSEMENT.$TABLE, ReimbursementServiceProxy.class, ReimbursementPageController.class);
+		mg.generate("643084271635922944");
 		// mg.removeByBatchId("608188281577799680");
 
 //		mg=new MenuGenerator(FoxnicWeb.BPM_PROCESS_DEFINITION.$TABLE, ProcessDefinitionServiceProxy.class, ProcessDefinitionPageController.class);

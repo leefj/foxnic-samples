@@ -7,7 +7,7 @@ server:
       http-only: true
       # 会话超时时间，如 30s , 20m 等
       timeout: 28800s
-  port: 1820
+  port: 6877
 
 spring:
   main:
@@ -36,10 +36,18 @@ spring:
             windows: d:/foxnic/passwd.txt
             mac: /Users/Shared/foxnic/passwd.txt
             linux: /foxnic/passwd.txt
-        driver-class-name: com.mysql.cj.jdbc.Driver
-        url: ai+mCm8asbK9SNrQDk7ac29neidjdgHp2jFU7HYbZZOmvbR4OKNXb877AJzdYToBGLgN+etaRMM4wzovFLMULMH6brIo3zgsyub026w4Il4Oqg9jzyYsLaa6LNyznmYm5kKoS17K9XHBX8e0lDuik9pcc/DfdjaUkhm0MmOALUM86dHiyURHUP5hfQ4otf/kE9gVP+GO1G7fUdc4JBLDYylfBzmp9SNKQcTLQ/5AkWcnbm89+5pAz4JNnCJILF0B
+        # 8.x
+        #driver-class-name: com.mysql.cj.jdbc.Driver
+        # 5.x
+        driver-class-name: com.mysql.jdbc.Driver
+        # db-1
+        url: ai+mCm8asbK9SNrQDk7ac29neidjdgHp2jFU7HYbZZM7XPIVnc3jn040SCi2ghsOJmvzo7Z8DsMWz0GJtHzk5fVkSVq8PVTLpt97W7e4//KN1tJ8luj3f2R4xGk6d01pnyaG7DyU2tsIMcGZTOl8T0kLJom6Izu9ePptW1UPa7MuTPWKDKUSCYKdQSv51ASxJE99hLodGgxEtGeRBhnlDigwekNCLkMQGvjVKTeDRDsro2ghN1qDTzmyCaGJQxMq
         username: tD5wkJAfnCt04A+Y+QN5GA==
         password: ODGx5F84xpWJgfRFnzAaYhViHJqrTO3uxxDZ2lRlZNk=
+        # db-2
+        #url: ai+mCm8asbK9SNrQDk7acwFudx/85JSmGG0oO6UIbEQuHyAECjhpYNu498VsI+yuzMJGjNdFWmZBFeX1CBxN/JCMveiHfB5RycbYXosZS2zowedyYWd66RDP6lRhDjg8uDRtWUDh6WEHC5jVLjUaEr94jv61Uh7brCMbsQbY3ihNAcM79lGwTfV3of3ALwDHSEyVtgHG6PMpk+u00M7B6nRY9KzXnzkCErTbNtU2GaGcYi+ey3SpL9kQx7eGv7Fy
+        #username: IJ4ZT+NqsHTkfq9MMjSAxw==
+        #password: WwvxnxIYA86yquXUpqrVFw==
         # 启动程序时，在连接池中初始化多少个连接
         initialSize: 16
         # 连接池中最多支持多少个活动会话
@@ -77,6 +85,10 @@ spring:
         maxPoolPreparedStatementPerConnectionSize: -1
         # 是否打印语句，生产环境建议关闭
         printSQL: true
+        # 是否使用简单模式输出日志
+        printSQLSimple: false
+        # 是否输出调用栈
+        printSQLCallstack: true
   thymeleaf:
     prefix: classpath:/public/
     check-template-location: true
@@ -137,7 +149,7 @@ foxnic:
     enable: true
     debug:
       enable: true
-      process-definition-code-list: foxnic-leave,p-expense-all,a-expense-all,a-expense-any,p-expense-any,fetchback-jump,draft-test
+      process-definition-code-list: webfull-reimbursement
   cache:
     # 默认配置
     default:
@@ -152,32 +164,36 @@ foxnic:
   # 配置集群节点简单替代注册中心，如果启用微服务，则一下配置无效
   cluster:
     # 节点间用于通信的 key，各节点要保持一致
-    key: FOXNIC-WEB-20220310-3398
+    key: FOXNIC-WEB-FULL-DEMO
     service:
       service-camunda:
         enable: true
         # 多个节点时用逗号隔开,格式： 地址,权重 | 地址,权重 | ...
-        end-points: http://127.0.0.1:1820,1 | http://127.0.0.1:1820,1
+        end-points: http://127.0.0.1:6877,1 | http://127.0.0.1:6877,1
       service-bpm:
         enable: true
         # 多个节点时用逗号隔开,格式： 地址,权重 | 地址,权重 | ...
-        end-points: http://127.0.0.1:1899,1 | http://127.0.0.1:1899,2
+        end-points: http://127.0.0.1:6899,1 | http://127.0.0.1:6899,2
       service-hrm:
         enable: true
         # 多个节点时用逗号隔开,格式： 地址,权重 | 地址,权重 | ...
-        end-points: http://127.0.0.1:1899,1 | http://127.0.0.1:1899,2
+        end-points: http://127.0.0.1:6899,1 | http://127.0.0.1:6899,2
       service-oauth:
         enable: true
         # 多个节点时用逗号隔开,格式： 地址,权重 | 地址,权重 | ...
-        end-points: http://127.0.0.1:1899,1 | http://127.0.0.1:1899,2
+        end-points: http://127.0.0.1:6899,1 | http://127.0.0.1:6899,2
       service-system:
         enable: true
         # 多个节点时用逗号隔开,格式： 地址,权重 | 地址,权重 | ...
-        end-points: http://127.0.0.1:1899,1 | http://127.0.0.1:1899,2
+        end-points: http://127.0.0.1:6899,1 | http://127.0.0.1:6899,2
       service-storage:
         enable: true
         # 多个节点时用逗号隔开,格式： 地址,权重 | 地址,权重 | ...
-        end-points: http://127.0.0.1:1899,1 | http://127.0.0.1:1899,2
+        end-points: http://127.0.0.1:6899,1 | http://127.0.0.1:6899,2
+      webfull-service-example:
+        enable: true
+        # 多个节点时用逗号隔开,格式： 地址,权重 | 地址,权重 | ...
+        end-points: http://127.0.0.1:6899,1 | http://127.0.0.1:6899,2
 
 
 logging:

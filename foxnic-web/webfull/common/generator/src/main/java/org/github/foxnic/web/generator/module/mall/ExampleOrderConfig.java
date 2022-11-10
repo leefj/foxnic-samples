@@ -1,19 +1,18 @@
-package org.github.foxnic.web.generator.module.example;
+package org.github.foxnic.web.generator.module.mall;
 
 import com.github.foxnic.generator.builder.business.option.ServiceOptions;
 import com.github.foxnic.generator.builder.model.PoClassFile;
 import com.github.foxnic.generator.builder.model.VoClassFile;
 import com.github.foxnic.generator.builder.view.option.*;
 import com.github.foxnic.generator.config.WriteMode;
-import com.leefj.webfull.constants.db.WebFullTables.WEBFULL_EXAMPLE_ORDER_ITEM;
-import com.leefj.webfull.domain.example.Goods;
-import com.leefj.webfull.domain.example.meta.GoodsMeta;
-import com.leefj.webfull.domain.example.meta.OrderItemMeta;
-import com.leefj.webfull.proxy.example.GoodsServiceProxy;
+import com.leefj.webfull.constants.db.WebFullTables.WEBFULL_EXAMPLE_ORDER;
+import com.leefj.webfull.domain.example.Address;
+import com.leefj.webfull.domain.example.meta.OrderMeta;
+import com.leefj.webfull.proxy.example.AddressServiceProxy;
 import org.github.foxnic.web.generator.module.BaseCodeConfig;
 
 
-public class ExampleOrderItemConfig extends BaseCodeConfig<WEBFULL_EXAMPLE_ORDER_ITEM> {
+public class ExampleOrderConfig extends BaseCodeConfig<WEBFULL_EXAMPLE_ORDER> {
 
 
     /**
@@ -21,7 +20,9 @@ public class ExampleOrderItemConfig extends BaseCodeConfig<WEBFULL_EXAMPLE_ORDER
      */
     @Override
     public void configModel(PoClassFile poType, VoClassFile voType) {
-        poType.addSimpleProperty(Goods.class,"goods","商品","关联的商品");
+
+        poType.addSimpleProperty(Address.class,"address","收件地址","关联的收件地址对象");
+
     }
 
     /**
@@ -31,34 +32,34 @@ public class ExampleOrderItemConfig extends BaseCodeConfig<WEBFULL_EXAMPLE_ORDER
     public void configFields(ViewOptions view) {
 
         // ID 字段通常隐藏
-        view.field(WEBFULL_EXAMPLE_ORDER_ITEM.ID).basic().hidden();
-        view.field(WEBFULL_EXAMPLE_ORDER_ITEM.ORDER_ID).basic().hidden();
-        view.field(WEBFULL_EXAMPLE_ORDER_ITEM.GOODS_ID).basic().label("商品");
+        view.field(WEBFULL_EXAMPLE_ORDER.ID).basic().hidden();
 
         // NAME 字段，单行文本框
-        view.field(WEBFULL_EXAMPLE_ORDER_ITEM.GOODS_ID)
+        view.field(WEBFULL_EXAMPLE_ORDER.ORDER_NO)
                 // 搜索栏：设置模糊搜索
-//                .search().fuzzySearch()
+                .search().fuzzySearch()
                 // 表格列：指定对齐方式
-//                .table().alignLeft()
+                .table().alignLeft()
                 // 表单：指定表单编辑器为文本输入框，并指定默认值
-                .form().selectBox().queryApi(GoodsServiceProxy.QUERY_PAGED_LIST).textField(GoodsMeta.NAME).valueField(GoodsMeta.ID)
-                .fillWith(OrderItemMeta.GOODS)
+                .form().textInput()
                 // 表单校验：必填
                 .form().validate().required()
         ;
-//
-//        // NAME 字段，单行文本框
-//        view.field(WEBFULL_EXAMPLE_ORDER_ITEM.PRICE)
-//                // 搜索栏：设置模糊搜索
-//                .search().range()
-//                // 表格列：指定对齐方式
-//                .table().alignRight()
-//                // 表单：指定表单编辑器为文本输入框，并指定默认值
-//                .form().numberInput().decimal()
-//                // 表单校验：必填
-//                .form().validate().required()
-//        ;
+
+        // NAME 字段，单行文本框
+        view.field(WEBFULL_EXAMPLE_ORDER.ADDRESS_ID)
+                .basic().label("收件地址")
+                // 搜索栏：设置模糊搜索
+                // .search().range()
+                // 表格列：指定对齐方式
+                //.table().fillBy(OrderMeta.ADDRESS,AddressMeta.ADDRESS)
+                // 表单：指定表单编辑器为文本输入框，并指定默认值
+                .form().selectBox()
+                .queryApi(AddressServiceProxy.QUERY_LIST).valueField("id").textField("address")
+                .fillWith(OrderMeta.ADDRESS)
+                // 表单校验：必填
+                .form().validate().required()
+        ;
 
 
 
@@ -71,13 +72,10 @@ public class ExampleOrderItemConfig extends BaseCodeConfig<WEBFULL_EXAMPLE_ORDER
     @Override
     public void configSearch(ViewOptions view, SearchAreaOptions search) {
 
-        search.disable();
-//        // 搜索布局
-//        search.inputLayout(new Object[]{
-//                WEBFULL_EXAMPLE_ORDER_ITEM.NAME,WEBFULL_EXAMPLE_ORDER_ITEM.PHONE_NUMBER,WEBFULL_EXAMPLE_ORDER_ITEM.ADDRESS,"keyword"
-//        },new Object[]{
-//                WEBFULL_EXAMPLE_ORDER_ITEM.REGION_TYPE,WEBFULL_EXAMPLE_ORDER_ITEM.REGION_LOCATION,WEBFULL_EXAMPLE_ORDER_ITEM.CREATE_TIME
-//        });
+        // 搜索布局
+        search.inputLayout(new Object[]{
+                WEBFULL_EXAMPLE_ORDER.ORDER_NO
+        });
 //
 //
 //
@@ -89,7 +87,7 @@ public class ExampleOrderItemConfig extends BaseCodeConfig<WEBFULL_EXAMPLE_ORDER
 //        search.labelWidth(3,75);
 //
 //        // 个别输入框宽度调整
-//        view.field(WEBFULL_EXAMPLE_ORDER_ITEM.ADDRESS).search().inputWidth(296);
+//        view.field(WEBFULL_EXAMPLE_ORDER.ADDRESS).search().inputWidth(296);
 
 
     }
@@ -99,7 +97,7 @@ public class ExampleOrderItemConfig extends BaseCodeConfig<WEBFULL_EXAMPLE_ORDER
      */
     @Override
     public void configList(ViewOptions view, ListOptions list) {
-
+        list.operationColumn().addActionButton("明细","openItems");
     }
 
     /**
@@ -108,11 +106,11 @@ public class ExampleOrderItemConfig extends BaseCodeConfig<WEBFULL_EXAMPLE_ORDER
     @Override
     public void configForm(ViewOptions view, FormOptions form, FormWindowOptions formWindow) {
 
-//        formWindow.width("700px");
-//
-//        form.labelWidth(85);
+        formWindow.width("800px");
 
-        formWindow.bottomSpace(300);
+        form.labelWidth(85);
+
+
 
 
 
@@ -152,8 +150,8 @@ public class ExampleOrderItemConfig extends BaseCodeConfig<WEBFULL_EXAMPLE_ORDER
 
 
 
-    public ExampleOrderItemConfig() {
-        super("webfull-service-example", WEBFULL_EXAMPLE_ORDER_ITEM.$TABLE, "webfull_example_", 3);
+    public ExampleOrderConfig() {
+        super("webfull-service-example", WEBFULL_EXAMPLE_ORDER.$TABLE, "webfull_example_", 3);
     }
 
 

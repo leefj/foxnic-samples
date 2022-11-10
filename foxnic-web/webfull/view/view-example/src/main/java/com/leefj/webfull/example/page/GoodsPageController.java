@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
  * 商品模版页面控制器
  * </p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-11-10 10:39:34
+ * @since 2022-11-10 15:03:49
 */
 
 @Controller("WebfullExampleGoodsPageController")

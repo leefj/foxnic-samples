@@ -1,29 +1,31 @@
 /**
- * 商品 列表页 JS 脚本
+ * 费用报销单 列表页 JS 脚本
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-11-10 15:03:49
+ * @since 2022-11-10 15:23:54
  */
 
 function FormPage() {
 
-	var settings,admin,form,table,layer,util,fox,upload,xmSelect,foxup,dropdown;
-	const moduleURL="/webfull-service-example/webfull-example-goods";
+	var settings,admin,form,table,layer,util,fox,upload,xmSelect,foxup,dropdown,bpm;
+	const moduleURL="/webfull-service-example/webfull-example-reimbursement";
 	// 表单执行操作类型：view，create，edit
 	var action=null;
 	var disableCreateNew=false;
 	var disableModify=false;
 	var dataBeforeEdit=null;
-	const bpmIntegrateMode="none";
+	const bpmIntegrateMode="front";
 	var isInProcess=QueryString.get("isInProcess");
+	var processId=QueryString.get("processId");
+	var processInstance=null;
 
 	/**
       * 入口函数，初始化
       */
 	this.init=function(layui) {
      	admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,foxup=layui.foxnicUpload,dropdown=layui.dropdown;
-		laydate = layui.laydate,table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect;
+		laydate = layui.laydate,table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,bpm=layui.bpm;
 
-		action=admin.getTempData('webfull-example-goods-form-data-form-action');
+		action=admin.getTempData('webfull-example-reimbursement-form-data-form-action');
 		//如果没有修改和保存权限
 		if( !admin.checkAuth(AUTH_PREFIX+":update") && !admin.checkAuth(AUTH_PREFIX+":save")) {
 			disableModify=true;
@@ -37,7 +39,7 @@ function FormPage() {
 		}
 
 		if(window.pageExt.form.beforeInit) {
-			window.pageExt.form.beforeInit(action,admin.getTempData('webfull-example-goods-form-data'));
+			window.pageExt.form.beforeInit(action,admin.getTempData('webfull-example-reimbursement-form-data'));
 		}
 
 		//渲染表单组件
@@ -51,6 +53,8 @@ function FormPage() {
 
 		//调整窗口的高度与位置
 		adjustPopup();
+		//取流程数据
+		fetchProcessInstance();
 
 
 	}
@@ -58,6 +62,22 @@ function FormPage() {
 
 
 
+	//取流程数据
+	function fetchProcessInstance() {
+		if(!processId) return;
+		bpm.getProcessInstance(processId,function (r){
+			if(r.success) {
+				processInstance=r.data;
+				window.pageExt.form.onProcessInstanceReady && window.pageExt.form.onProcessInstanceReady(r);
+			} else {
+				if(window.pageExt.form.onProcessInstanceError) {
+					var next=window.pageExt.form.onProcessInstanceError(r);
+					if(!next) return;
+				}
+				fox.showMessage(r);
+			}
+		})
+	}
 
 	/**
 	 * 自动调节窗口高度
@@ -89,9 +109,9 @@ function FormPage() {
 				prevBodyHeight = bodyHeight;
 				return;
 			}
-			var area=admin.changePopupArea(null,bodyHeight+footerHeight,'webfull-example-goods-form-data-win');
+			var area=admin.changePopupArea(null,bodyHeight+footerHeight,'webfull-example-reimbursement-form-data-win');
 			if(area==null) return;
-			admin.putTempData('webfull-example-goods-form-area', area);
+			admin.putTempData('webfull-example-reimbursement-form-area', area);
 			window.adjustPopup=adjustPopup;
 			if(area.tooHeigh) {
 				var windowHeight=area.iframeHeight;
@@ -142,7 +162,7 @@ function FormPage() {
       */
 	function fillFormData(formData) {
 		if(!formData) {
-			formData = admin.getTempData('webfull-example-goods-form-data');
+			formData = admin.getTempData('webfull-example-reimbursement-form-data');
 		}
 
 		window.pageExt.form.beforeDataFill && window.pageExt.form.beforeDataFill(formData);
@@ -250,7 +270,7 @@ function FormPage() {
 				}
 
 				if(doNext) {
-					admin.finishPopupCenterById('webfull-example-goods-form-data-win');
+					admin.finishPopupCenterById('webfull-example-reimbursement-form-data-win');
 				}
 
 				// 调整状态为编辑
@@ -282,7 +302,7 @@ function FormPage() {
 
 
 	    //关闭窗口
-	    $("#cancel-button").click(function(){ admin.finishPopupCenterById('webfull-example-goods-form-data-win',this); });
+	    $("#cancel-button").click(function(){ admin.finishPopupCenterById('webfull-example-reimbursement-form-data-win',this); });
 
     }
 
@@ -305,7 +325,7 @@ function FormPage() {
 
 }
 
-layui.use(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','xmSelect','foxnicUpload','laydate','dropdown'],function() {
+layui.use(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','xmSelect','foxnicUpload','laydate','dropdown','bpm'],function() {
 	var task=setInterval(function (){
 		if(!window["pageExt"]) return;
 		clearInterval(task);

@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2022-09-16 08:04:49
+ * @since 2022-11-10 15:01:39
  * @author 李方捷 , leefangjie@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -324,5 +324,85 @@ public class WebFullTables {
 			this.init($NAME,"订单明细表" , ID , ORDER_ID , GOODS_ID , AMOUNT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final WEBFULL_EXAMPLE_ORDER_ITEM $TABLE=new WEBFULL_EXAMPLE_ORDER_ITEM();
+	}
+	
+	/**
+	 * 费用报销单
+	*/
+	public static class WEBFULL_EXAMPLE_REIMBURSEMENT extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "webfull_example_reimbursement";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.LONG , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 费用名称
+		*/
+		public static final DBField TITLE = new DBField(DBDataType.STRING , "title","title","费用名称","费用名称",false,false,true);
+		
+		/**
+		 * 报销金额
+		*/
+		public static final DBField AMOUNT = new DBField(DBDataType.DECIMAL , "amount","amount","报销金额","报销金额",false,false,true);
+		
+		/**
+		 * 审批状态
+		*/
+		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","审批状态","审批状态",false,false,true);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
+		
+		public WEBFULL_EXAMPLE_REIMBURSEMENT() {
+			this.init($NAME,"费用报销单" , ID , TITLE , AMOUNT , STATUS , TENANT_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+		}
+		public static final WEBFULL_EXAMPLE_REIMBURSEMENT $TABLE=new WEBFULL_EXAMPLE_REIMBURSEMENT();
 	}
 }

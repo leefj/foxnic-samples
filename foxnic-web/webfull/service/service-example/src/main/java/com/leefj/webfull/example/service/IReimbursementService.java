@@ -1,11 +1,13 @@
 package com.leefj.webfull.example.service;
 
+import org.github.foxnic.web.domain.bpm.BpmActionResult;
+import org.github.foxnic.web.domain.bpm.BpmEvent;
 import com.github.foxnic.dao.entity.ISimpleIdService;
 
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.dao.entity.ISuperService;
-import com.leefj.webfull.domain.example.Goods;
-import com.leefj.webfull.domain.example.GoodsVO;
+import com.leefj.webfull.domain.example.Reimbursement;
+import com.leefj.webfull.domain.example.ReimbursementVO;
 import java.util.List;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
@@ -20,55 +22,59 @@ import java.util.Map;
 
 /**
  * <p>
- * 商品服务接口
+ * 费用报销单服务接口
  * </p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-11-10 15:03:48
+ * @since 2022-11-10 15:23:49
 */
 
-public interface IGoodsService extends  ISimpleIdService<Goods,String> {
+public interface IReimbursementService extends  ISimpleIdService<Reimbursement,Long> {
 
 
 	/**
+ 	  * 表单定义代码
+      **/
+	public static final String FORM_DEFINITION_CODE="webfull-reimbursement";
+	/**
 	 * 添加，如果语句错误，则抛出异常
-	 * @param goods 数据对象
+	 * @param reimbursement 数据对象
 	 * @return 插入是否成功
 	 * */
-	Result insert(Goods goods);
+	Result insert(Reimbursement reimbursement);
 
 	/**
 	 * 添加，根据 throwsException 参数抛出异常或返回 Result 对象
 	 *
-	 * @param goods  数据对象
+	 * @param reimbursement  数据对象
 	 * @param throwsException 是否抛出异常，如果不抛出异常，则返回一个失败的 Result 对象
 	 * @return 结果 , 如果失败返回 false，成功返回 true
 	 */
-	Result insert(Goods goods,boolean throwsException);
+	Result insert(Reimbursement reimbursement,boolean throwsException);
 
 	/**
 	 * 批量插入实体，事务内
-	 * @param goodsList 实体数据清单
+	 * @param reimbursementList 实体数据清单
 	 * @return 插入是否成功
 	 * */
-	Result insertList(List<Goods> goodsList);
+	Result insertList(List<Reimbursement> reimbursementList);
 
 
 		
 	/**
-	 * 按主键删除商品
+	 * 按主键删除费用报销单
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
 	 */
-	Result deleteByIdPhysical(String id);
+	Result deleteByIdPhysical(Long id);
 	
 	/**
-	 * 按主键删除商品
+	 * 按主键删除费用报销单
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
 	 */
-	Result deleteByIdLogical(String id);
+	Result deleteByIdLogical(Long id);
 
 	/**
 	 * 批量物理删除，仅支持单字段主键表
@@ -86,124 +92,124 @@ public interface IGoodsService extends  ISimpleIdService<Goods,String> {
 
 		
 	/**
-	 * 按主键更新商品
+	 * 按主键更新费用报销单
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
 	 */
-	boolean update(DBField field,Object value , String id);
+	boolean update(DBField field,Object value , Long id);
 
 	/**
 	 * 更新，如果执行错误，则抛出异常
-	 * @param goods 数据对象
+	 * @param reimbursement 数据对象
 	 * @param mode 保存模式
 	 * @return 保存是否成功
 	 * */
-	Result update(Goods goods , SaveMode mode);
+	Result update(Reimbursement reimbursement , SaveMode mode);
 
 
 	/**
 	 * 更新，根据 throwsException 参数抛出异常或返回 Result 对象
 	 *
-	 * @param goods 数据对象
+	 * @param reimbursement 数据对象
 	 * @param mode SaveMode,数据更新的模式
 	 * @param throwsException 是否抛出异常，如果不抛出异常，则返回一个失败的 Result 对象
 	 * @return 结果
 	 */
-	Result update(Goods goods , SaveMode mode,boolean throwsException);
+	Result update(Reimbursement reimbursement , SaveMode mode,boolean throwsException);
 
 
 	/**
 	 * 更新实体集，事务内
-	 * @param goodsList 数据对象列表
+	 * @param reimbursementList 数据对象列表
 	 * @param mode 保存模式
 	 * @return 保存是否成功
 	 * */
-	Result updateList(List<Goods> goodsList, SaveMode mode);
+	Result updateList(List<Reimbursement> reimbursementList, SaveMode mode);
 
 	/**
 	 * 保存实体，根据 throwsException 参数抛出异常或返回 Result 对象
-	 * @param goods 实体数据
+	 * @param reimbursement 实体数据
 	 * @param mode 保存模式
 	 * @param throwsException 是否抛出异常，如果不抛出异常，则返回一个失败的 Result 对象
 	 * @return 保存是否成功
 	 * */
-	Result save(Goods goods , SaveMode mode,boolean throwsException);
+	Result save(Reimbursement reimbursement , SaveMode mode,boolean throwsException);
 
 	/**
 	 * 保存实体，如果语句错误，则抛出异常
-	 * @param goods 实体数据
+	 * @param reimbursement 实体数据
 	 * @param mode 保存模式
 	 * @return 保存是否成功
 	 * */
-	Result save(Goods goods , SaveMode mode);
+	Result save(Reimbursement reimbursement , SaveMode mode);
 
 	/**
 	 * 保存实体，如果主键值不为null，则更新，否则插入
-	 * @param goodsList 实体数据清单
+	 * @param reimbursementList 实体数据清单
 	 * @param mode 保存模式
 	 * @return 保存是否成功
 	 * */
-	Result saveList(List<Goods> goodsList , SaveMode mode);
+	Result saveList(List<Reimbursement> reimbursementList , SaveMode mode);
 
 	/**
 	 * 检查实体中的数据字段是否已经存在 . 判断 主键值不同，但指定字段的值相同的记录是否存在
-	 * @param goods  实体对象
+	 * @param reimbursement  实体对象
 	 * @param field  字段清单，至少指定一个
 	 * @return 是否已经存在
 	 * */
-	boolean checkExists(Goods goods,DBField... field);
+	boolean checkExists(Reimbursement reimbursement,DBField... field);
 
 		
 	/**
-	 * 按主键获取商品
+	 * 按主键获取费用报销单
 	 *
 	 * @param id 主键
-	 * @return Goods 数据对象
+	 * @return Reimbursement 数据对象
 	 */
-	Goods getById(String id);
+	Reimbursement getById(Long id);
 
 	/**
 	 * 检查引用
 	 * @param id  检查ID是否又被外部表引用
 	 * */
-	Boolean hasRefers(String id);
+	Boolean hasRefers(Long id);
 
 	/**
 	 * 批量检查引用
 	 * @param ids  检查这些ID是否又被外部表引用
 	 * */
-	Map<String,Boolean> hasRefers(List<String> ids);
+	Map<Long,Boolean> hasRefers(List<Long> ids);
 
 	/**
 	 * 按 id 获取多个对象
 	 * @param ids  主键清单
 	 * @return 实体集
 	 * */
-	List<Goods> queryListByIds(List<String> ids);
+	List<Reimbursement> queryListByIds(List<Long> ids);
 
 	/**
 	 * 按 id 列表查询 Map
 	 * @param ids  主键清单
 	 * */
-	Map<String, Goods> queryMapByIds(List<String> ids);
+	Map<Long, Reimbursement> queryMapByIds(List<Long> ids);
 
 
 
 	/**
 	 * 检查 实体 是否已经存在 , 判断 主键值不同，但指定字段的值相同的记录是否存在
 	 *
-	 * @param goods 数据对象
+	 * @param reimbursement 数据对象
 	 * @return 判断结果
 	 */
-	Boolean checkExists(Goods goods);
+	Boolean checkExists(Reimbursement reimbursement);
 
 	/**
 	 * 根据实体数构建默认的条件表达式, 不支持 Join 其它表
 	 * @param sample 数据样例
 	 * @return ConditionExpr 条件表达式
 	 * */
-	ConditionExpr buildQueryCondition(Goods sample);
+	ConditionExpr buildQueryCondition(Reimbursement sample);
 
 	/**
 	 * 根据实体数构建默认的条件表达式, 不支持 Join 其它表
@@ -211,14 +217,14 @@ public interface IGoodsService extends  ISimpleIdService<Goods,String> {
 	 * @param tableAliase 数据表别名
 	 * 	@return ConditionExpr 条件表达式
 	 * */
-	ConditionExpr buildQueryCondition(Goods sample,String tableAliase);
+	ConditionExpr buildQueryCondition(Reimbursement sample,String tableAliase);
 
 	/**
 	 * 查询实体集合，默认情况下，字符串使用模糊匹配，非字符串使用精确匹配
 	 * @param sample  查询条件
 	 * @return 查询结果
 	 * */
-	List<Goods> queryList(GoodsVO sample);
+	List<Reimbursement> queryList(ReimbursementVO sample);
 
 	/**
 	 * 查询实体集合，默认情况下，字符串使用模糊匹配，非字符串使用精确匹配
@@ -227,7 +233,7 @@ public interface IGoodsService extends  ISimpleIdService<Goods,String> {
 	 * @param orderBy  排序
 	 * @return 查询结果
 	 * */
-	List<Goods> queryList(Goods sample,ConditionExpr condition,OrderBy orderBy);
+	List<Reimbursement> queryList(Reimbursement sample,ConditionExpr condition,OrderBy orderBy);
 
 	/**
 	 * 查询实体集合，默认情况下，字符串使用模糊匹配，非字符串使用精确匹配
@@ -235,7 +241,7 @@ public interface IGoodsService extends  ISimpleIdService<Goods,String> {
 	 * @param orderBy  排序
 	 * @return 查询结果
 	 * */
-	List<Goods> queryList(Goods sample,OrderBy orderBy);
+	List<Reimbursement> queryList(Reimbursement sample,OrderBy orderBy);
 
 	/**
 	 * 查询实体集合，默认情况下，字符串使用模糊匹配，非字符串使用精确匹配
@@ -243,14 +249,14 @@ public interface IGoodsService extends  ISimpleIdService<Goods,String> {
 	 * @param condition  其它条件
 	 * @return 查询结果
 	 * */
-	List<Goods> queryList(Goods sample,ConditionExpr condition);
+	List<Reimbursement> queryList(Reimbursement sample,ConditionExpr condition);
 
 	/**
 	 * 查询单个实体
 	 * @param sample  查询条件
 	 * @return 查询结果
 	 * */
-	Goods queryEntity(Goods sample);
+	Reimbursement queryEntity(Reimbursement sample);
 
 	/**
 	 * 分页查询实体集
@@ -259,7 +265,7 @@ public interface IGoodsService extends  ISimpleIdService<Goods,String> {
 	 * @param pageIndex 页码
 	 * @return 查询结果
 	 * */
-	PagedList<Goods> queryPagedList(GoodsVO sample,int pageSize,int pageIndex);
+	PagedList<Reimbursement> queryPagedList(ReimbursementVO sample,int pageSize,int pageIndex);
 
 	/**
 	 * 分页查询实体集
@@ -270,7 +276,7 @@ public interface IGoodsService extends  ISimpleIdService<Goods,String> {
 	 * @param orderBy  排序
 	 * @return 查询结果
 	 * */
-	PagedList<Goods> queryPagedList(Goods sample,ConditionExpr condition,OrderBy orderBy,int pageSize,int pageIndex);
+	PagedList<Reimbursement> queryPagedList(Reimbursement sample,ConditionExpr condition,OrderBy orderBy,int pageSize,int pageIndex);
 
 	/**
 	 * 分页查询实体集
@@ -280,7 +286,7 @@ public interface IGoodsService extends  ISimpleIdService<Goods,String> {
 	 * @param condition  其它条件
 	 * @return 查询结果
 	 * */
-	PagedList<Goods> queryPagedList(Goods sample,ConditionExpr condition,int pageSize,int pageIndex);
+	PagedList<Reimbursement> queryPagedList(Reimbursement sample,ConditionExpr condition,int pageSize,int pageIndex);
 
 	/**
 	 * 分页查询实体集
@@ -290,7 +296,7 @@ public interface IGoodsService extends  ISimpleIdService<Goods,String> {
 	 * @param orderBy  排序
 	 * @return 查询结果
 	 * */
-	PagedList<Goods> queryPagedList(Goods sample,OrderBy orderBy,int pageSize,int pageIndex);
+	PagedList<Reimbursement> queryPagedList(Reimbursement sample,OrderBy orderBy,int pageSize,int pageIndex);
 
  	/**
 	 * 查询指定字段的数据清单
@@ -316,5 +322,16 @@ public interface IGoodsService extends  ISimpleIdService<Goods,String> {
 
 
 
+	/**
+	 * 处理流程回调
+	 * */
+	BpmActionResult onProcessCallback(BpmEvent event);
+
+
+	void joinProcess(Reimbursement reimbursement);
+
+	void joinProcess(List<Reimbursement> reimbursementList);
+
+	void joinProcess(PagedList<Reimbursement> reimbursementList);
 
 }

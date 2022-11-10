@@ -1,7 +1,7 @@
 /**
- * 商品 列表页 JS 脚本
+ * 费用报销单 列表页 JS 脚本
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-11-10 15:03:49
+ * @since 2022-11-10 15:23:52
  */
 
 
@@ -9,7 +9,7 @@ function ListPage() {
 
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect;
 	//模块基础路径
-	const moduleURL="/webfull-service-example/webfull-example-goods";
+	const moduleURL="/webfull-service-example/webfull-example-reimbursement";
 	var dataTable=null;
 	var sort=null;
 	/**
@@ -77,9 +77,10 @@ function ListPage() {
 				cols: [[
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
-					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
-					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('商品名') , templet: function (d) { return templet('name',d.name,d);}  }
-					,{ field: 'price', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('单价') , templet: function (d) { return templet('price',d.price,d);}  }
+					,{ field: 'id', align:"right",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
+					,{ field: 'title', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('费用名称') , templet: function (d) { return templet('title',d.title,d);}  }
+					,{ field: 'amount', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('报销金额') , templet: function (d) { return templet('amount',d.amount,d);}  }
+					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('审批状态') , templet: function (d) { return templet('status',d.status,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 160 }
@@ -129,8 +130,9 @@ function ListPage() {
 	function refreshTableData(sortField,sortType,reset) {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
-		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
-		value.price={ inputType:"number_input", begin: $("#price-begin").val(), end: $("#price-end").val() };
+		value.title={ inputType:"button",value: $("#title").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.amount={ inputType:"number_input", begin: $("#amount-begin").val(), end: $("#amount-end").val() };
+		value.status={ inputType:"button",value: $("#status").val()};
 		value.createTime={ inputType:"date_input", value: $("#createTime").val() ,matchType:"auto"};
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
@@ -225,8 +227,12 @@ function ListPage() {
 			}
 			switch(obj.event){
 				case 'create':
-					admin.putTempData('webfull-example-goods-form-data', {});
-					openCreateFrom();
+					admin.putTempData('webfull-example-reimbursement-form-data', {});
+					var defaultValue={};
+					if(window.pageExt.list.getBpmViewConfig) {
+						defaultValue=window.pageExt.list.getBpmViewConfig(obj.event);
+					}
+					bpm.openProcessView(null,null,false,{"formDefinitionCode":"webfull-reimbursement"},refreshTableData,refreshRowData,"bill",defaultValue);
 					break;
 				case 'batch-del':
 					batchDelete(selected);
@@ -244,7 +250,7 @@ function ListPage() {
         function openCreateFrom() {
         	//设置新增是初始化数据
         	var data={};
-			admin.putTempData('webfull-example-goods-form-data-form-action', "create",true);
+			admin.putTempData('webfull-example-reimbursement-form-data-form-action', "create",true);
             showEditForm(data);
         };
 
@@ -258,11 +264,11 @@ function ListPage() {
 
 			var ids=getCheckedList("id");
             if(ids.length==0) {
-				top.layer.msg(fox.translate('请选择需要删除的'+'商品'+"!"));
+				top.layer.msg(fox.translate('请选择需要删除的'+'费用报销单'+"!"));
             	return;
             }
             //调用批量删除接口
-			top.layer.confirm(fox.translate('确定删除已选中的'+'商品'+'吗？'), function (i) {
+			top.layer.confirm(fox.translate('确定删除已选中的'+'费用报销单'+'吗？'), function (i) {
                 top.layer.close(i);
 				admin.post(moduleURL+"/delete-by-ids", { ids: ids }, function (data) {
                     if (data.success) {
@@ -294,20 +300,23 @@ function ListPage() {
 				if(!doNext) return;
 			}
 
-			admin.putTempData('webfull-example-goods-form-data-form-action', "",true);
+			admin.putTempData('webfull-example-reimbursement-form-data-form-action', "",true);
 			if (layEvent === 'edit') { // 修改
-				admin.post(moduleURL+"/get-by-id", { id : data.id }, function (data) {
-					if(data.success) {
-						admin.putTempData('webfull-example-goods-form-data-form-action', "edit",true);
-						showEditForm(data.data);
+				bpm.getProcessInstanceByBill("webfull-reimbursement",{ id : data.id },function(p) {
+					if(p) {
+						bpm.openProcessView(p.id,null,false,{"formDefinitionCode":"webfull-reimbursement"},refreshTableData,refreshRowData,"bill");
 					} else {
-						 fox.showMessage(data);
+						if(window.pageExt.list.handleNoProcessBill) {
+							window.pageExt.list.handleNoProcessBill({id : data.id});
+						} else {
+							top.layer.msg(fox.translate('当前业务单据尚未关联流程'), {icon: 2, time: 1500});
+						}
 					}
-				});
+				},"bill");
 			} else if (layEvent === 'view') { // 查看
 				admin.post(moduleURL+"/get-by-id", { id : data.id }, function (data) {
 					if(data.success) {
-						admin.putTempData('webfull-example-goods-form-data-form-action', "view",true);
+						admin.putTempData('webfull-example-reimbursement-form-data-form-action', "view",true);
 						showEditForm(data.data);
 					} else {
 						fox.showMessage(data);
@@ -321,21 +330,34 @@ function ListPage() {
 					if(!doNext) return;
 				}
 
-				top.layer.confirm(fox.translate('确定删除此'+'商品'+'吗？'), function (i) {
+				top.layer.confirm(fox.translate('确定要废弃当前流程实例吗？'), function (i) {
 					top.layer.close(i);
-					admin.post(moduleURL+"/delete", { id : data.id }, function (data) {
-						top.layer.closeAll('loading');
-						if (data.success) {
-							if(window.pageExt.list.afterSingleDelete) {
-								var doNext=window.pageExt.list.afterSingleDelete(data);
-								if(!doNext) return;
-							}
-							fox.showMessage(data);
-							refreshTableData();
+					bpm.getProcessInstanceByBill("webfull-reimbursement",{ id : data.id },function(p) {
+						if(p) {
+							bpm.abandon({processInstanceId:p.id,reason:"无",force:false},function (r){
+								if(r.success) {
+									fox.showMessage(r);
+									window.module.refreshRowData(data,true);
+								} else {
+									fox.showMessage(r);
+								}
+							},[$(".ops-delete-button[data-id='"+data.id+"']")]);
 						} else {
-							fox.showMessage(data);
+							admin.post(moduleURL+"/delete", { id : data.id }, function (data) {
+								top.layer.closeAll('loading');
+								if (data.success) {
+									if(window.pageExt.list.afterSingleDelete) {
+										var doNext=window.pageExt.list.afterSingleDelete(data);
+										if(!doNext) return;
+									}
+									fox.showMessage(data);
+									refreshTableData();
+								} else {
+									fox.showMessage(data);
+								}
+							},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
 						}
-					},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
+					},"bill",);
 				});
 			}
 			
@@ -351,17 +373,17 @@ function ListPage() {
 			var doNext=window.pageExt.list.beforeEdit(data);
 			if(!doNext) return;
 		}
-		var action=admin.getTempData('webfull-example-goods-form-data-form-action');
+		var action=admin.getTempData('webfull-example-reimbursement-form-data-form-action');
 		var queryString="";
 		if(data && data.id) queryString='id=' + data.id;
 		if(window.pageExt.list.makeFormQueryString) {
 			queryString=window.pageExt.list.makeFormQueryString(data,queryString,action);
 		}
-		admin.putTempData('webfull-example-goods-form-data', data);
-		var area=admin.getTempData('webfull-example-goods-form-area');
+		admin.putTempData('webfull-example-reimbursement-form-data', data);
+		var area=admin.getTempData('webfull-example-reimbursement-form-area');
 		var height= (area && area.height) ? area.height : ($(window).height()*0.6);
 		var top= (area && area.top) ? area.top : (($(window).height()-height)/2);
-		var title = fox.translate('商品');
+		var title = fox.translate('费用报销单');
 		if(action=="create") title=fox.translate('添加')+title;
 		else if(action=="edit") title=fox.translate('修改')+title;
 		else if(action=="view") title=fox.translate('查看')+title;
@@ -372,8 +394,8 @@ function ListPage() {
 			offset: [top,null],
 			area: ["500px",height+"px"],
 			type: 2,
-			id:"webfull-example-goods-form-data-win",
-			content: '/business/webfull-example/goods/goods_form.html' + (queryString?("?"+queryString):""),
+			id:"webfull-example-reimbursement-form-data-win",
+			content: '/business/webfull-example/reimbursement/reimbursement_form.html' + (queryString?("?"+queryString):""),
 			finish: function () {
 				if(action=="create") {
 					refreshTableData();

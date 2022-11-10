@@ -1,4 +1,4 @@
-package org.github.foxnic.web.generator.module.example;
+package org.github.foxnic.web.generator.module.mall;
 
 import com.github.foxnic.api.query.MatchType;
 import com.github.foxnic.dao.entity.Entity;
@@ -9,12 +9,10 @@ import com.github.foxnic.generator.builder.model.PojoClassFile;
 import com.github.foxnic.generator.builder.model.VoClassFile;
 import com.github.foxnic.generator.builder.view.option.*;
 import com.github.foxnic.generator.config.WriteMode;
-import com.leefj.webfull.constants.db.WebFullTables;
 import com.leefj.webfull.constants.db.WebFullTables.WEBFULL_EXAMPLE_ADDRESS;
 import com.leefj.webfull.constants.enums.WebFullDictEnum;
 import com.leefj.webfull.constants.enums.dict.RegionLocation;
 import com.leefj.webfull.constants.enums.example.RegionType;
-import org.github.foxnic.web.constants.db.ExampleTables;
 import org.github.foxnic.web.generator.module.BaseCodeConfig;
 
 

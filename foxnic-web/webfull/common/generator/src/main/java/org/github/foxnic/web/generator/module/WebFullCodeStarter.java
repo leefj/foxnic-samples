@@ -2,12 +2,12 @@ package org.github.foxnic.web.generator.module;
 
 import com.github.foxnic.commons.io.FileUtil;
 import com.github.foxnic.generator.util.ModuleCodeGenerator;
-import org.github.foxnic.web.domain.changes.ExampleOrderItem;
 import org.github.foxnic.web.generator.data.DataGenerator;
-import org.github.foxnic.web.generator.module.example.ExampleAddressConfig;
-import org.github.foxnic.web.generator.module.example.ExampleGoodsConfig;
-import org.github.foxnic.web.generator.module.example.ExampleOrderConfig;
-import org.github.foxnic.web.generator.module.example.ExampleOrderItemConfig;
+import org.github.foxnic.web.generator.module.bpm.ExampleReimbursementConfig;
+import org.github.foxnic.web.generator.module.mall.ExampleAddressConfig;
+import org.github.foxnic.web.generator.module.mall.ExampleGoodsConfig;
+import org.github.foxnic.web.generator.module.mall.ExampleOrderConfig;
+import org.github.foxnic.web.generator.module.mall.ExampleOrderItemConfig;
 
 import java.io.File;
 
@@ -25,12 +25,13 @@ public class WebFullCodeStarter extends ModuleCodeGenerator {
 
     public void initModules() {
         initExampleModules();
+        initBPMModules();
     }
 
 
 
-    private void initExample2Modules() {
-        // this.addConfig(new ExampleNewsConfig());
+    private void initBPMModules() {
+         this.addConfig(new ExampleReimbursementConfig());
     }
 
     private void initExampleModules() {

@@ -19,7 +19,7 @@ import com.leefj.webfull.proxy.WebFullServiceNames;
  * 商品 控制器服务代理
  * </p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-11-10 10:39:34
+ * @since 2022-11-10 15:03:48
  */
 @FeignClient(value = WebFullServiceNames.WEBFULL_EXAMPLE, contextId = GoodsServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface GoodsServiceProxy {
