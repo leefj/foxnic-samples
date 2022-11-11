@@ -103,7 +103,7 @@
                     <fork>true</fork>
                     <executable>true</executable>
                     <layout>ZIP</layout>
-                    <mainClass>org.github.foxnic.web.wrapper.WebFullBpmApp</mainClass>
+                    <mainClass>com.leefj.webfull.wrapper.WebFullBpmApp</mainClass>
                 </configuration>
                 <executions>
                     <execution>

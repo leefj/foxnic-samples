@@ -1,4 +1,4 @@
-package org.github.foxnic.web.wrapper;
+package com.leefj.webfull.wrapper;
 
 import com.leefj.webfull.framework.WebFullMeta;
 import org.camunda.bpm.spring.boot.starter.annotation.EnableProcessApplication;

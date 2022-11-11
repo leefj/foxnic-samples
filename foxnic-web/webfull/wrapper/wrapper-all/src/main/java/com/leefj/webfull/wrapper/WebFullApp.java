@@ -1,5 +1,6 @@
-package com.leefj.webfull.framework;
+package com.leefj.webfull.wrapper;
 
+import com.leefj.webfull.framework.WebFullMeta;
 import org.github.foxnic.web.framework.FoxnicWebMeta;
 import org.github.foxnic.web.framework.starter.BootApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
