@@ -1,5 +1,6 @@
 package com.leefj.webfull.example.service;
 
+import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.ISimpleIdService;
 
 import com.github.foxnic.sql.expr.ConditionExpr;
@@ -23,7 +24,7 @@ import java.util.Map;
  * 订单服务接口
  * </p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-11-10 10:39:40
+ * @since 2022-12-01 09:09:22
 */
 
 public interface IOrderService extends  ISimpleIdService<Order,String> {
@@ -162,18 +163,6 @@ public interface IOrderService extends  ISimpleIdService<Order,String> {
 	 * @return Order 数据对象
 	 */
 	Order getById(String id);
-
-	/**
-	 * 检查引用
-	 * @param id  检查ID是否又被外部表引用
-	 * */
-	Boolean hasRefers(String id);
-
-	/**
-	 * 批量检查引用
-	 * @param ids  检查这些ID是否又被外部表引用
-	 * */
-	Map<String,Boolean> hasRefers(List<String> ids);
 
 	/**
 	 * 按 id 获取多个对象

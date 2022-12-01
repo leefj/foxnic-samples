@@ -22,7 +22,7 @@ import com.leefj.webfull.proxy.WebFullServiceNames;
  * 费用报销单 控制器服务代理
  * </p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-11-10 15:23:49
+ * @since 2022-12-01 09:09:23
  */
 @FeignClient(value = WebFullServiceNames.WEBFULL_EXAMPLE, contextId = ReimbursementServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface ReimbursementServiceProxy extends BpmCallbackController {

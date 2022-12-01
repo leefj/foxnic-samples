@@ -24,7 +24,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 费用报销单VO类型
  * <p>费用报销单 , 数据表 webfull_example_reimbursement 的通用VO类型</p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-11-10 15:23:48
+ * @since 2022-12-01 09:09:23
  * @sign FFDC4A4A15C79AAE439B8E3B6070A6DA
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

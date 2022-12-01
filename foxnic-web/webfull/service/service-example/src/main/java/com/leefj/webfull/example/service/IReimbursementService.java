@@ -1,5 +1,6 @@
 package com.leefj.webfull.example.service;
 
+import com.github.foxnic.dao.entity.ReferCause;
 import org.github.foxnic.web.domain.bpm.BpmActionResult;
 import org.github.foxnic.web.domain.bpm.BpmEvent;
 import com.github.foxnic.dao.entity.ISimpleIdService;
@@ -25,7 +26,7 @@ import java.util.Map;
  * 费用报销单服务接口
  * </p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-11-10 15:23:49
+ * @since 2022-12-01 09:09:23
 */
 
 public interface IReimbursementService extends  ISimpleIdService<Reimbursement,Long> {
@@ -168,18 +169,6 @@ public interface IReimbursementService extends  ISimpleIdService<Reimbursement,L
 	 * @return Reimbursement 数据对象
 	 */
 	Reimbursement getById(Long id);
-
-	/**
-	 * 检查引用
-	 * @param id  检查ID是否又被外部表引用
-	 * */
-	Boolean hasRefers(Long id);
-
-	/**
-	 * 批量检查引用
-	 * @param ids  检查这些ID是否又被外部表引用
-	 * */
-	Map<Long,Boolean> hasRefers(List<Long> ids);
 
 	/**
 	 * 按 id 获取多个对象

@@ -28,7 +28,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 费用报销单
  * <p>费用报销单 , 数据表 webfull_example_reimbursement 的PO类型</p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-11-10 15:23:48
+ * @since 2022-12-01 09:09:23
  * @sign 5B0C5700DE3EF0CA0F21FF0A29C56507
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -63,7 +63,7 @@ public class Reimbursement extends Entity {
 	/**
 	 * 审批状态：审批状态
 	*/
-	@ApiModelProperty(required = false,value="审批状态" , notes = "审批状态")
+	@ApiModelProperty(required = false,value="审批状态" , notes = "审批状态" , example = "审批中")
 	private String status;
 	
 	/**
@@ -87,13 +87,13 @@ public class Reimbursement extends Entity {
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "581798649130909696")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2022-11-10 03:57:56")
 	private Date updateTime;
 	
 	/**
@@ -120,7 +120,7 @@ public class Reimbursement extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "4")
 	private Integer version;
 	
 	/**

@@ -2,7 +2,7 @@
 /**
  * 订单地址 列表页 JS 脚本
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-11-10 10:39:39
+ * @since 2022-12-01 09:09:21
  */
  -->
  <!DOCTYPE html>
@@ -42,11 +42,11 @@
 
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-0315-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-6642-fieldset">
             <legend>基本信息</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-0315-content">
+        <div class="layui-row form-row" id="random-6642-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -56,7 +56,7 @@
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('收件人')}">收件人</div><div class="layui-required">*</div></div>
                     <div class="layui-input-block ">
-                        <input lay-filter="name" id="name" name="name" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('收件人') }" type="text" class="layui-input"    lay-verify="|required"   value="乔峰" />
+                        <input lay-filter="name" id="name" name="name" th:placeholder="${ lang.translate('请输入'+'收件人') }" type="text" class="layui-input"    lay-verify="|required"   value="乔峰" />
                     </div>
                 </div>
             <!--结束：栏次内字段循环-->
@@ -69,7 +69,7 @@
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('手机号码')}">手机号码</div><div class="layui-required">*</div></div>
                     <div class="layui-input-block ">
-                        <input lay-filter="phoneNumber" id="phoneNumber" name="phoneNumber" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('手机号码') }" type="text" class="layui-input"    lay-verify="|required|phone"   value="137" />
+                        <input lay-filter="phoneNumber" id="phoneNumber" name="phoneNumber" th:placeholder="${ lang.translate('请输入'+'手机号码') }" type="text" class="layui-input"    lay-verify="|required|phone"   value="137" />
                     </div>
                 </div>
             <!--结束：栏次内字段循环-->
@@ -78,11 +78,11 @@
         </div>
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-6309-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-7222-fieldset">
             <legend>扩展信息</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-6309-content">
+        <div class="layui-row form-row" id="random-7222-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -92,7 +92,7 @@
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('收件地址')}">收件地址</div><div class="layui-required">*</div></div>
                     <div class="layui-input-block ">
-                        <input lay-filter="address" id="address" name="address" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('收件地址') }" type="text" class="layui-input"    lay-verify="|required"   value="浙江省宁波市" />
+                        <input lay-filter="address" id="address" name="address" th:placeholder="${ lang.translate('请输入'+'收件地址') }" type="text" class="layui-input"    lay-verify="|required"   value="浙江省宁波市" />
                     </div>
                 </div>
             
@@ -116,7 +116,7 @@
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('备注')}">备注</div></div>
                     <div class="layui-input-block ">
-                        <textarea lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('备注') }" class="layui-textarea" style="height: 100px" ></textarea>
+                        <textarea lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入'+'备注') }" class="layui-textarea" style="height: 100px" ></textarea>
                     </div>
                 </div>
             <!--结束：栏次内字段循环-->
@@ -132,8 +132,8 @@
 
 </div>
 <div class="model-form-footer">
-    <button class="layui-btn layui-btn-primary" id="cancel-button" lay-filter="cancel-button" type="button" th:text="${lang.translate('取消')}" >取消</button>
-    <button th:if="${perm.checkAnyAuth('webfull_example_address:create','webfull_example_address:update','webfull_example_address:save')}" class="layui-btn" style="margin-right: 15px;display: none;"  id="submit-button" lay-filter="submit-button" lay-submit th:text="${lang.translate('保存')}">保存</button>
+    <button class="layui-btn layui-btn-primary" id="cancel-button" lay-filter="cancel-button" type="button" th:text="${lang.translate('取消','','form.button')}" >取消</button>
+    <button th:if="${perm.checkAnyAuth('webfull_example_address:create','webfull_example_address:update','webfull_example_address:save')}" class="layui-btn" style="margin-right: 15px;display: none;"  id="submit-button" lay-filter="submit-button" lay-submit th:text="${lang.translate('保存','','form.button')}">保存</button>
 </div>
 
 <script type="text/javascript" src="/module/global.js" th:src="'/module/global.js?'+${cacheKey}"></script>

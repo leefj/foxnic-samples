@@ -3,6 +3,7 @@ package com.leefj.webfull.example.service.impl;
 import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.github.foxnic.dao.entity.ReferCause;
 
 import com.github.foxnic.commons.collection.MapUtil;
 import java.util.Arrays;
@@ -38,7 +39,7 @@ import java.util.Map;
  * 订单明细服务实现
  * </p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-11-10 10:39:41
+ * @since 2022-12-01 09:09:22
 */
 
 
@@ -277,30 +278,16 @@ public class OrderItemServiceImpl extends SuperService<OrderItem> implements IOr
 		return false;
 	}
 
-
-	/**
-	 * 检查引用
-	 * @param id  检查ID是否又被外部表引用
-	 * */
-	@Override
-	public Boolean hasRefers(String id) {
-		Map<String, Boolean> map=this.hasRefers(Arrays.asList(id));
-		Boolean ex=map.get(id);
-		if(ex==null) return false;
-		return ex;
-	}
-
 	/**
 	 * 批量检查引用
 	 * @param ids  检查这些ID是否又被外部表引用
 	 * */
 	@Override
-	public Map<String, Boolean> hasRefers(List<String> ids) {
+	public <T> Map<T, ReferCause> hasRefers(List<T> ids) {
 		// 默认无业务逻辑，返回此行；有业务逻辑需要校验时，请修改并使用已注释的行代码！！！
-		return MapUtil.asMap(ids,false);
+		return MapUtil.asMap(ids,new ReferCause(false));
 		// return super.hasRefers(FoxnicWeb.BPM_PROCESS_INSTANCE.FORM_DEFINITION_ID,ids);
 	}
-
 
 
 

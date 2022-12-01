@@ -5,6 +5,8 @@ import org.github.foxnic.web.framework.web.SuperController;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import com.github.foxnic.commons.collection.CollectorUtil;
+import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.api.swagger.InDoc;
 import org.github.foxnic.web.framework.sentinel.SentinelExceptionUtil;
 import com.github.foxnic.api.swagger.ApiParamSupport;
@@ -43,7 +45,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 商品接口控制器
  * </p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-11-10 15:03:49
+ * @since 2022-12-01 09:09:16
 */
 
 @InDoc
@@ -91,11 +93,11 @@ public class GoodsController extends SuperController {
 			return this.validator().getFirstResult();
 		}
 		// 引用校验
-		Boolean hasRefer = goodsService.hasRefers(id);
+		ReferCause cause =  goodsService.hasRefers(id);
 		// 判断是否可以删除
-		this.validator().asserts(hasRefer).requireEqual("不允许删除当前记录",false);
+		this.validator().asserts(cause.hasRefer()).requireEqual("不允许删除当前记录："+cause.message(),false);
 		if(this.validator().failure()) {
-			return this.validator().getFirstResult();
+			return this.validator().getFirstResult().messageLevel4Confirm();
 		}
 		Result result=goodsService.deleteByIdLogical(id);
 		return result;
@@ -122,11 +124,11 @@ public class GoodsController extends SuperController {
 		}
 
 		// 查询引用
-		Map<String, Boolean> hasRefersMap = goodsService.hasRefers(ids);
+		Map<String, ReferCause> causeMap = goodsService.hasRefers(ids);
 		// 收集可以删除的ID值
 		List<String> canDeleteIds = new ArrayList<>();
-		for (Map.Entry<String, Boolean> e : hasRefersMap.entrySet()) {
-			if (!e.getValue()) {
+		for (Map.Entry<String, ReferCause> e : causeMap.entrySet()) {
+			if (!e.getValue().hasRefer()) {
 				canDeleteIds.add(e.getKey());
 			}
 		}
@@ -134,7 +136,9 @@ public class GoodsController extends SuperController {
 		// 执行删除
 		if (canDeleteIds.isEmpty()) {
 			// 如果没有一行可以被删除
-			return ErrorDesc.failure().message("无法删除您选中的数据行");
+			return ErrorDesc.failure().message("无法删除您选中的数据行：").data(0)
+				.addErrors(CollectorUtil.collectArray(CollectorUtil.filter(causeMap.values(),(e)->{return e.hasRefer();}),ReferCause::message,String.class))
+				.messageLevel4Confirm();
 		} else if (canDeleteIds.size() == ids.size()) {
 			// 如果全部可以删除
 			Result result=goodsService.deleteByIdsLogical(canDeleteIds);
@@ -145,7 +149,9 @@ public class GoodsController extends SuperController {
 			if (result.failure()) {
 				return result;
 			} else {
-				return ErrorDesc.success().message("已删除 " + canDeleteIds.size() + " 行，但另有 " + (ids.size() - canDeleteIds.size()) + " 行数据无法删除").messageLevel4Confirm();
+				return ErrorDesc.success().message("已删除 " + canDeleteIds.size() + " 行，但另有 " + (ids.size() - canDeleteIds.size()) + " 行数据无法删除").data(canDeleteIds.size())
+				.addErrors(CollectorUtil.collectArray(CollectorUtil.filter(causeMap.values(),(e)->{return e.hasRefer();}),ReferCause::message,String.class))
+				.messageLevel4Confirm();
 			}
 		} else {
 			// 理论上，这个分支不存在

@@ -2,7 +2,7 @@
 /**
  * 费用报销单 列表页 JS 脚本
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-11-10 15:23:53
+ * @since 2022-12-01 09:09:23
  */
  -->
  <!DOCTYPE html>
@@ -63,7 +63,7 @@
                 <div class="layui-form-item" style="display: none">
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('主键')}">主键</div></div>
                     <div class="layui-input-block layui-input-block-c1">
-                        <input lay-filter="id" id="id" name="id" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('主键') }" type="text" class="layui-input"  />
+                        <input lay-filter="id" id="id" name="id" th:placeholder="${ lang.translate('请输入'+'主键') }" type="text" class="layui-input"  />
                     </div>
                 </div>
             
@@ -71,7 +71,7 @@
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('费用名称')}">费用名称</div><div class="layui-required">*</div></div>
                     <div class="layui-input-block layui-input-block-c1">
-                        <input lay-filter="title" id="title" name="title" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('费用名称') }" type="text" class="layui-input"    lay-verify="|required"  />
+                        <input lay-filter="title" id="title" name="title" th:placeholder="${ lang.translate('请输入'+'费用名称') }" type="text" class="layui-input"    lay-verify="|required"  />
                     </div>
                 </div>
             
@@ -79,7 +79,7 @@
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('报销金额')}">报销金额</div><div class="layui-required">*</div></div>
                     <div class="layui-input-block layui-input-block-c1">
-                        <input lay-filter="amount" id="amount" name="amount" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('报销金额') }" type="text" class="layui-input"    lay-verify="|required"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="0" />
+                        <input lay-filter="amount" id="amount" name="amount" th:placeholder="${ lang.translate('请输入'+'报销金额') }" type="text" class="layui-input"    lay-verify="|required"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="0" />
                     </div>
                 </div>
             
@@ -87,7 +87,7 @@
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('审批状态')}">审批状态</div></div>
                     <div class="layui-input-block layui-input-block-c1">
-                        <input lay-filter="status" id="status" name="status" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('审批状态') }" type="text" class="layui-input"  />
+                        <input lay-filter="status" id="status" name="status" th:placeholder="${ lang.translate('请输入'+'审批状态') }" type="text" class="layui-input"  />
                     </div>
                 </div>
             <!--结束：栏次内字段循环-->
@@ -102,8 +102,8 @@
 
 </div>
 <div class="model-form-footer">
-    <button class="layui-btn layui-btn-primary" id="cancel-button" lay-filter="cancel-button" type="button" th:text="${lang.translate('取消')}" >取消</button>
-    <button th:if="${perm.checkAnyAuth('webfull_example_reimbursement:create','webfull_example_reimbursement:update','webfull_example_reimbursement:save')}" class="layui-btn" style="margin-right: 15px;display: none;"  id="submit-button" lay-filter="submit-button" lay-submit th:text="${lang.translate('保存')}">保存</button>
+    <button class="layui-btn layui-btn-primary" id="cancel-button" lay-filter="cancel-button" type="button" th:text="${lang.translate('取消','','form.button')}" >取消</button>
+    <button th:if="${perm.checkAnyAuth('webfull_example_reimbursement:create','webfull_example_reimbursement:update','webfull_example_reimbursement:save')}" class="layui-btn" style="margin-right: 15px;display: none;"  id="submit-button" lay-filter="submit-button" lay-submit th:text="${lang.translate('保存','','form.button')}">保存</button>
 </div>
 
 <script type="text/javascript" src="/module/global.js" th:src="'/module/global.js?'+${cacheKey}"></script>

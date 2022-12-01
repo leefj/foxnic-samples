@@ -2,7 +2,7 @@
 /**
  * 订单明细 列表页 JS 脚本
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-11-10 10:39:41
+ * @since 2022-12-01 09:09:23
  */
  -->
  <!DOCTYPE html>
@@ -46,7 +46,7 @@
                 <div class="layui-form-item" style="display: none">
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('主键')}">主键</div></div>
                     <div class="layui-input-block layui-input-block-c1">
-                        <input lay-filter="id" id="id" name="id" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('主键') }" type="text" class="layui-input"  />
+                        <input lay-filter="id" id="id" name="id" th:placeholder="${ lang.translate('请输入'+'主键') }" type="text" class="layui-input"  />
                     </div>
                 </div>
             
@@ -54,7 +54,7 @@
                 <div class="layui-form-item" style="display: none">
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('订单ID')}">订单ID</div></div>
                     <div class="layui-input-block layui-input-block-c1">
-                        <input lay-filter="orderId" id="orderId" name="orderId" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('订单ID') }" type="text" class="layui-input"  />
+                        <input lay-filter="orderId" id="orderId" name="orderId" th:placeholder="${ lang.translate('请输入'+'订单ID') }" type="text" class="layui-input"  />
                     </div>
                 </div>
             
@@ -70,7 +70,7 @@
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('数量')}">数量</div></div>
                     <div class="layui-input-block layui-input-block-c1">
-                        <input lay-filter="amount" id="amount" name="amount" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('数量') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="true" decimal="false" allow-negative="true" step="1.0"   scale="0" />
+                        <input lay-filter="amount" id="amount" name="amount" th:placeholder="${ lang.translate('请输入'+'数量') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="true" decimal="false" allow-negative="true" step="1.0"   scale="0" />
                     </div>
                 </div>
             <!--结束：栏次内字段循环-->
@@ -87,8 +87,8 @@
 
 </div>
 <div class="model-form-footer">
-    <button class="layui-btn layui-btn-primary" id="cancel-button" lay-filter="cancel-button" type="button" th:text="${lang.translate('取消')}" >取消</button>
-    <button th:if="${perm.checkAnyAuth('webfull_example_order_item:create','webfull_example_order_item:update','webfull_example_order_item:save')}" class="layui-btn" style="margin-right: 15px;display: none;"  id="submit-button" lay-filter="submit-button" lay-submit th:text="${lang.translate('保存')}">保存</button>
+    <button class="layui-btn layui-btn-primary" id="cancel-button" lay-filter="cancel-button" type="button" th:text="${lang.translate('取消','','form.button')}" >取消</button>
+    <button th:if="${perm.checkAnyAuth('webfull_example_order_item:create','webfull_example_order_item:update','webfull_example_order_item:save')}" class="layui-btn" style="margin-right: 15px;display: none;"  id="submit-button" lay-filter="submit-button" lay-submit th:text="${lang.translate('保存','','form.button')}">保存</button>
 </div>
 
 <script type="text/javascript" src="/module/global.js" th:src="'/module/global.js?'+${cacheKey}"></script>

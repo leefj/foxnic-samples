@@ -1,20 +1,15 @@
 package com.leefj.webfull.example.controller;
 
-
-import java.util.List;
-import java.util.ArrayList;
-
-import com.github.foxnic.sql.expr.ConditionExpr;
+import java.util.*;
+import org.github.foxnic.web.framework.web.SuperController;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import org.github.foxnic.web.framework.web.SuperController;
+import com.github.foxnic.commons.collection.CollectorUtil;
+import com.github.foxnic.dao.entity.ReferCause;
+import com.github.foxnic.api.swagger.InDoc;
 import org.github.foxnic.web.framework.sentinel.SentinelExceptionUtil;
-import org.springframework.web.bind.annotation.RequestMapping;
-import javax.servlet.http.HttpServletResponse;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
+import com.github.foxnic.api.swagger.ApiParamSupport;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 
 
@@ -36,7 +31,6 @@ import com.github.foxnic.dao.excel.ValidateResult;
 import java.io.InputStream;
 import com.leefj.webfull.domain.example.meta.AddressMeta;
 import io.swagger.annotations.Api;
-import com.github.xiaoymin.knife4j.annotations.ApiSort;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiImplicitParam;
@@ -47,15 +41,14 @@ import com.github.foxnic.api.validate.annotations.NotNull;
 
 /**
  * <p>
- * 订单地址 接口控制器
+ * 订单地址接口控制器
  * </p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-09-04 08:11:57
- * @version 20221004
+ * @since 2022-12-01 09:09:21
 */
 
+@InDoc
 @Api(tags = "订单地址")
-@ApiSort(0)
 @RestController("WebfullExampleAddressController")
 public class AddressController extends SuperController {
 
@@ -76,7 +69,8 @@ public class AddressController extends SuperController {
 		@ApiImplicitParam(name = AddressVOMeta.REGION_LOCATION , value = "地区位置" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AddressVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
-	@ApiOperationSupport(order=1)
+	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true , ignorePrimaryKey = true)
+	@ApiOperationSupport(order=1 , author="李方捷 , leefangjie@qq.com")
 	@SentinelResource(value = AddressServiceProxy.INSERT , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(AddressServiceProxy.INSERT)
 	public Result insert(AddressVO addressVO) {
@@ -93,8 +87,7 @@ public class AddressController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = AddressVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "583028267108274176")
 	})
-	@ApiOperationSupport(order=2)
-	@NotNull(name = AddressVOMeta.ID)
+	@ApiOperationSupport(order=2 , author="李方捷 , leefangjie@qq.com")
 	@SentinelResource(value = AddressServiceProxy.DELETE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(AddressServiceProxy.DELETE)
 	public Result deleteById(String id) {
@@ -103,11 +96,11 @@ public class AddressController extends SuperController {
 			return this.validator().getFirstResult();
 		}
 		// 引用校验
-		Boolean hasRefer = addressService.hasRefers(id);
+		ReferCause cause =  addressService.hasRefers(id);
 		// 判断是否可以删除
-		this.validator().asserts(hasRefer).requireEqual("不允许删除当前记录",false);
+		this.validator().asserts(cause.hasRefer()).requireEqual("不允许删除当前记录："+cause.message(),false);
 		if(this.validator().failure()) {
-			return this.validator().getFirstResult();
+			return this.validator().getFirstResult().messageLevel4Confirm();
 		}
 		Result result=addressService.deleteByIdLogical(id);
 		return result;
@@ -122,8 +115,7 @@ public class AddressController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = AddressVOMeta.IDS , value = "主键清单" , required = true , dataTypeClass=List.class , example = "[1,3,4]")
 	})
-	@ApiOperationSupport(order=3) 
-	@NotNull(name = AddressVOMeta.IDS)
+	@ApiOperationSupport(order=3 , author="李方捷 , leefangjie@qq.com") 
 	@SentinelResource(value = AddressServiceProxy.DELETE_BY_IDS , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(AddressServiceProxy.DELETE_BY_IDS)
 	public Result deleteByIds(List<String> ids) {
@@ -135,11 +127,11 @@ public class AddressController extends SuperController {
 		}
 
 		// 查询引用
-		Map<String, Boolean> hasRefersMap = addressService.hasRefers(ids);
+		Map<String, ReferCause> causeMap = addressService.hasRefers(ids);
 		// 收集可以删除的ID值
 		List<String> canDeleteIds = new ArrayList<>();
-		for (Map.Entry<String, Boolean> e : hasRefersMap.entrySet()) {
-			if (!e.getValue()) {
+		for (Map.Entry<String, ReferCause> e : causeMap.entrySet()) {
+			if (!e.getValue().hasRefer()) {
 				canDeleteIds.add(e.getKey());
 			}
 		}
@@ -147,7 +139,9 @@ public class AddressController extends SuperController {
 		// 执行删除
 		if (canDeleteIds.isEmpty()) {
 			// 如果没有一行可以被删除
-			return ErrorDesc.failure().message("无法删除您选中的数据行");
+			return ErrorDesc.failure().message("无法删除您选中的数据行：").data(0)
+				.addErrors(CollectorUtil.collectArray(CollectorUtil.filter(causeMap.values(),(e)->{return e.hasRefer();}),ReferCause::message,String.class))
+				.messageLevel4Confirm();
 		} else if (canDeleteIds.size() == ids.size()) {
 			// 如果全部可以删除
 			Result result=addressService.deleteByIdsLogical(canDeleteIds);
@@ -158,7 +152,9 @@ public class AddressController extends SuperController {
 			if (result.failure()) {
 				return result;
 			} else {
-				return ErrorDesc.success().message("已删除 " + canDeleteIds.size() + " 行，但另有 " + (ids.size() - canDeleteIds.size()) + " 行数据无法删除").messageLevel4Confirm();
+				return ErrorDesc.success().message("已删除 " + canDeleteIds.size() + " 行，但另有 " + (ids.size() - canDeleteIds.size()) + " 行数据无法删除").data(canDeleteIds.size())
+				.addErrors(CollectorUtil.collectArray(CollectorUtil.filter(causeMap.values(),(e)->{return e.hasRefer();}),ReferCause::message,String.class))
+				.messageLevel4Confirm();
 			}
 		} else {
 			// 理论上，这个分支不存在
@@ -179,7 +175,8 @@ public class AddressController extends SuperController {
 		@ApiImplicitParam(name = AddressVOMeta.REGION_LOCATION , value = "地区位置" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AddressVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
-	@ApiOperationSupport( order=4 , ignoreParameters = { AddressVOMeta.PAGE_INDEX , AddressVOMeta.PAGE_SIZE , AddressVOMeta.SEARCH_FIELD , AddressVOMeta.FUZZY_FIELD , AddressVOMeta.SEARCH_VALUE , AddressVOMeta.DIRTY_FIELDS , AddressVOMeta.SORT_FIELD , AddressVOMeta.SORT_TYPE , AddressVOMeta.IDS , AddressVOMeta.KEYWORD } )
+	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
+	@ApiOperationSupport( order=4 , author="李方捷 , leefangjie@qq.com" ,  ignoreParameters = { AddressVOMeta.PAGE_INDEX , AddressVOMeta.PAGE_SIZE , AddressVOMeta.SEARCH_FIELD , AddressVOMeta.FUZZY_FIELD , AddressVOMeta.SEARCH_VALUE , AddressVOMeta.DIRTY_FIELDS , AddressVOMeta.SORT_FIELD , AddressVOMeta.SORT_TYPE , AddressVOMeta.IDS , AddressVOMeta.KEYWORD } )
 	@SentinelResource(value = AddressServiceProxy.UPDATE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(AddressServiceProxy.UPDATE)
 	public Result update(AddressVO addressVO) {
@@ -201,9 +198,8 @@ public class AddressController extends SuperController {
 		@ApiImplicitParam(name = AddressVOMeta.REGION_LOCATION , value = "地区位置" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AddressVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
+	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
 	@ApiOperationSupport(order=5 ,  ignoreParameters = { AddressVOMeta.PAGE_INDEX , AddressVOMeta.PAGE_SIZE , AddressVOMeta.SEARCH_FIELD , AddressVOMeta.FUZZY_FIELD , AddressVOMeta.SEARCH_VALUE , AddressVOMeta.DIRTY_FIELDS , AddressVOMeta.SORT_FIELD , AddressVOMeta.SORT_TYPE , AddressVOMeta.IDS , AddressVOMeta.KEYWORD } )
-	@NotNull(name = AddressVOMeta.ID)
-	@NotNull(name = AddressVOMeta.REGION_TYPE)
 	@SentinelResource(value = AddressServiceProxy.SAVE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(AddressServiceProxy.SAVE)
 	public Result save(AddressVO addressVO) {
@@ -219,8 +215,7 @@ public class AddressController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = AddressVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
 	})
-	@ApiOperationSupport(order=6)
-	@NotNull(name = AddressVOMeta.ID)
+	@ApiOperationSupport(order=6 , author="李方捷 , leefangjie@qq.com")
 	@SentinelResource(value = AddressServiceProxy.GET_BY_ID , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(AddressServiceProxy.GET_BY_ID)
 	public Result<Address> getById(String id) {
@@ -239,8 +234,7 @@ public class AddressController extends SuperController {
 		@ApiImplicitParams({
 				@ApiImplicitParam(name = AddressVOMeta.IDS , value = "主键清单" , required = true , dataTypeClass=List.class , example = "[1,3,4]")
 		})
-		@ApiOperationSupport(order=3) 
-		@NotNull(name = AddressVOMeta.IDS)
+		@ApiOperationSupport(order=3 , author="李方捷 , leefangjie@qq.com") 
 		@SentinelResource(value = AddressServiceProxy.GET_BY_IDS , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(AddressServiceProxy.GET_BY_IDS)
 	public Result<List<Address>> getByIds(List<String> ids) {
@@ -264,7 +258,7 @@ public class AddressController extends SuperController {
 		@ApiImplicitParam(name = AddressVOMeta.REGION_LOCATION , value = "地区位置" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AddressVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
-	@ApiOperationSupport(order=5 ,  ignoreParameters = { AddressVOMeta.PAGE_INDEX , AddressVOMeta.PAGE_SIZE } )
+	@ApiOperationSupport(order=5 , author="李方捷 , leefangjie@qq.com" ,  ignoreParameters = { AddressVOMeta.PAGE_INDEX , AddressVOMeta.PAGE_SIZE } )
 	@SentinelResource(value = AddressServiceProxy.QUERY_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(AddressServiceProxy.QUERY_LIST)
 	public Result<List<Address>> queryList(AddressVO sample) {
@@ -288,18 +282,12 @@ public class AddressController extends SuperController {
 		@ApiImplicitParam(name = AddressVOMeta.REGION_LOCATION , value = "地区位置" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AddressVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
-	@ApiOperationSupport(order=8)
+	@ApiOperationSupport(order=8 , author="李方捷 , leefangjie@qq.com")
 	@SentinelResource(value = AddressServiceProxy.QUERY_PAGED_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(AddressServiceProxy.QUERY_PAGED_LIST)
 	public Result<PagedList<Address>> queryPagedList(AddressVO sample) {
-		String keyword1=sample.getKeyword();
-		String keyword=(String) sample.getCompositeParameter().getValue("keyword");
-
-		ConditionExpr where=new ConditionExpr();
-		where.and("name like ? or phone_number like ? or address like ?","%"+keyword+"%","%"+keyword+"%","%"+keyword+"%");
-
 		Result<PagedList<Address>> result=new Result<>();
-		PagedList<Address> list=addressService.queryPagedList(sample,where,sample.getPageSize(),sample.getPageIndex());
+		PagedList<Address> list=addressService.queryPagedList(sample,sample.getPageSize(),sample.getPageIndex());
 		result.success(true).data(list);
 		return result;
 	}

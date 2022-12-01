@@ -1,18 +1,26 @@
 package com.leefj.webfull.example.service.bpm;
 
-import com.github.foxnic.dao.data.SaveMode;
-import com.leefj.webfull.domain.example.Reimbursement;
-import com.leefj.webfull.example.service.IReimbursementService;
 import org.github.foxnic.web.domain.bpm.BpmActionResult;
 import org.github.foxnic.web.domain.bpm.BpmEvent;
 import org.github.foxnic.web.framework.bpm.BpmEventAdaptor;
+import org.github.foxnic.web.framework.bpm.BpmAssistant;
+import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.github.foxnic.commons.collection.MapUtil;
+import java.util.Arrays;
+
+
+import com.leefj.webfull.domain.example.Reimbursement;
+import com.leefj.webfull.example.service.IReimbursementService;
 
 /**
  * <p>
  * 费用报销单流程回调事件适配器
  * </p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-11-10 13:59:18
+ * @since 2022-12-01 09:09:23
 */
 
 public class ReimbursementBpmEventAdaptor extends BpmEventAdaptor<Reimbursement,IReimbursementService> {
@@ -33,15 +41,6 @@ public class ReimbursementBpmEventAdaptor extends BpmEventAdaptor<Reimbursement,
 	 * 流程提交/启动开始，通过返回 BpmActionResult  的 success 或  failure 控制流程提交/启动过程是否继续进行
 	 * */
 	protected BpmActionResult onProcessSubmitStart(BpmEvent event) {
-		BpmActionResult result=event.getActionResult();
-		// 获得当前表单数据
-		Reimbursement reimbursement = this.getFormData(event);
-
-		reimbursement.setStatus("审批中");
-		// 保存一下
-		this.service().update(reimbursement, SaveMode.DIRTY_FIELDS);
-
-		result.putVariable("amount", reimbursement.getAmount());
 		return event.getActionResult();
 	}
 
