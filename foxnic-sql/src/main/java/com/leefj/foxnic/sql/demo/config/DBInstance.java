@@ -6,10 +6,15 @@ import com.github.foxnic.commons.environment.OSType;
 import com.github.foxnic.commons.io.FileUtil;
 import com.github.foxnic.commons.log.Logger;
 import com.github.foxnic.commons.property.YMLProperties;
+import com.github.foxnic.dao.cache.CacheProperties;
 import com.github.foxnic.dao.spec.DAO;
 import com.github.foxnic.dao.spec.DAOBuilder;
+import com.github.foxnic.springboot.spring.SpringUtil;
 import com.github.foxnic.sql.GlobalSettings;
+import com.github.foxnic.sql.meta.DBDataType;
 import com.github.foxnic.sql.meta.DBType;
+import com.github.foxnic.sql.treaty.DBTreaty;
+import com.leefj.foxnic.sql.demo.domain.relation.DemoRelationManager;
 
 import javax.sql.DataSource;
 import java.io.File;
@@ -70,6 +75,17 @@ public enum DBInstance {
 		try {
 			dao=builder.datasource(dataSource).build();
 			GlobalSettings.DEFAULT_SQL_DIALECT=this.dao.getSQLDialect();
+			dao.setDBTreaty(getDBTreaty());
+			dao.setRelationManager(new DemoRelationManager());
+
+			//设置缓存
+			FoxnicDataCacheManager cacheManager=new FoxnicDataCacheManager();
+			CacheProperties cacheProperties=new CacheProperties(SpringUtil.getEnvProperties("foxnic.cache"));
+			cacheManager.setCacheProperties(cacheProperties);
+			cacheManager.setRelationManager(dao.getRelationManager());
+
+			dao.setDataCacheManager(cacheManager);
+
 			return dao;
 		} catch (Exception e) {
 			Logger.error("创建DAO错误",e);
@@ -96,6 +112,54 @@ public enum DBInstance {
 		//
 	 	return AES_UTIL.decryptData(str);
 
+	}
+
+	public DBTreaty getDBTreaty() {
+
+		DBTreaty dbTreaty=new DBTreaty();
+		//
+		dbTreaty.setAllowDeleteWithoutWhere(false);
+		dbTreaty.setAllowUpdateWithoutWhere(false);
+
+		//
+		dbTreaty.setUserIdDataType(DBDataType.STRING);
+
+		//
+		dbTreaty.setTenantIdField("tenant_id");
+		//
+		dbTreaty.setCreateTimeField("create_time");
+		dbTreaty.setCreateUserIdField("create_by");
+		//
+		dbTreaty.setUpdateTimeField("update_time");
+		dbTreaty.setUpdateUserIdField("update_by");
+		//
+		dbTreaty.setDeletedField("deleted");
+		dbTreaty.setDeleteTimeField("delete_time");
+		dbTreaty.setDeleteUserIdField("delete_by");
+		//
+		dbTreaty.setVersionField("version");
+		//
+		dbTreaty.setAutoCastLogicField(false);
+		// 设置 false 对应的数据库值
+		dbTreaty.setFalseValue(0);
+		// 设置 true 对应的数据库值
+		dbTreaty.setTrueValue(1);
+
+		//设置获取当前用户的逻辑
+		dbTreaty.setSubjectHandler(()->{
+			return null;
+		});
+
+		dbTreaty.setLoginUserIdHandler(()->{
+			return "leefj";
+		});
+
+
+		dbTreaty.setTenantIdHandler(()->{
+			return "T001";
+		});
+		//
+		return dbTreaty;
 	}
 
 
