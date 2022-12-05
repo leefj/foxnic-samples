@@ -86,6 +86,11 @@ public enum DBInstance {
 
 			dao.setDataCacheManager(cacheManager);
 
+			// 设置SQL打印
+			dao.setPrintSQL(true);
+			dao.setPrintSQLSimple(true);
+			dao.setPrintSQLCallstack(true);
+
 			return dao;
 		} catch (Exception e) {
 			Logger.error("创建DAO错误",e);
