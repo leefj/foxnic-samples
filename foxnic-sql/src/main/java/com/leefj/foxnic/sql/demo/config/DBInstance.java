@@ -50,47 +50,53 @@ public enum DBInstance {
 		this.user=decryptIf(user);
 		this.passwd=decryptIf(passwd);
 		this.url=decryptIf(url);
-
 	}
 
 
 	private DAO dao;
 
 	public DAO dao() {
-
 		if(this.dao!=null) return this.dao;
+		this.dao=createDAO(this.driver,this.url,this.user,this.passwd);
+		return dao;
+	}
 
-		DBType dbType=DBType.parseFromURL(this.url);
-		//
+	/**
+	 * 创建 DAO 对象
+	 * */
+	private DAO createDAO(String driverName,String url,String userName,String passwd) {
+		// 从连接字符串识别数据库类型
+		DBType dbType=DBType.parseFromURL(url);
+		// 创建数据源
 		DruidDataSource dataSource = new DruidDataSource();
-		dataSource.setDriverClassName(this.driver);
-		dataSource.setUrl(this.url);
-		dataSource.setUsername(this.user);
-		dataSource.setPassword(this.passwd);
+		dataSource.setDriverClassName(driverName);
+		dataSource.setUrl(url);
+		dataSource.setUsername(userName);
+		dataSource.setPassword(passwd);
 		// mysql 关闭，Oracle 建议开启
 		if(dbType==DBType.ORACLE) {
 			dataSource.setPoolPreparedStatements(true);
 		}
+		// 通过 DAOBuilder 创建 DAO 对象
 		DAOBuilder builder=new DAOBuilder();
 		try {
 			dao=builder.datasource(dataSource).build();
+			// 设置全局方言
 			GlobalSettings.DEFAULT_SQL_DIALECT=this.dao.getSQLDialect();
+			// 设置数据库规约
 			dao.setDBTreaty(getDBTreaty());
+			// 设置关系管理器
 			dao.setRelationManager(new DemoRelationManager());
-
 			//设置缓存
 			FoxnicDataCacheManager cacheManager=new FoxnicDataCacheManager();
 			CacheProperties cacheProperties=new CacheProperties(SpringUtil.getEnvProperties("foxnic.cache"));
 			cacheManager.setCacheProperties(cacheProperties);
 			cacheManager.setRelationManager(dao.getRelationManager());
-
 			dao.setDataCacheManager(cacheManager);
-
 			// 设置SQL打印
 			dao.setPrintSQL(true);
 			dao.setPrintSQLSimple(true);
 			dao.setPrintSQLCallstack(true);
-
 			return dao;
 		} catch (Exception e) {
 			Logger.error("创建DAO错误",e);
@@ -119,47 +125,44 @@ public enum DBInstance {
 
 	}
 
+	/**
+	 * 创建一个符合项目设计的数据库规约对象
+	 * */
 	public DBTreaty getDBTreaty() {
-
 		DBTreaty dbTreaty=new DBTreaty();
-		//
+		// 设置是否在没有 where 时可以删除数据
 		dbTreaty.setAllowDeleteWithoutWhere(false);
+		// 设置是否在没有 where 时可以更新数据
 		dbTreaty.setAllowUpdateWithoutWhere(false);
-
-		//
+		// 设置账户ID字段的类型
 		dbTreaty.setUserIdDataType(DBDataType.STRING);
-
-		//
+		// 设置租户ID字段名
 		dbTreaty.setTenantIdField("tenant_id");
-		//
+		// 设置创建时间字段名
 		dbTreaty.setCreateTimeField("create_time");
+		// 设置创建人ID字段名
 		dbTreaty.setCreateUserIdField("create_by");
-		//
 		dbTreaty.setUpdateTimeField("update_time");
 		dbTreaty.setUpdateUserIdField("update_by");
-		//
 		dbTreaty.setDeletedField("deleted");
 		dbTreaty.setDeleteTimeField("delete_time");
 		dbTreaty.setDeleteUserIdField("delete_by");
-		//
 		dbTreaty.setVersionField("version");
-		//
+		// 设置是否对逻辑值进行转换，建议 false
 		dbTreaty.setAutoCastLogicField(false);
 		// 设置 false 对应的数据库值
 		dbTreaty.setFalseValue(0);
 		// 设置 true 对应的数据库值
 		dbTreaty.setTrueValue(1);
-
-		//设置获取当前用户的逻辑
+		// 设置获取当前用户的函数
 		dbTreaty.setSubjectHandler(()->{
 			return null;
 		});
-
+		// 设置获取当前登录账户ID的函数
 		dbTreaty.setLoginUserIdHandler(()->{
 			return "leefj";
 		});
-
-
+		// 设置获取当前登录账户的租户ID的函数
 		dbTreaty.setTenantIdHandler(()->{
 			return "T001";
 		});
