@@ -93,9 +93,13 @@ public enum DBInstance {
 			cacheManager.setCacheProperties(cacheProperties);
 			cacheManager.setRelationManager(dao.getRelationManager());
 			dao.setDataCacheManager(cacheManager);
+			// 设置最大的单次查询数量
+			dao.setQueryLimit(1024);
 			// 设置SQL打印
 			dao.setPrintSQL(true);
+			// 是否以简化模式打印SQL
 			dao.setPrintSQLSimple(true);
+			// 是否打印调用栈
 			dao.setPrintSQLCallstack(true);
 			return dao;
 		} catch (Exception e) {

@@ -1,5 +1,6 @@
 package com.leefj.foxnic.sql.demo.dao;
 
+import com.github.foxnic.dao.data.RcdSet;
 import com.github.foxnic.dao.spec.DAO;
 import com.leefj.foxnic.sql.demo.config.DBInstance;
 
@@ -8,8 +9,14 @@ public class DAO_DBTreatyDemo {
     public static void main(String[] args) {
         demo_1();
         System.out.println("-----------------------------------------");
-        demo_2();
+        try {
+            demo_2();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
+
 
 
     /**
@@ -35,6 +42,9 @@ public class DAO_DBTreatyDemo {
         dao.execute("delete from mytable");
         // 抛出异常 : 当前执行的语句 delete from mytable , 缺少 where 条件
     }
+
+
+
 
 
 
