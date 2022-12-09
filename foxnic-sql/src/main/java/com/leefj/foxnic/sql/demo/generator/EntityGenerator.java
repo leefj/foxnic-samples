@@ -1,14 +1,17 @@
 package com.leefj.foxnic.sql.demo.generator;
 
+
+import com.github.foxnic.commons.project.maven.MavenProject;
 import com.github.foxnic.dao.spec.DAO;
+import com.github.foxnic.generator.builder.business.ServiceInterfaceFile;
 import com.github.foxnic.generator.builder.model.PoClassFile;
 import com.github.foxnic.generator.config.ModuleContext;
 import com.github.foxnic.sql.meta.DBTable;
+import com.leefj.foxnic.sql.demo.app.domain.example.Address;
+import com.leefj.foxnic.sql.demo.app.domain.example.Goods;
+import com.leefj.foxnic.sql.demo.app.domain.example.OrderItem;
 import com.leefj.foxnic.sql.demo.config.DBInstance;
 import com.leefj.foxnic.sql.demo.config.db.ExampleTables;
-import com.leefj.foxnic.sql.demo.domain.example.Address;
-import com.leefj.foxnic.sql.demo.domain.example.Goods;
-import com.leefj.foxnic.sql.demo.domain.example.OrderItem;
 
 /**
  * 实体类生成器
@@ -19,7 +22,7 @@ public class EntityGenerator {
         void config(PoClassFile poType);
     }
 
-    private static final String BASE_PACKAGE = "com.leefj.foxnic.sql.demo";
+    private static final String BASE_PACKAGE = "com.leefj.foxnic.sql.demo.app";
 
     private DAO dao = null;
 
@@ -50,14 +53,18 @@ public class EntityGenerator {
         generate(table,null);
     }
     public void generate(DBTable table,Config config) {
+        MavenProject project = GeneratorUtil.getProject();
         String pkg = table.name().split("_")[0];
         String prefix = pkg + "_";
         ModuleContext context = new ModuleContext(GeneratorUtil.initGlobalSettings(),table,prefix,BASE_PACKAGE + "." + pkg);
-        context.setDomainProject(GeneratorUtil.getProject());
+        context.setDomainProject(project);
+        context.setServiceProject(project);
         context.setDAO(dao);
         if(config!=null) {
             config.config(context.getPoClassFile());
         }
         context.buildPo();
+        context.buildVo();
+        context.buildService();
     }
 }

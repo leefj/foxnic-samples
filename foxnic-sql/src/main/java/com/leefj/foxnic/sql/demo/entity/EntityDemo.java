@@ -4,11 +4,11 @@ import com.alibaba.fastjson.JSON;
 import com.github.foxnic.commons.busi.id.IDGenerator;
 import com.github.foxnic.dao.data.SaveMode;
 import com.github.foxnic.dao.spec.DAO;
+import com.leefj.foxnic.sql.demo.app.domain.example.Address;
+import com.leefj.foxnic.sql.demo.app.domain.example.Goods;
+import com.leefj.foxnic.sql.demo.app.domain.example.Order;
+import com.leefj.foxnic.sql.demo.app.domain.example.meta.OrderMeta;
 import com.leefj.foxnic.sql.demo.config.DBInstance;
-import com.leefj.foxnic.sql.demo.domain.example.Address;
-import com.leefj.foxnic.sql.demo.domain.example.Goods;
-import com.leefj.foxnic.sql.demo.domain.example.Order;
-import com.leefj.foxnic.sql.demo.domain.example.meta.OrderMeta;
 
 import java.math.BigDecimal;
 

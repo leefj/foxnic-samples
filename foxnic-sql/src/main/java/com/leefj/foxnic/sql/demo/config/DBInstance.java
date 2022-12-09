@@ -1,12 +1,14 @@
 package com.leefj.foxnic.sql.demo.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import com.github.foxnic.commons.bean.BeanUtil;
 import com.github.foxnic.commons.encrypt.AESUtil;
 import com.github.foxnic.commons.environment.OSType;
 import com.github.foxnic.commons.io.FileUtil;
 import com.github.foxnic.commons.log.Logger;
-import com.github.foxnic.commons.property.YMLProperties;
 import com.github.foxnic.dao.cache.CacheProperties;
+import com.github.foxnic.dao.entity.ISuperService;
+import com.github.foxnic.dao.entity.SuperService;
 import com.github.foxnic.dao.spec.DAO;
 import com.github.foxnic.dao.spec.DAOBuilder;
 import com.github.foxnic.springboot.spring.SpringUtil;
@@ -14,10 +16,11 @@ import com.github.foxnic.sql.GlobalSettings;
 import com.github.foxnic.sql.meta.DBDataType;
 import com.github.foxnic.sql.meta.DBType;
 import com.github.foxnic.sql.treaty.DBTreaty;
-import com.leefj.foxnic.sql.demo.domain.relation.DemoRelationManager;
+import com.leefj.foxnic.sql.demo.app.domain.relation.DemoRelationManager;
 
-import javax.sql.DataSource;
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 public enum DBInstance {
 
@@ -107,6 +110,28 @@ public enum DBInstance {
 			return null;
 		}
 	}
+
+	private Map<Class,ISuperService> serviceMap=new HashMap<>();
+
+	public <T extends ISuperService> T getService(Class<T> type) {
+		T service=(T)serviceMap.get(type);
+		if(service!=null) return service;
+		service=(T)createService(type);
+		serviceMap.put(type,service);
+		return service;
+	}
+
+	private Object createService(Class type) {
+		try {
+			Object inst = type.newInstance();
+			BeanUtil.setFieldValue(inst,"dao",this.dao());
+			return inst;
+		} catch (Exception e) {
+			Logger.exception(e);
+			return null;
+		}
+	}
+
 
 	private static  AESUtil AES_UTIL=null;
 

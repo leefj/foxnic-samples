@@ -1,7 +1,5 @@
-package com.leefj.foxnic.sql.demo.domain.relation;
+package com.leefj.foxnic.sql.demo.app.domain.relation;
 
-import com.github.foxnic.commons.concurrent.task.SimpleTaskManager;
-import com.github.foxnic.commons.log.Logger;
 import com.github.foxnic.dao.relation.RelationManager;
 
 public class DemoRelationManager extends RelationManager {

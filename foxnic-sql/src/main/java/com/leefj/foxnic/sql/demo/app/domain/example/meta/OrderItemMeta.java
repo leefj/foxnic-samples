@@ -1,7 +1,7 @@
-package com.leefj.foxnic.sql.demo.domain.example.meta;
+package com.leefj.foxnic.sql.demo.app.domain.example.meta;
 
 import com.github.foxnic.api.bean.BeanProperty;
-import com.leefj.foxnic.sql.demo.domain.example.OrderItem;
+import com.leefj.foxnic.sql.demo.app.domain.example.OrderItem;
 import java.util.Date;
 import javax.persistence.Transient;
 
@@ -9,8 +9,8 @@ import javax.persistence.Transient;
 
 /**
  * @author LeeFJ
- * @since 2022-12-02 11:03:30
- * @sign 2D9E68E9747590A6A187011ED37C6793
+ * @since 2022-12-09 15:26:22
+ * @sign 1645C4BB19AD008947FD0E9B0C49AC47
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -24,7 +24,7 @@ public class OrderItemMeta {
 	/**
 	 * 主键 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.leefj.foxnic.sql.demo.domain.example.OrderItem,java.lang.String> ID_PROP = new BeanProperty(com.leefj.foxnic.sql.demo.domain.example.OrderItem.class ,ID, java.lang.String.class, "主键", "主键", java.lang.String.class, null);
+	public static final BeanProperty<com.leefj.foxnic.sql.demo.app.domain.example.OrderItem,java.lang.String> ID_PROP = new BeanProperty(com.leefj.foxnic.sql.demo.app.domain.example.OrderItem.class ,ID, java.lang.String.class, "主键", "主键", java.lang.String.class, null);
 	
 	/**
 	 * 订单ID , 类型: java.lang.String
@@ -34,7 +34,7 @@ public class OrderItemMeta {
 	/**
 	 * 订单ID , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.leefj.foxnic.sql.demo.domain.example.OrderItem,java.lang.String> ORDER_ID_PROP = new BeanProperty(com.leefj.foxnic.sql.demo.domain.example.OrderItem.class ,ORDER_ID, java.lang.String.class, "订单ID", "订单ID", java.lang.String.class, null);
+	public static final BeanProperty<com.leefj.foxnic.sql.demo.app.domain.example.OrderItem,java.lang.String> ORDER_ID_PROP = new BeanProperty(com.leefj.foxnic.sql.demo.app.domain.example.OrderItem.class ,ORDER_ID, java.lang.String.class, "订单ID", "订单ID", java.lang.String.class, null);
 	
 	/**
 	 * 商品ID , 类型: java.lang.String
@@ -44,7 +44,7 @@ public class OrderItemMeta {
 	/**
 	 * 商品ID , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.leefj.foxnic.sql.demo.domain.example.OrderItem,java.lang.String> GOODS_ID_PROP = new BeanProperty(com.leefj.foxnic.sql.demo.domain.example.OrderItem.class ,GOODS_ID, java.lang.String.class, "商品ID", "商品ID", java.lang.String.class, null);
+	public static final BeanProperty<com.leefj.foxnic.sql.demo.app.domain.example.OrderItem,java.lang.String> GOODS_ID_PROP = new BeanProperty(com.leefj.foxnic.sql.demo.app.domain.example.OrderItem.class ,GOODS_ID, java.lang.String.class, "商品ID", "商品ID", java.lang.String.class, null);
 	
 	/**
 	 * 创建人ID , 类型: java.lang.String
@@ -54,7 +54,7 @@ public class OrderItemMeta {
 	/**
 	 * 创建人ID , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.leefj.foxnic.sql.demo.domain.example.OrderItem,java.lang.String> CREATE_BY_PROP = new BeanProperty(com.leefj.foxnic.sql.demo.domain.example.OrderItem.class ,CREATE_BY, java.lang.String.class, "创建人ID", "创建人ID", java.lang.String.class, null);
+	public static final BeanProperty<com.leefj.foxnic.sql.demo.app.domain.example.OrderItem,java.lang.String> CREATE_BY_PROP = new BeanProperty(com.leefj.foxnic.sql.demo.app.domain.example.OrderItem.class ,CREATE_BY, java.lang.String.class, "创建人ID", "创建人ID", java.lang.String.class, null);
 	
 	/**
 	 * 创建时间 , 类型: java.util.Date
@@ -64,7 +64,7 @@ public class OrderItemMeta {
 	/**
 	 * 创建时间 , 类型: java.util.Date
 	*/
-	public static final BeanProperty<com.leefj.foxnic.sql.demo.domain.example.OrderItem,java.util.Date> CREATE_TIME_PROP = new BeanProperty(com.leefj.foxnic.sql.demo.domain.example.OrderItem.class ,CREATE_TIME, java.util.Date.class, "创建时间", "创建时间", java.util.Date.class, null);
+	public static final BeanProperty<com.leefj.foxnic.sql.demo.app.domain.example.OrderItem,java.util.Date> CREATE_TIME_PROP = new BeanProperty(com.leefj.foxnic.sql.demo.app.domain.example.OrderItem.class ,CREATE_TIME, java.util.Date.class, "创建时间", "创建时间", java.util.Date.class, null);
 	
 	/**
 	 * 修改人ID , 类型: java.lang.String
@@ -74,7 +74,7 @@ public class OrderItemMeta {
 	/**
 	 * 修改人ID , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.leefj.foxnic.sql.demo.domain.example.OrderItem,java.lang.String> UPDATE_BY_PROP = new BeanProperty(com.leefj.foxnic.sql.demo.domain.example.OrderItem.class ,UPDATE_BY, java.lang.String.class, "修改人ID", "修改人ID", java.lang.String.class, null);
+	public static final BeanProperty<com.leefj.foxnic.sql.demo.app.domain.example.OrderItem,java.lang.String> UPDATE_BY_PROP = new BeanProperty(com.leefj.foxnic.sql.demo.app.domain.example.OrderItem.class ,UPDATE_BY, java.lang.String.class, "修改人ID", "修改人ID", java.lang.String.class, null);
 	
 	/**
 	 * 修改时间 , 类型: java.util.Date
@@ -84,7 +84,7 @@ public class OrderItemMeta {
 	/**
 	 * 修改时间 , 类型: java.util.Date
 	*/
-	public static final BeanProperty<com.leefj.foxnic.sql.demo.domain.example.OrderItem,java.util.Date> UPDATE_TIME_PROP = new BeanProperty(com.leefj.foxnic.sql.demo.domain.example.OrderItem.class ,UPDATE_TIME, java.util.Date.class, "修改时间", "修改时间", java.util.Date.class, null);
+	public static final BeanProperty<com.leefj.foxnic.sql.demo.app.domain.example.OrderItem,java.util.Date> UPDATE_TIME_PROP = new BeanProperty(com.leefj.foxnic.sql.demo.app.domain.example.OrderItem.class ,UPDATE_TIME, java.util.Date.class, "修改时间", "修改时间", java.util.Date.class, null);
 	
 	/**
 	 * 是否已删除 , 类型: java.lang.Integer
@@ -94,7 +94,7 @@ public class OrderItemMeta {
 	/**
 	 * 是否已删除 , 类型: java.lang.Integer
 	*/
-	public static final BeanProperty<com.leefj.foxnic.sql.demo.domain.example.OrderItem,java.lang.Integer> DELETED_PROP = new BeanProperty(com.leefj.foxnic.sql.demo.domain.example.OrderItem.class ,DELETED, java.lang.Integer.class, "是否已删除", "是否已删除", java.lang.Integer.class, null);
+	public static final BeanProperty<com.leefj.foxnic.sql.demo.app.domain.example.OrderItem,java.lang.Integer> DELETED_PROP = new BeanProperty(com.leefj.foxnic.sql.demo.app.domain.example.OrderItem.class ,DELETED, java.lang.Integer.class, "是否已删除", "是否已删除", java.lang.Integer.class, null);
 	
 	/**
 	 * 删除人ID , 类型: java.lang.String
@@ -104,7 +104,7 @@ public class OrderItemMeta {
 	/**
 	 * 删除人ID , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.leefj.foxnic.sql.demo.domain.example.OrderItem,java.lang.String> DELETE_BY_PROP = new BeanProperty(com.leefj.foxnic.sql.demo.domain.example.OrderItem.class ,DELETE_BY, java.lang.String.class, "删除人ID", "删除人ID", java.lang.String.class, null);
+	public static final BeanProperty<com.leefj.foxnic.sql.demo.app.domain.example.OrderItem,java.lang.String> DELETE_BY_PROP = new BeanProperty(com.leefj.foxnic.sql.demo.app.domain.example.OrderItem.class ,DELETE_BY, java.lang.String.class, "删除人ID", "删除人ID", java.lang.String.class, null);
 	
 	/**
 	 * 删除时间 , 类型: java.util.Date
@@ -114,7 +114,7 @@ public class OrderItemMeta {
 	/**
 	 * 删除时间 , 类型: java.util.Date
 	*/
-	public static final BeanProperty<com.leefj.foxnic.sql.demo.domain.example.OrderItem,java.util.Date> DELETE_TIME_PROP = new BeanProperty(com.leefj.foxnic.sql.demo.domain.example.OrderItem.class ,DELETE_TIME, java.util.Date.class, "删除时间", "删除时间", java.util.Date.class, null);
+	public static final BeanProperty<com.leefj.foxnic.sql.demo.app.domain.example.OrderItem,java.util.Date> DELETE_TIME_PROP = new BeanProperty(com.leefj.foxnic.sql.demo.app.domain.example.OrderItem.class ,DELETE_TIME, java.util.Date.class, "删除时间", "删除时间", java.util.Date.class, null);
 	
 	/**
 	 * version , 类型: java.lang.Integer
@@ -124,7 +124,7 @@ public class OrderItemMeta {
 	/**
 	 * version , 类型: java.lang.Integer
 	*/
-	public static final BeanProperty<com.leefj.foxnic.sql.demo.domain.example.OrderItem,java.lang.Integer> VERSION_PROP = new BeanProperty(com.leefj.foxnic.sql.demo.domain.example.OrderItem.class ,VERSION, java.lang.Integer.class, "version", "version", java.lang.Integer.class, null);
+	public static final BeanProperty<com.leefj.foxnic.sql.demo.app.domain.example.OrderItem,java.lang.Integer> VERSION_PROP = new BeanProperty(com.leefj.foxnic.sql.demo.app.domain.example.OrderItem.class ,VERSION, java.lang.Integer.class, "version", "version", java.lang.Integer.class, null);
 	
 	/**
 	 * 全部属性清单
@@ -134,7 +134,7 @@ public class OrderItemMeta {
 	/**
 	 * 代理类
 	*/
-	public static class $$proxy$$ extends com.leefj.foxnic.sql.demo.domain.example.OrderItem {
+	public static class $$proxy$$ extends com.leefj.foxnic.sql.demo.app.domain.example.OrderItem {
 
 		private static final long serialVersionUID = 1L;
 

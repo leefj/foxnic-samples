@@ -1,4 +1,4 @@
-package com.leefj.foxnic.sql.demo.domain.example;
+package com.leefj.foxnic.sql.demo.app.domain.example;
 
 import com.github.foxnic.dao.entity.Entity;
 import javax.persistence.Table;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
-import com.leefj.foxnic.sql.demo.domain.example.meta.OrderMeta;
+import com.leefj.foxnic.sql.demo.app.domain.example.meta.OrderMeta;
 import com.github.foxnic.sql.data.ExprRcd;
 
 
@@ -25,8 +25,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * example_order
  * <p>example_order , 数据表 example_order 的PO类型</p>
  * @author LeeFJ
- * @since 2022-12-02 11:03:30
- * @sign 1488C692C1560F5BA36F967F0BDE82C1
+ * @since 2022-12-09 15:26:21
+ * @sign 4EDC9637AA6024E2C0CBA960E1F20706
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -497,7 +497,7 @@ public class Order extends Entity {
 	*/
 	@Transient
 	public Order duplicate(boolean all) {
-		com.leefj.foxnic.sql.demo.domain.example.meta.OrderMeta.$$proxy$$ inst = new com.leefj.foxnic.sql.demo.domain.example.meta.OrderMeta.$$proxy$$();
+		com.leefj.foxnic.sql.demo.app.domain.example.meta.OrderMeta.$$proxy$$ inst = new com.leefj.foxnic.sql.demo.app.domain.example.meta.OrderMeta.$$proxy$$();
 		inst.setAmount(this.getAmount());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setOrderNo(this.getOrderNo());
@@ -561,7 +561,7 @@ public class Order extends Entity {
 	*/
 	@Transient
 	public static Order create() {
-		return new com.leefj.foxnic.sql.demo.domain.example.meta.OrderMeta.$$proxy$$();
+		return new com.leefj.foxnic.sql.demo.app.domain.example.meta.OrderMeta.$$proxy$$();
 	}
 
 	/**

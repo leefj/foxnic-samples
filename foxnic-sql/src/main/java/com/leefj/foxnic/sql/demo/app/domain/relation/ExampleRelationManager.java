@@ -1,9 +1,9 @@
-package com.leefj.foxnic.sql.demo.domain.relation;
+package com.leefj.foxnic.sql.demo.app.domain.relation;
 
 import com.github.foxnic.dao.relation.RelationManager;
+import com.leefj.foxnic.sql.demo.app.domain.example.meta.OrderMeta;
 import com.leefj.foxnic.sql.demo.config.db.ExampleTables;
-import com.leefj.foxnic.sql.demo.domain.example.meta.OrderMeta;
-//import org.github.foxnic.web.constants.db.ExampleTables;
+
 
 
 public class ExampleRelationManager extends RelationManager {

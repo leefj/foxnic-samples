@@ -1,4 +1,4 @@
-package com.leefj.foxnic.sql.demo.domain.example;
+package com.leefj.foxnic.sql.demo.app.domain.example;
 
 import com.github.foxnic.dao.entity.Entity;
 import javax.persistence.Table;
@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
-import com.leefj.foxnic.sql.demo.domain.example.meta.GoodsMeta;
+import com.leefj.foxnic.sql.demo.app.domain.example.meta.GoodsMeta;
 import com.github.foxnic.sql.data.ExprRcd;
 
 
@@ -22,8 +22,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * example_goods
  * <p>example_goods , 数据表 example_goods 的PO类型</p>
  * @author LeeFJ
- * @since 2022-12-02 11:03:30
- * @sign BFCCCDB5F4B27DF3DE87FBF9AF172314
+ * @since 2022-12-09 15:26:21
+ * @sign 5928BC8E02DBB779EB7917C0D2012641
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -376,7 +376,7 @@ public class Goods extends Entity {
 	*/
 	@Transient
 	public Goods duplicate(boolean all) {
-		com.leefj.foxnic.sql.demo.domain.example.meta.GoodsMeta.$$proxy$$ inst = new com.leefj.foxnic.sql.demo.domain.example.meta.GoodsMeta.$$proxy$$();
+		com.leefj.foxnic.sql.demo.app.domain.example.meta.GoodsMeta.$$proxy$$ inst = new com.leefj.foxnic.sql.demo.app.domain.example.meta.GoodsMeta.$$proxy$$();
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
 		inst.setCreateTime(this.getCreateTime());
@@ -434,7 +434,7 @@ public class Goods extends Entity {
 	*/
 	@Transient
 	public static Goods create() {
-		return new com.leefj.foxnic.sql.demo.domain.example.meta.GoodsMeta.$$proxy$$();
+		return new com.leefj.foxnic.sql.demo.app.domain.example.meta.GoodsMeta.$$proxy$$();
 	}
 
 	/**

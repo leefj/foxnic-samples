@@ -1,4 +1,4 @@
-package com.leefj.foxnic.sql.demo.domain.example;
+package com.leefj.foxnic.sql.demo.app.domain.example;
 
 import com.github.foxnic.dao.entity.Entity;
 import javax.persistence.Table;
@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
-import com.leefj.foxnic.sql.demo.domain.example.meta.AddressMeta;
+import com.leefj.foxnic.sql.demo.app.domain.example.meta.AddressMeta;
 import com.github.foxnic.sql.data.ExprRcd;
 
 
@@ -21,8 +21,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 订单地址
  * <p>订单地址 , 数据表 example_address 的PO类型</p>
  * @author LeeFJ
- * @since 2022-12-02 11:03:30
- * @sign 168F9E3AEEA129946619B30210347B49
+ * @since 2022-12-09 15:26:22
+ * @sign 70DD732CD1A9AD2AD3AFC49A453317E2
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -447,7 +447,7 @@ public class Address extends Entity {
 	*/
 	@Transient
 	public Address duplicate(boolean all) {
-		com.leefj.foxnic.sql.demo.domain.example.meta.AddressMeta.$$proxy$$ inst = new com.leefj.foxnic.sql.demo.domain.example.meta.AddressMeta.$$proxy$$();
+		com.leefj.foxnic.sql.demo.app.domain.example.meta.AddressMeta.$$proxy$$ inst = new com.leefj.foxnic.sql.demo.app.domain.example.meta.AddressMeta.$$proxy$$();
 		inst.setAddress(this.getAddress());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setRegionLocation(this.getRegionLocation());
@@ -508,7 +508,7 @@ public class Address extends Entity {
 	*/
 	@Transient
 	public static Address create() {
-		return new com.leefj.foxnic.sql.demo.domain.example.meta.AddressMeta.$$proxy$$();
+		return new com.leefj.foxnic.sql.demo.app.domain.example.meta.AddressMeta.$$proxy$$();
 	}
 
 	/**
