@@ -18,7 +18,6 @@ public class DAO_DBTreatyDemo {
 
 
 
-
     /**
      * DAO 查询示例
      * */
@@ -31,6 +30,7 @@ public class DAO_DBTreatyDemo {
         System.out.println("value = "+value);
         // 输出 value = 9090
     }
+
 
     /**
      * DAO 删除校验实例 , 在  DBTreaty.setAllowDeleteWithoutWhere 控制。
