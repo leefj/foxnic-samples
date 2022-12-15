@@ -6,8 +6,10 @@ import com.github.foxnic.dao.meta.DBTableMeta;
 import com.github.foxnic.dao.spec.DAO;
 import com.github.foxnic.dao.spec.DBSequence;
 import com.leefj.foxnic.sql.demo.config.DBInstance;
+import org.springframework.transaction.annotation.Transactional;
 
 public class SequenceDemo {
+
 
     public static void main(String[] args) {
         // 创建DAO
@@ -21,7 +23,10 @@ public class SequenceDemo {
         }
         // 循环取数
         for (int i = 0; i < 100; i++) {
+            // 获取 Long 值
             System.out.println(i+" = "+sequence.nextLong());
+            // 获得 String 值
+            System.out.println(i+" = "+sequence.next());
         }
     }
 
