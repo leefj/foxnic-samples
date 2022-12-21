@@ -46,8 +46,8 @@
         <sentinel.version>1.8.0</sentinel.version>
         <seata.version>1.3.0</seata.version>
         <seata.cloud.version>2.2.0.RELEASE</seata.cloud.version>
-        <foxnic.version>1.6.0.RELEASE</foxnic.version>
-        <foxnic.web.version>1.3.0.RELEASE</foxnic.web.version>
+        <foxnic.version>1.7.0.RELEASE</foxnic.version>
+        <foxnic.web.version>1.7.0.RELEASE</foxnic.web.version>
         <knife4j.version>3.0.2</knife4j.version>
         <xmlbeans.version>4.0.0</xmlbeans.version>
         <poi.version>4.1.2</poi.version>

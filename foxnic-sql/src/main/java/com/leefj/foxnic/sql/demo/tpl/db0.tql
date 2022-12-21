@@ -1,0 +1,12 @@
+[query_0]
+select 'moduleTop@query_0'
+
+[top_query_1]
+select 'moduleTop@query_1'
+
+
+[top_query_2:mysql]
+select 'moduleTop@query_2#mysql'
+
+[top_query_2]
+select 'moduleTop@query_2#default'

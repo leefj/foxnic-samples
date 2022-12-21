@@ -1,0 +1,5 @@
+[query_0]
+select 'module1@query_0'
+
+[m1_query_1]
+select 'module1@query_1'
