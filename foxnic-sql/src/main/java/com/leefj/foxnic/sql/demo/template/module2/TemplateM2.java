@@ -1,14 +1,13 @@
-package com.leefj.foxnic.sql.demo.tpl.module1;
+package com.leefj.foxnic.sql.demo.template.module2;
 
 import com.github.foxnic.dao.spec.DAO;
-import com.github.foxnic.dao.sql.loader.SQLoader;
 import com.leefj.foxnic.sql.demo.config.DBInstance;
-import com.leefj.foxnic.sql.demo.tpl.TplTop;
+import com.leefj.foxnic.sql.demo.template.TemplateTop;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertTrue;
 
-public class TplM1 extends TplTop {
+public class TemplateM2 extends TemplateTop {
 
     @Test
     public void  scope_demo_in_M1() {
