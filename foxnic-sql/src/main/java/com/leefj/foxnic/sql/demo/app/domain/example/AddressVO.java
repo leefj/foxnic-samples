@@ -20,7 +20,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 订单地址VO类型
  * <p>订单地址 , 数据表 example_address 的通用VO类型</p>
  * @author LeeFJ
- * @since 2022-12-09 15:26:22
+ * @since 2023-01-03 16:26:44
  * @sign F3ADCF2358F90EA5E16F7EFDCEB5F0D1
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -378,14 +378,17 @@ public class AddressVO extends Address {
 		inst.setId(this.getId());
 		if(all) {
 			inst.setSearchField(this.getSearchField());
+			inst.setFuzzyField(this.getFuzzyField());
+			inst.setGoodsList(this.getGoodsList());
+			inst.setOrderList(this.getOrderList());
+			inst.setPageSize(this.getPageSize());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
-			inst.setFuzzyField(this.getFuzzyField());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
-			inst.setPageSize(this.getPageSize());
 			inst.setDataOrigin(this.getDataOrigin());
 			inst.setIds(this.getIds());
+			inst.setItemList(this.getItemList());
 			inst.setQueryLogic(this.getQueryLogic());
 			inst.setSearchValue(this.getSearchValue());
 		}
@@ -463,11 +466,11 @@ public class AddressVO extends Address {
 			this.setId(DataParser.parse(String.class, map.get(AddressVOMeta.ID)));
 			// others
 			this.setSearchField(DataParser.parse(String.class, map.get(AddressVOMeta.SEARCH_FIELD)));
+			this.setFuzzyField(DataParser.parse(String.class, map.get(AddressVOMeta.FUZZY_FIELD)));
+			this.setPageSize(DataParser.parse(Integer.class, map.get(AddressVOMeta.PAGE_SIZE)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(AddressVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(AddressVOMeta.SORT_TYPE)));
-			this.setFuzzyField(DataParser.parse(String.class, map.get(AddressVOMeta.FUZZY_FIELD)));
 			this.setSortField(DataParser.parse(String.class, map.get(AddressVOMeta.SORT_FIELD)));
-			this.setPageSize(DataParser.parse(Integer.class, map.get(AddressVOMeta.PAGE_SIZE)));
 			this.setDataOrigin(DataParser.parse(String.class, map.get(AddressVOMeta.DATA_ORIGIN)));
 			this.setQueryLogic(DataParser.parse(String.class, map.get(AddressVOMeta.QUERY_LOGIC)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(AddressVOMeta.SEARCH_VALUE)));
@@ -490,11 +493,11 @@ public class AddressVO extends Address {
 				this.setId( (String)map.get(AddressVOMeta.ID));
 				// others
 				this.setSearchField( (String)map.get(AddressVOMeta.SEARCH_FIELD));
+				this.setFuzzyField( (String)map.get(AddressVOMeta.FUZZY_FIELD));
+				this.setPageSize( (Integer)map.get(AddressVOMeta.PAGE_SIZE));
 				this.setPageIndex( (Integer)map.get(AddressVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(AddressVOMeta.SORT_TYPE));
-				this.setFuzzyField( (String)map.get(AddressVOMeta.FUZZY_FIELD));
 				this.setSortField( (String)map.get(AddressVOMeta.SORT_FIELD));
-				this.setPageSize( (Integer)map.get(AddressVOMeta.PAGE_SIZE));
 				this.setDataOrigin( (String)map.get(AddressVOMeta.DATA_ORIGIN));
 				this.setQueryLogic( (String)map.get(AddressVOMeta.QUERY_LOGIC));
 				this.setSearchValue( (String)map.get(AddressVOMeta.SEARCH_VALUE));

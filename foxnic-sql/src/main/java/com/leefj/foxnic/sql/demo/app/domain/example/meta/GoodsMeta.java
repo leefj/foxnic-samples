@@ -4,14 +4,17 @@ import com.github.foxnic.api.bean.BeanProperty;
 import com.leefj.foxnic.sql.demo.app.domain.example.Goods;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
+import com.leefj.foxnic.sql.demo.app.domain.example.Address;
+import com.leefj.foxnic.sql.demo.app.domain.example.OrderItem;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author LeeFJ
- * @since 2022-12-09 15:26:21
- * @sign 5928BC8E02DBB779EB7917C0D2012641
+ * @since 2023-01-03 16:26:43
+ * @sign AB5019CBAAA17A8099E04840304D2E3D
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -128,9 +131,39 @@ public class GoodsMeta {
 	public static final BeanProperty<com.leefj.foxnic.sql.demo.app.domain.example.Goods,java.lang.Integer> VERSION_PROP = new BeanProperty(com.leefj.foxnic.sql.demo.app.domain.example.Goods.class ,VERSION, java.lang.Integer.class, "version", "version", java.lang.Integer.class, null);
 	
 	/**
+	 * 订单明细商品 , 集合类型: LIST , 类型: com.leefj.foxnic.sql.demo.app.domain.example.Goods
+	*/
+	public static final String ORDER_LIST="orderList";
+	
+	/**
+	 * 订单明细商品 , 集合类型: LIST , 类型: com.leefj.foxnic.sql.demo.app.domain.example.Goods
+	*/
+	public static final BeanProperty<com.leefj.foxnic.sql.demo.app.domain.example.Goods,com.leefj.foxnic.sql.demo.app.domain.example.Goods> ORDER_LIST_PROP = new BeanProperty(com.leefj.foxnic.sql.demo.app.domain.example.Goods.class ,ORDER_LIST, java.util.List.class, "订单明细商品", "订单明细商品", com.leefj.foxnic.sql.demo.app.domain.example.Goods.class, null);
+	
+	/**
+	 * 收件地址 , 收件地址，包括收件人以及手机号码 , 集合类型: LIST , 类型: com.leefj.foxnic.sql.demo.app.domain.example.Address
+	*/
+	public static final String ADDRESS_LIST="addressList";
+	
+	/**
+	 * 收件地址 , 收件地址，包括收件人以及手机号码 , 集合类型: LIST , 类型: com.leefj.foxnic.sql.demo.app.domain.example.Address
+	*/
+	public static final BeanProperty<com.leefj.foxnic.sql.demo.app.domain.example.Goods,com.leefj.foxnic.sql.demo.app.domain.example.Address> ADDRESS_LIST_PROP = new BeanProperty(com.leefj.foxnic.sql.demo.app.domain.example.Goods.class ,ADDRESS_LIST, java.util.List.class, "收件地址", "收件地址，包括收件人以及手机号码", com.leefj.foxnic.sql.demo.app.domain.example.Address.class, null);
+	
+	/**
+	 * 订单明细 , 集合类型: LIST , 类型: com.leefj.foxnic.sql.demo.app.domain.example.OrderItem
+	*/
+	public static final String ITEM_LIST="itemList";
+	
+	/**
+	 * 订单明细 , 集合类型: LIST , 类型: com.leefj.foxnic.sql.demo.app.domain.example.OrderItem
+	*/
+	public static final BeanProperty<com.leefj.foxnic.sql.demo.app.domain.example.Goods,com.leefj.foxnic.sql.demo.app.domain.example.OrderItem> ITEM_LIST_PROP = new BeanProperty(com.leefj.foxnic.sql.demo.app.domain.example.Goods.class ,ITEM_LIST, java.util.List.class, "订单明细", "订单明细", com.leefj.foxnic.sql.demo.app.domain.example.OrderItem.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , NAME , PRICE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION };
+	public static final String[] $PROPS={ ID , NAME , PRICE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , ORDER_LIST , ADDRESS_LIST , ITEM_LIST };
 	
 	/**
 	 * 代理类
@@ -260,6 +293,39 @@ public class GoodsMeta {
 			super.setVersion(version);
 			return this;
 		}
+		
+		/**
+		 * 设置 订单明细商品
+		 * @param orderList 订单明细商品
+		 * @return 当前对象
+		*/
+		public Goods setOrderList(List<Goods> orderList) {
+			super.change(ORDER_LIST,super.getOrderList(),orderList);
+			super.setOrderList(orderList);
+			return this;
+		}
+		
+		/**
+		 * 设置 收件地址
+		 * @param addressList 收件地址
+		 * @return 当前对象
+		*/
+		public Goods setAddressList(List<Address> addressList) {
+			super.change(ADDRESS_LIST,super.getAddressList(),addressList);
+			super.setAddressList(addressList);
+			return this;
+		}
+		
+		/**
+		 * 设置 订单明细
+		 * @param itemList 订单明细
+		 * @return 当前对象
+		*/
+		public Goods setItemList(List<OrderItem> itemList) {
+			super.change(ITEM_LIST,super.getItemList(),itemList);
+			super.setItemList(itemList);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -287,6 +353,11 @@ public class GoodsMeta {
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setId(this.getId());
 			inst.setVersion(this.getVersion());
+			if(all) {
+				inst.setAddressList(this.getAddressList());
+				inst.setOrderList(this.getOrderList());
+				inst.setItemList(this.getItemList());
+			}
 			inst.clearModifies();
 			return inst;
 		}

@@ -5,13 +5,16 @@ import com.leefj.foxnic.sql.demo.app.domain.example.OrderItemVO;
 import java.util.List;
 import com.leefj.foxnic.sql.demo.app.domain.example.OrderItem;
 import java.util.Date;
+import com.leefj.foxnic.sql.demo.app.domain.example.Goods;
+import com.leefj.foxnic.sql.demo.app.domain.example.Address;
+import com.leefj.foxnic.sql.demo.app.domain.example.Order;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author LeeFJ
- * @since 2022-12-09 15:26:22
+ * @since 2023-01-03 16:26:44
  * @sign 8C59A78DDA2D32E2E6A73E0BAE297690
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -239,9 +242,39 @@ public class OrderItemVOMeta extends OrderItemMeta {
 	public static final BeanProperty<com.leefj.foxnic.sql.demo.app.domain.example.OrderItemVO,java.lang.Integer> VERSION_PROP = new BeanProperty(com.leefj.foxnic.sql.demo.app.domain.example.OrderItemVO.class ,VERSION, java.lang.Integer.class, "version", "version", java.lang.Integer.class, null);
 	
 	/**
+	 * 订单明细商品 , 类型: com.leefj.foxnic.sql.demo.app.domain.example.Goods
+	*/
+	public static final String GOODS="goods";
+	
+	/**
+	 * 订单明细商品 , 类型: com.leefj.foxnic.sql.demo.app.domain.example.Goods
+	*/
+	public static final BeanProperty<com.leefj.foxnic.sql.demo.app.domain.example.OrderItemVO,com.leefj.foxnic.sql.demo.app.domain.example.Goods> GOODS_PROP = new BeanProperty(com.leefj.foxnic.sql.demo.app.domain.example.OrderItemVO.class ,GOODS, com.leefj.foxnic.sql.demo.app.domain.example.Goods.class, "订单明细商品", "订单明细商品", com.leefj.foxnic.sql.demo.app.domain.example.Goods.class, null);
+	
+	/**
+	 * 收件地址 , 收件地址，包括收件人以及手机号码 , 类型: com.leefj.foxnic.sql.demo.app.domain.example.Address
+	*/
+	public static final String ADDRESS="address";
+	
+	/**
+	 * 收件地址 , 收件地址，包括收件人以及手机号码 , 类型: com.leefj.foxnic.sql.demo.app.domain.example.Address
+	*/
+	public static final BeanProperty<com.leefj.foxnic.sql.demo.app.domain.example.OrderItemVO,com.leefj.foxnic.sql.demo.app.domain.example.Address> ADDRESS_PROP = new BeanProperty(com.leefj.foxnic.sql.demo.app.domain.example.OrderItemVO.class ,ADDRESS, com.leefj.foxnic.sql.demo.app.domain.example.Address.class, "收件地址", "收件地址，包括收件人以及手机号码", com.leefj.foxnic.sql.demo.app.domain.example.Address.class, null);
+	
+	/**
+	 * 订单 , 集合类型: LIST , 类型: com.leefj.foxnic.sql.demo.app.domain.example.Order
+	*/
+	public static final String ORDER="order";
+	
+	/**
+	 * 订单 , 集合类型: LIST , 类型: com.leefj.foxnic.sql.demo.app.domain.example.Order
+	*/
+	public static final BeanProperty<com.leefj.foxnic.sql.demo.app.domain.example.OrderItemVO,com.leefj.foxnic.sql.demo.app.domain.example.Order> ORDER_PROP = new BeanProperty(com.leefj.foxnic.sql.demo.app.domain.example.OrderItemVO.class ,ORDER, java.util.List.class, "订单", "订单", com.leefj.foxnic.sql.demo.app.domain.example.Order.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , IDS , ID , ORDER_ID , GOODS_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , IDS , ID , ORDER_ID , GOODS_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , GOODS , ADDRESS , ORDER };
 	
 	/**
 	 * 代理类
@@ -492,6 +525,39 @@ public class OrderItemVOMeta extends OrderItemMeta {
 			super.setVersion(version);
 			return this;
 		}
+		
+		/**
+		 * 设置 订单明细商品
+		 * @param goods 订单明细商品
+		 * @return 当前对象
+		*/
+		public OrderItem setGoods(Goods goods) {
+			super.change(GOODS,super.getGoods(),goods);
+			super.setGoods(goods);
+			return this;
+		}
+		
+		/**
+		 * 设置 收件地址
+		 * @param address 收件地址
+		 * @return 当前对象
+		*/
+		public OrderItem setAddress(Address address) {
+			super.change(ADDRESS,super.getAddress(),address);
+			super.setAddress(address);
+			return this;
+		}
+		
+		/**
+		 * 设置 订单
+		 * @param order 订单
+		 * @return 当前对象
+		*/
+		public OrderItem setOrder(List<Order> order) {
+			super.change(ORDER,super.getOrder(),order);
+			super.setOrder(order);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -520,17 +586,20 @@ public class OrderItemVOMeta extends OrderItemMeta {
 			inst.setId(this.getId());
 			inst.setVersion(this.getVersion());
 			if(all) {
+				inst.setAddress(this.getAddress());
 				inst.setSearchField(this.getSearchField());
+				inst.setFuzzyField(this.getFuzzyField());
+				inst.setPageSize(this.getPageSize());
+				inst.setGoods(this.getGoods());
 				inst.setPageIndex(this.getPageIndex());
 				inst.setSortType(this.getSortType());
-				inst.setFuzzyField(this.getFuzzyField());
 				inst.setDirtyFields(this.getDirtyFields());
 				inst.setSortField(this.getSortField());
-				inst.setPageSize(this.getPageSize());
 				inst.setDataOrigin(this.getDataOrigin());
 				inst.setIds(this.getIds());
 				inst.setQueryLogic(this.getQueryLogic());
 				inst.setSearchValue(this.getSearchValue());
+				inst.setOrder(this.getOrder());
 			}
 			inst.clearModifies();
 			return inst;

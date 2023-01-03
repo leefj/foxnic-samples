@@ -5,13 +5,15 @@ import com.leefj.foxnic.sql.demo.app.domain.example.AddressVO;
 import java.util.List;
 import com.leefj.foxnic.sql.demo.app.domain.example.Address;
 import java.util.Date;
+import com.leefj.foxnic.sql.demo.app.domain.example.Goods;
+import com.leefj.foxnic.sql.demo.app.domain.example.OrderItem;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author LeeFJ
- * @since 2022-12-09 15:26:22
+ * @since 2023-01-03 16:26:44
  * @sign F3ADCF2358F90EA5E16F7EFDCEB5F0D1
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -269,9 +271,39 @@ public class AddressVOMeta extends AddressMeta {
 	public static final BeanProperty<com.leefj.foxnic.sql.demo.app.domain.example.AddressVO,java.lang.Integer> VERSION_PROP = new BeanProperty(com.leefj.foxnic.sql.demo.app.domain.example.AddressVO.class ,VERSION, java.lang.Integer.class, "版本", "版本", java.lang.Integer.class, null);
 	
 	/**
+	 * 订单明细商品 , 集合类型: LIST , 类型: com.leefj.foxnic.sql.demo.app.domain.example.Goods
+	*/
+	public static final String GOODS_LIST="goodsList";
+	
+	/**
+	 * 订单明细商品 , 集合类型: LIST , 类型: com.leefj.foxnic.sql.demo.app.domain.example.Goods
+	*/
+	public static final BeanProperty<com.leefj.foxnic.sql.demo.app.domain.example.AddressVO,com.leefj.foxnic.sql.demo.app.domain.example.Goods> GOODS_LIST_PROP = new BeanProperty(com.leefj.foxnic.sql.demo.app.domain.example.AddressVO.class ,GOODS_LIST, java.util.List.class, "订单明细商品", "订单明细商品", com.leefj.foxnic.sql.demo.app.domain.example.Goods.class, null);
+	
+	/**
+	 * 收件地址 , 收件地址，包括收件人以及手机号码 , 集合类型: LIST , 类型: com.leefj.foxnic.sql.demo.app.domain.example.Address
+	*/
+	public static final String ORDER_LIST="orderList";
+	
+	/**
+	 * 收件地址 , 收件地址，包括收件人以及手机号码 , 集合类型: LIST , 类型: com.leefj.foxnic.sql.demo.app.domain.example.Address
+	*/
+	public static final BeanProperty<com.leefj.foxnic.sql.demo.app.domain.example.AddressVO,com.leefj.foxnic.sql.demo.app.domain.example.Address> ORDER_LIST_PROP = new BeanProperty(com.leefj.foxnic.sql.demo.app.domain.example.AddressVO.class ,ORDER_LIST, java.util.List.class, "收件地址", "收件地址，包括收件人以及手机号码", com.leefj.foxnic.sql.demo.app.domain.example.Address.class, null);
+	
+	/**
+	 * 订单明细 , 集合类型: LIST , 类型: com.leefj.foxnic.sql.demo.app.domain.example.OrderItem
+	*/
+	public static final String ITEM_LIST="itemList";
+	
+	/**
+	 * 订单明细 , 集合类型: LIST , 类型: com.leefj.foxnic.sql.demo.app.domain.example.OrderItem
+	*/
+	public static final BeanProperty<com.leefj.foxnic.sql.demo.app.domain.example.AddressVO,com.leefj.foxnic.sql.demo.app.domain.example.OrderItem> ITEM_LIST_PROP = new BeanProperty(com.leefj.foxnic.sql.demo.app.domain.example.AddressVO.class ,ITEM_LIST, java.util.List.class, "订单明细", "订单明细", com.leefj.foxnic.sql.demo.app.domain.example.OrderItem.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , IDS , ID , NAME , PHONE_NUMBER , ADDRESS , REGION_TYPE , REGION_LOCATION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , IDS , ID , NAME , PHONE_NUMBER , ADDRESS , REGION_TYPE , REGION_LOCATION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , GOODS_LIST , ORDER_LIST , ITEM_LIST };
 	
 	/**
 	 * 代理类
@@ -555,6 +587,39 @@ public class AddressVOMeta extends AddressMeta {
 			super.setVersion(version);
 			return this;
 		}
+		
+		/**
+		 * 设置 订单明细商品
+		 * @param goodsList 订单明细商品
+		 * @return 当前对象
+		*/
+		public Address setGoodsList(List<Goods> goodsList) {
+			super.change(GOODS_LIST,super.getGoodsList(),goodsList);
+			super.setGoodsList(goodsList);
+			return this;
+		}
+		
+		/**
+		 * 设置 收件地址
+		 * @param orderList 收件地址
+		 * @return 当前对象
+		*/
+		public Address setOrderList(List<Address> orderList) {
+			super.change(ORDER_LIST,super.getOrderList(),orderList);
+			super.setOrderList(orderList);
+			return this;
+		}
+		
+		/**
+		 * 设置 订单明细
+		 * @param itemList 订单明细
+		 * @return 当前对象
+		*/
+		public Address setItemList(List<OrderItem> itemList) {
+			super.change(ITEM_LIST,super.getItemList(),itemList);
+			super.setItemList(itemList);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -587,15 +652,18 @@ public class AddressVOMeta extends AddressMeta {
 			inst.setId(this.getId());
 			if(all) {
 				inst.setSearchField(this.getSearchField());
+				inst.setFuzzyField(this.getFuzzyField());
+				inst.setGoodsList(this.getGoodsList());
+				inst.setPageSize(this.getPageSize());
+				inst.setOrderList(this.getOrderList());
 				inst.setPageIndex(this.getPageIndex());
 				inst.setSortType(this.getSortType());
-				inst.setFuzzyField(this.getFuzzyField());
 				inst.setDirtyFields(this.getDirtyFields());
 				inst.setSortField(this.getSortField());
-				inst.setPageSize(this.getPageSize());
 				inst.setDataOrigin(this.getDataOrigin());
 				inst.setIds(this.getIds());
 				inst.setQueryLogic(this.getQueryLogic());
+				inst.setItemList(this.getItemList());
 				inst.setSearchValue(this.getSearchValue());
 			}
 			inst.clearModifies();

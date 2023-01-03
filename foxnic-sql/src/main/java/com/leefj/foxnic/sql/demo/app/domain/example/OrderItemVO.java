@@ -20,7 +20,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * example_order_itemVO类型
  * <p>example_order_item , 数据表 example_order_item 的通用VO类型</p>
  * @author LeeFJ
- * @since 2022-12-09 15:26:22
+ * @since 2023-01-03 16:26:44
  * @sign 8C59A78DDA2D32E2E6A73E0BAE297690
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -374,17 +374,20 @@ public class OrderItemVO extends OrderItem {
 		inst.setId(this.getId());
 		inst.setVersion(this.getVersion());
 		if(all) {
+			inst.setAddress(this.getAddress());
 			inst.setSearchField(this.getSearchField());
+			inst.setFuzzyField(this.getFuzzyField());
+			inst.setGoods(this.getGoods());
+			inst.setPageSize(this.getPageSize());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
-			inst.setFuzzyField(this.getFuzzyField());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
-			inst.setPageSize(this.getPageSize());
 			inst.setDataOrigin(this.getDataOrigin());
 			inst.setIds(this.getIds());
 			inst.setQueryLogic(this.getQueryLogic());
 			inst.setSearchValue(this.getSearchValue());
+			inst.setOrder(this.getOrder());
 		}
 		inst.clearModifies();
 		return inst;
@@ -456,12 +459,14 @@ public class OrderItemVO extends OrderItem {
 			this.setId(DataParser.parse(String.class, map.get(OrderItemVOMeta.ID)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(OrderItemVOMeta.VERSION)));
 			// others
+			this.setAddress(DataParser.parse(Address.class, map.get(OrderItemVOMeta.ADDRESS)));
 			this.setSearchField(DataParser.parse(String.class, map.get(OrderItemVOMeta.SEARCH_FIELD)));
+			this.setFuzzyField(DataParser.parse(String.class, map.get(OrderItemVOMeta.FUZZY_FIELD)));
+			this.setGoods(DataParser.parse(Goods.class, map.get(OrderItemVOMeta.GOODS)));
+			this.setPageSize(DataParser.parse(Integer.class, map.get(OrderItemVOMeta.PAGE_SIZE)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(OrderItemVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(OrderItemVOMeta.SORT_TYPE)));
-			this.setFuzzyField(DataParser.parse(String.class, map.get(OrderItemVOMeta.FUZZY_FIELD)));
 			this.setSortField(DataParser.parse(String.class, map.get(OrderItemVOMeta.SORT_FIELD)));
-			this.setPageSize(DataParser.parse(Integer.class, map.get(OrderItemVOMeta.PAGE_SIZE)));
 			this.setDataOrigin(DataParser.parse(String.class, map.get(OrderItemVOMeta.DATA_ORIGIN)));
 			this.setQueryLogic(DataParser.parse(String.class, map.get(OrderItemVOMeta.QUERY_LOGIC)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(OrderItemVOMeta.SEARCH_VALUE)));
@@ -480,12 +485,14 @@ public class OrderItemVO extends OrderItem {
 				this.setId( (String)map.get(OrderItemVOMeta.ID));
 				this.setVersion( (Integer)map.get(OrderItemVOMeta.VERSION));
 				// others
+				this.setAddress( (Address)map.get(OrderItemVOMeta.ADDRESS));
 				this.setSearchField( (String)map.get(OrderItemVOMeta.SEARCH_FIELD));
+				this.setFuzzyField( (String)map.get(OrderItemVOMeta.FUZZY_FIELD));
+				this.setGoods( (Goods)map.get(OrderItemVOMeta.GOODS));
+				this.setPageSize( (Integer)map.get(OrderItemVOMeta.PAGE_SIZE));
 				this.setPageIndex( (Integer)map.get(OrderItemVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(OrderItemVOMeta.SORT_TYPE));
-				this.setFuzzyField( (String)map.get(OrderItemVOMeta.FUZZY_FIELD));
 				this.setSortField( (String)map.get(OrderItemVOMeta.SORT_FIELD));
-				this.setPageSize( (Integer)map.get(OrderItemVOMeta.PAGE_SIZE));
 				this.setDataOrigin( (String)map.get(OrderItemVOMeta.DATA_ORIGIN));
 				this.setQueryLogic( (String)map.get(OrderItemVOMeta.QUERY_LOGIC));
 				this.setSearchValue( (String)map.get(OrderItemVOMeta.SEARCH_VALUE));

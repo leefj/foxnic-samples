@@ -21,7 +21,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * example_goodsVO类型
  * <p>example_goods , 数据表 example_goods 的通用VO类型</p>
  * @author LeeFJ
- * @since 2022-12-09 15:26:21
+ * @since 2023-01-03 16:26:43
  * @sign F2C0B7C2E3F98978B7B3FD8497308AB4
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -376,14 +376,17 @@ public class GoodsVO extends Goods {
 		inst.setVersion(this.getVersion());
 		if(all) {
 			inst.setSearchField(this.getSearchField());
+			inst.setFuzzyField(this.getFuzzyField());
+			inst.setOrderList(this.getOrderList());
+			inst.setPageSize(this.getPageSize());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
-			inst.setFuzzyField(this.getFuzzyField());
+			inst.setAddressList(this.getAddressList());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
-			inst.setPageSize(this.getPageSize());
 			inst.setDataOrigin(this.getDataOrigin());
 			inst.setIds(this.getIds());
+			inst.setItemList(this.getItemList());
 			inst.setQueryLogic(this.getQueryLogic());
 			inst.setSearchValue(this.getSearchValue());
 		}
@@ -458,11 +461,11 @@ public class GoodsVO extends Goods {
 			this.setVersion(DataParser.parse(Integer.class, map.get(GoodsVOMeta.VERSION)));
 			// others
 			this.setSearchField(DataParser.parse(String.class, map.get(GoodsVOMeta.SEARCH_FIELD)));
+			this.setFuzzyField(DataParser.parse(String.class, map.get(GoodsVOMeta.FUZZY_FIELD)));
+			this.setPageSize(DataParser.parse(Integer.class, map.get(GoodsVOMeta.PAGE_SIZE)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(GoodsVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(GoodsVOMeta.SORT_TYPE)));
-			this.setFuzzyField(DataParser.parse(String.class, map.get(GoodsVOMeta.FUZZY_FIELD)));
 			this.setSortField(DataParser.parse(String.class, map.get(GoodsVOMeta.SORT_FIELD)));
-			this.setPageSize(DataParser.parse(Integer.class, map.get(GoodsVOMeta.PAGE_SIZE)));
 			this.setDataOrigin(DataParser.parse(String.class, map.get(GoodsVOMeta.DATA_ORIGIN)));
 			this.setQueryLogic(DataParser.parse(String.class, map.get(GoodsVOMeta.QUERY_LOGIC)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(GoodsVOMeta.SEARCH_VALUE)));
@@ -482,11 +485,11 @@ public class GoodsVO extends Goods {
 				this.setVersion( (Integer)map.get(GoodsVOMeta.VERSION));
 				// others
 				this.setSearchField( (String)map.get(GoodsVOMeta.SEARCH_FIELD));
+				this.setFuzzyField( (String)map.get(GoodsVOMeta.FUZZY_FIELD));
+				this.setPageSize( (Integer)map.get(GoodsVOMeta.PAGE_SIZE));
 				this.setPageIndex( (Integer)map.get(GoodsVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(GoodsVOMeta.SORT_TYPE));
-				this.setFuzzyField( (String)map.get(GoodsVOMeta.FUZZY_FIELD));
 				this.setSortField( (String)map.get(GoodsVOMeta.SORT_FIELD));
-				this.setPageSize( (Integer)map.get(GoodsVOMeta.PAGE_SIZE));
 				this.setDataOrigin( (String)map.get(GoodsVOMeta.DATA_ORIGIN));
 				this.setQueryLogic( (String)map.get(GoodsVOMeta.QUERY_LOGIC));
 				this.setSearchValue( (String)map.get(GoodsVOMeta.SEARCH_VALUE));

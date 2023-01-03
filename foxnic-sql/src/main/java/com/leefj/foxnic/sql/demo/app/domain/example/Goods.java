@@ -9,8 +9,11 @@ import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Transient;
 import com.github.foxnic.api.swagger.EnumFor;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
 import com.leefj.foxnic.sql.demo.app.domain.example.meta.GoodsMeta;
@@ -22,8 +25,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * example_goods
  * <p>example_goods , 数据表 example_goods 的PO类型</p>
  * @author LeeFJ
- * @since 2022-12-09 15:26:21
- * @sign 5928BC8E02DBB779EB7917C0D2012641
+ * @since 2023-01-03 16:26:43
+ * @sign AB5019CBAAA17A8099E04840304D2E3D
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -92,6 +95,21 @@ public class Goods extends Entity {
 	 * version：version
 	*/
 	private Integer version;
+	
+	/**
+	 * 订单明细商品：订单明细商品
+	*/
+	private List<Goods> orderList;
+	
+	/**
+	 * 收件地址：收件地址，包括收件人以及手机号码
+	*/
+	private List<Address> addressList;
+	
+	/**
+	 * 订单明细：订单明细
+	*/
+	private List<OrderItem> itemList;
 	
 	/**
 	 * 获得 主键<br>
@@ -332,6 +350,96 @@ public class Goods extends Entity {
 		this.version=version;
 		return this;
 	}
+	
+	/**
+	 * 获得 订单明细商品<br>
+	 * 订单明细商品
+	 * @return 订单明细商品
+	*/
+	public List<Goods> getOrderList() {
+		return orderList;
+	}
+	
+	/**
+	 * 设置 订单明细商品
+	 * @param orderList 订单明细商品
+	 * @return 当前对象
+	*/
+	public Goods setOrderList(List<Goods> orderList) {
+		this.orderList=orderList;
+		return this;
+	}
+	
+	/**
+	 * 添加 订单明细商品
+	 * @param order 订单明细商品
+	 * @return 当前对象
+	*/
+	public Goods addOrder(Goods... order) {
+		if(this.orderList==null) orderList=new ArrayList<>();
+		this.orderList.addAll(Arrays.asList(order));
+		return this;
+	}
+	
+	/**
+	 * 获得 收件地址<br>
+	 * 收件地址，包括收件人以及手机号码
+	 * @return 收件地址
+	*/
+	public List<Address> getAddressList() {
+		return addressList;
+	}
+	
+	/**
+	 * 设置 收件地址
+	 * @param addressList 收件地址
+	 * @return 当前对象
+	*/
+	public Goods setAddressList(List<Address> addressList) {
+		this.addressList=addressList;
+		return this;
+	}
+	
+	/**
+	 * 添加 收件地址
+	 * @param address 收件地址
+	 * @return 当前对象
+	*/
+	public Goods addAddress(Address... address) {
+		if(this.addressList==null) addressList=new ArrayList<>();
+		this.addressList.addAll(Arrays.asList(address));
+		return this;
+	}
+	
+	/**
+	 * 获得 订单明细<br>
+	 * 订单明细
+	 * @return 订单明细
+	*/
+	public List<OrderItem> getItemList() {
+		return itemList;
+	}
+	
+	/**
+	 * 设置 订单明细
+	 * @param itemList 订单明细
+	 * @return 当前对象
+	*/
+	public Goods setItemList(List<OrderItem> itemList) {
+		this.itemList=itemList;
+		return this;
+	}
+	
+	/**
+	 * 添加 订单明细
+	 * @param item 订单明细
+	 * @return 当前对象
+	*/
+	public Goods addItem(OrderItem... item) {
+		if(this.itemList==null) itemList=new ArrayList<>();
+		this.itemList.addAll(Arrays.asList(item));
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -388,6 +496,11 @@ public class Goods extends Entity {
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setId(this.getId());
 		inst.setVersion(this.getVersion());
+		if(all) {
+			inst.setAddressList(this.getAddressList());
+			inst.setOrderList(this.getOrderList());
+			inst.setItemList(this.getItemList());
+		}
 		inst.clearModifies();
 		return inst;
 	}
