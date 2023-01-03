@@ -1,0 +1,23 @@
+[query_0]
+select 'moduleTop@query_0'
+
+[top_query_1]
+select 'moduleTop@query_1'
+
+
+[top_query_2:mysql]
+select 'moduleTop@query_2#mysql'
+
+[top_query_2]
+select 'moduleTop@query_2#default'
+
+[top_query_3]
+select #for(f:fields)#(f)#(for.last?' ':', ')#end
+from sys_dict_item itm
+LEFT JOIN sys_dict dict ON dict.code=itm.dict_code
+WHERE dict.code like ?
+#{QUESTION_LIST_1}
+and itm.code like ?
+#{QUESTION_LIST_2}
+and valid = ?
+order by dict.id asc
