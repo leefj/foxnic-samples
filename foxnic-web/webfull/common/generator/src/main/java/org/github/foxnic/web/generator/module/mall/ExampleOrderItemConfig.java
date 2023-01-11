@@ -153,7 +153,7 @@ public class ExampleOrderItemConfig extends BaseCodeConfig<WEBFULL_EXAMPLE_ORDER
 
 
     public ExampleOrderItemConfig() {
-        super("webfull-service-example", WEBFULL_EXAMPLE_ORDER_ITEM.$TABLE, "webfull_example_", 3);
+        super("webfull-service-example", WEBFULL_EXAMPLE_ORDER_ITEM.$TABLE, "webfull_example_");
     }
 
 

@@ -146,7 +146,7 @@ public class ExampleGoodsConfig extends BaseCodeConfig<WEBFULL_EXAMPLE_GOODS> {
 
 
     public ExampleGoodsConfig() {
-        super("webfull-service-example", WEBFULL_EXAMPLE_GOODS.$TABLE, "webfull_example_", 3);
+        super("webfull-service-example", WEBFULL_EXAMPLE_GOODS.$TABLE, "webfull_example_");
     }
 
 

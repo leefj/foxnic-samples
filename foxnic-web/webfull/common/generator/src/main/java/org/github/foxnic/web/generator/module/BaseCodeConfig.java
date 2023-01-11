@@ -11,12 +11,11 @@ public abstract class BaseCodeConfig<T extends DBTable> extends ModuleCodeConfig
 
 
     private WebFullConfigs configs;
-    private int apiSort;
 
 
-    public BaseCodeConfig(String appConfigPrefix, T table, String tablePrefix, int apiSort) {
+
+    public BaseCodeConfig(String appConfigPrefix, T table, String tablePrefix) {
         super(table,tablePrefix);
-        this.apiSort=apiSort;
         this.configs=new WebFullConfigs(appConfigPrefix);
         this.init();
     }
@@ -32,7 +31,6 @@ public abstract class BaseCodeConfig<T extends DBTable> extends ModuleCodeConfig
 
         //项目配置
         ProjectConfigs procfg=this.configs.getProjectConfigs();
-
 
         ModuleContext mdu=new ModuleContext(this.configs.getSettings(),TABLE,tablePrefix,procfg.getAppPackageName());
         //设置页面的代码文件路径

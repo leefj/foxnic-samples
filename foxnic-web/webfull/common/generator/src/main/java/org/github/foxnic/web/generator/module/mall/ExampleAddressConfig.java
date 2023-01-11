@@ -270,7 +270,7 @@ public class ExampleAddressConfig extends BaseCodeConfig<WEBFULL_EXAMPLE_ADDRESS
 
 
     public ExampleAddressConfig() {
-        super("webfull-service-example", WEBFULL_EXAMPLE_ADDRESS.$TABLE, "webfull_example_", 3);
+        super("webfull-service-example", WEBFULL_EXAMPLE_ADDRESS.$TABLE, "webfull_example_");
     }
 
 

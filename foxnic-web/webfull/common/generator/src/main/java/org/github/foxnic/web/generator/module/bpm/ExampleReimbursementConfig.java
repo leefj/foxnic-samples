@@ -146,15 +146,8 @@ public class ExampleReimbursementConfig extends BaseCodeConfig<WebFullTables.WEB
     }
 
 
-
-
-
-
-
-
-
     public ExampleReimbursementConfig() {
-        super("webfull-service-example", WebFullTables.WEBFULL_EXAMPLE_REIMBURSEMENT.$TABLE, "webfull_example_", 3);
+        super("webfull-service-example", WebFullTables.WEBFULL_EXAMPLE_REIMBURSEMENT.$TABLE, "webfull_example_");
     }
 
 
