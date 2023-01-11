@@ -22,8 +22,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 订单明细VO类型
  * <p>订单明细 , 数据表 webfull_example_order_item 的通用VO类型</p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-12-01 09:09:22
- * @sign F1A87AD1DF163FF7F29F5EE169DBAA9B
+ * @since 2023-01-11 09:59:17
+ * @sign E1D57ABE01C836ACC281372DEC650F22
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -79,6 +79,18 @@ public class OrderItemVO extends OrderItem {
 	*/
 	@ApiModelProperty(required = false,value="排序方式" , notes = "")
 	private String sortType;
+	
+	/**
+	 * 数据来源：前端指定不同的来源，后端按来源执行不同的逻辑
+	*/
+	@ApiModelProperty(required = false,value="数据来源" , notes = "前端指定不同的来源，后端按来源执行不同的逻辑")
+	private String dataOrigin;
+	
+	/**
+	 * 查询逻辑：默认and，可指定 or 
+	*/
+	@ApiModelProperty(required = false,value="查询逻辑" , notes = "默认and，可指定 or ")
+	private String queryLogic;
 	
 	/**
 	 * 主键清单：用于接收批量主键参数
@@ -242,6 +254,44 @@ public class OrderItemVO extends OrderItem {
 	}
 	
 	/**
+	 * 获得 数据来源<br>
+	 * 前端指定不同的来源，后端按来源执行不同的逻辑
+	 * @return 数据来源
+	*/
+	public String getDataOrigin() {
+		return dataOrigin;
+	}
+	
+	/**
+	 * 设置 数据来源
+	 * @param dataOrigin 数据来源
+	 * @return 当前对象
+	*/
+	public OrderItemVO setDataOrigin(String dataOrigin) {
+		this.dataOrigin=dataOrigin;
+		return this;
+	}
+	
+	/**
+	 * 获得 查询逻辑<br>
+	 * 默认and，可指定 or 
+	 * @return 查询逻辑
+	*/
+	public String getQueryLogic() {
+		return queryLogic;
+	}
+	
+	/**
+	 * 设置 查询逻辑
+	 * @param queryLogic 查询逻辑
+	 * @return 当前对象
+	*/
+	public OrderItemVO setQueryLogic(String queryLogic) {
+		this.queryLogic=queryLogic;
+		return this;
+	}
+	
+	/**
 	 * 获得 主键清单<br>
 	 * 用于接收批量主键参数
 	 * @return 主键清单
@@ -347,7 +397,9 @@ public class OrderItemVO extends OrderItem {
 			inst.setSortField(this.getSortField());
 			inst.setGoods(this.getGoods());
 			inst.setPageSize(this.getPageSize());
+			inst.setDataOrigin(this.getDataOrigin());
 			inst.setIds(this.getIds());
+			inst.setQueryLogic(this.getQueryLogic());
 			inst.setSearchValue(this.getSearchValue());
 		}
 		inst.clearModifies();
@@ -428,6 +480,8 @@ public class OrderItemVO extends OrderItem {
 			this.setSortField(DataParser.parse(String.class, map.get(OrderItemVOMeta.SORT_FIELD)));
 			this.setGoods(DataParser.parse(Goods.class, map.get(OrderItemVOMeta.GOODS)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(OrderItemVOMeta.PAGE_SIZE)));
+			this.setDataOrigin(DataParser.parse(String.class, map.get(OrderItemVOMeta.DATA_ORIGIN)));
+			this.setQueryLogic(DataParser.parse(String.class, map.get(OrderItemVOMeta.QUERY_LOGIC)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(OrderItemVOMeta.SEARCH_VALUE)));
 			return true;
 		} else {
@@ -452,6 +506,8 @@ public class OrderItemVO extends OrderItem {
 				this.setSortField( (String)map.get(OrderItemVOMeta.SORT_FIELD));
 				this.setGoods( (Goods)map.get(OrderItemVOMeta.GOODS));
 				this.setPageSize( (Integer)map.get(OrderItemVOMeta.PAGE_SIZE));
+				this.setDataOrigin( (String)map.get(OrderItemVOMeta.DATA_ORIGIN));
+				this.setQueryLogic( (String)map.get(OrderItemVOMeta.QUERY_LOGIC));
 				this.setSearchValue( (String)map.get(OrderItemVOMeta.SEARCH_VALUE));
 				return true;
 			} catch (Exception e) {

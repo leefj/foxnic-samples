@@ -24,7 +24,7 @@ import java.util.Map;
  * 商品服务接口
  * </p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-12-01 09:09:16
+ * @since 2023-01-11 09:59:16
 */
 
 public interface IGoodsService extends  ISimpleIdService<Goods,String> {

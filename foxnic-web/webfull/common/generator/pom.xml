@@ -13,6 +13,7 @@
     <name>webfull-web-generator</name>
     <description>WebFull Generator</description>
     <dependencies>
+        <!-- 通用基础模块 -->
         <dependency>
             <groupId>com.github.foxnic.web</groupId>
             <artifactId>framework-boot</artifactId>
@@ -23,21 +24,17 @@
             <artifactId>framework-cloud</artifactId>
             <version>${foxnic.web.version}</version>
         </dependency>
-
         <dependency>
             <groupId>com.github.foxnic</groupId>
             <artifactId>foxnic-generator</artifactId>
             <version>${foxnic.version}</version>
         </dependency>
-
-
+        <!-- 当前项目基础模块 -->
         <dependency>
             <groupId>com.github.foxnic.example.webfull</groupId>
             <artifactId>webfull-proxy</artifactId>
             <version>${project.version}</version>
         </dependency>
-
-        <!-- 当前项目基础模块 -->
         <dependency>
             <groupId>com.github.foxnic.example.webfull</groupId>
             <artifactId>webfull-domain</artifactId>
@@ -48,7 +45,6 @@
             <artifactId>webfull-framework</artifactId>
             <version>${project.version}</version>
         </dependency>
-
         <!-- 当前项目业务模块 -->
         <dependency>
             <groupId>com.github.foxnic.example.webfull</groupId>
@@ -60,9 +56,6 @@
             <artifactId>webfull-view-example</artifactId>
             <version>${project.version}</version>
         </dependency>
-
-
-
     </dependencies>
     <build>
         <defaultGoal>compile</defaultGoal>

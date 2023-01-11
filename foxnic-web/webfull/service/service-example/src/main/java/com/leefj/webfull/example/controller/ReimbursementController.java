@@ -49,7 +49,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 费用报销单接口控制器
  * </p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-12-01 09:09:23
+ * @since 2023-01-11 09:59:18
 */
 
 @InDoc
@@ -175,7 +175,7 @@ public class ReimbursementController extends SuperController implements BpmCallb
 		@ApiImplicitParam(name = ReimbursementVOMeta.STATUS , value = "审批状态" , required = false , dataTypeClass=String.class , example = "审批中"),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
-	@ApiOperationSupport( order=4 , author="李方捷 , leefangjie@qq.com" ,  ignoreParameters = { ReimbursementVOMeta.PAGE_INDEX , ReimbursementVOMeta.PAGE_SIZE , ReimbursementVOMeta.SEARCH_FIELD , ReimbursementVOMeta.FUZZY_FIELD , ReimbursementVOMeta.SEARCH_VALUE , ReimbursementVOMeta.DIRTY_FIELDS , ReimbursementVOMeta.SORT_FIELD , ReimbursementVOMeta.SORT_TYPE , ReimbursementVOMeta.IDS } )
+	@ApiOperationSupport( order=4 , author="李方捷 , leefangjie@qq.com" ,  ignoreParameters = { ReimbursementVOMeta.PAGE_INDEX , ReimbursementVOMeta.PAGE_SIZE , ReimbursementVOMeta.SEARCH_FIELD , ReimbursementVOMeta.FUZZY_FIELD , ReimbursementVOMeta.SEARCH_VALUE , ReimbursementVOMeta.DIRTY_FIELDS , ReimbursementVOMeta.SORT_FIELD , ReimbursementVOMeta.SORT_TYPE , ReimbursementVOMeta.DATA_ORIGIN , ReimbursementVOMeta.QUERY_LOGIC , ReimbursementVOMeta.IDS } )
 	@SentinelResource(value = ReimbursementServiceProxy.UPDATE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(ReimbursementServiceProxy.UPDATE)
 	public Result update(ReimbursementVO reimbursementVO) {
@@ -195,7 +195,7 @@ public class ReimbursementController extends SuperController implements BpmCallb
 		@ApiImplicitParam(name = ReimbursementVOMeta.STATUS , value = "审批状态" , required = false , dataTypeClass=String.class , example = "审批中"),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
-	@ApiOperationSupport(order=5 ,  ignoreParameters = { ReimbursementVOMeta.PAGE_INDEX , ReimbursementVOMeta.PAGE_SIZE , ReimbursementVOMeta.SEARCH_FIELD , ReimbursementVOMeta.FUZZY_FIELD , ReimbursementVOMeta.SEARCH_VALUE , ReimbursementVOMeta.DIRTY_FIELDS , ReimbursementVOMeta.SORT_FIELD , ReimbursementVOMeta.SORT_TYPE , ReimbursementVOMeta.IDS } )
+	@ApiOperationSupport(order=5 ,  ignoreParameters = { ReimbursementVOMeta.PAGE_INDEX , ReimbursementVOMeta.PAGE_SIZE , ReimbursementVOMeta.SEARCH_FIELD , ReimbursementVOMeta.FUZZY_FIELD , ReimbursementVOMeta.SEARCH_VALUE , ReimbursementVOMeta.DIRTY_FIELDS , ReimbursementVOMeta.SORT_FIELD , ReimbursementVOMeta.SORT_TYPE , ReimbursementVOMeta.DATA_ORIGIN , ReimbursementVOMeta.QUERY_LOGIC , ReimbursementVOMeta.IDS } )
 	@SentinelResource(value = ReimbursementServiceProxy.SAVE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(ReimbursementServiceProxy.SAVE)
 	public Result save(ReimbursementVO reimbursementVO) {

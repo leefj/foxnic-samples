@@ -45,7 +45,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 商品接口控制器
  * </p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-12-01 09:09:16
+ * @since 2023-01-11 09:59:16
 */
 
 @InDoc
@@ -169,7 +169,7 @@ public class GoodsController extends SuperController {
 		@ApiImplicitParam(name = GoodsVOMeta.PRICE , value = "单价" , required = false , dataTypeClass=BigDecimal.class , example = "6.00"),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
-	@ApiOperationSupport( order=4 , author="李方捷 , leefangjie@qq.com" ,  ignoreParameters = { GoodsVOMeta.PAGE_INDEX , GoodsVOMeta.PAGE_SIZE , GoodsVOMeta.SEARCH_FIELD , GoodsVOMeta.FUZZY_FIELD , GoodsVOMeta.SEARCH_VALUE , GoodsVOMeta.DIRTY_FIELDS , GoodsVOMeta.SORT_FIELD , GoodsVOMeta.SORT_TYPE , GoodsVOMeta.IDS } )
+	@ApiOperationSupport( order=4 , author="李方捷 , leefangjie@qq.com" ,  ignoreParameters = { GoodsVOMeta.PAGE_INDEX , GoodsVOMeta.PAGE_SIZE , GoodsVOMeta.SEARCH_FIELD , GoodsVOMeta.FUZZY_FIELD , GoodsVOMeta.SEARCH_VALUE , GoodsVOMeta.DIRTY_FIELDS , GoodsVOMeta.SORT_FIELD , GoodsVOMeta.SORT_TYPE , GoodsVOMeta.DATA_ORIGIN , GoodsVOMeta.QUERY_LOGIC , GoodsVOMeta.IDS } )
 	@SentinelResource(value = GoodsServiceProxy.UPDATE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(GoodsServiceProxy.UPDATE)
 	public Result update(GoodsVO goodsVO) {
@@ -188,7 +188,7 @@ public class GoodsController extends SuperController {
 		@ApiImplicitParam(name = GoodsVOMeta.PRICE , value = "单价" , required = false , dataTypeClass=BigDecimal.class , example = "6.00"),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
-	@ApiOperationSupport(order=5 ,  ignoreParameters = { GoodsVOMeta.PAGE_INDEX , GoodsVOMeta.PAGE_SIZE , GoodsVOMeta.SEARCH_FIELD , GoodsVOMeta.FUZZY_FIELD , GoodsVOMeta.SEARCH_VALUE , GoodsVOMeta.DIRTY_FIELDS , GoodsVOMeta.SORT_FIELD , GoodsVOMeta.SORT_TYPE , GoodsVOMeta.IDS } )
+	@ApiOperationSupport(order=5 ,  ignoreParameters = { GoodsVOMeta.PAGE_INDEX , GoodsVOMeta.PAGE_SIZE , GoodsVOMeta.SEARCH_FIELD , GoodsVOMeta.FUZZY_FIELD , GoodsVOMeta.SEARCH_VALUE , GoodsVOMeta.DIRTY_FIELDS , GoodsVOMeta.SORT_FIELD , GoodsVOMeta.SORT_TYPE , GoodsVOMeta.DATA_ORIGIN , GoodsVOMeta.QUERY_LOGIC , GoodsVOMeta.IDS } )
 	@SentinelResource(value = GoodsServiceProxy.SAVE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(GoodsServiceProxy.SAVE)
 	public Result save(GoodsVO goodsVO) {

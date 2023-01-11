@@ -23,8 +23,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 商品VO类型
  * <p>商品 , 数据表 webfull_example_goods 的通用VO类型</p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-12-01 09:09:15
- * @sign D5EC66A9CF3A8FEF67AE01CD4DE75E9E
+ * @since 2023-01-11 09:59:16
+ * @sign 9DF47F18D7DB160D7A090BD02568C257
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -80,6 +80,18 @@ public class GoodsVO extends Goods {
 	*/
 	@ApiModelProperty(required = false,value="排序方式" , notes = "")
 	private String sortType;
+	
+	/**
+	 * 数据来源：前端指定不同的来源，后端按来源执行不同的逻辑
+	*/
+	@ApiModelProperty(required = false,value="数据来源" , notes = "前端指定不同的来源，后端按来源执行不同的逻辑")
+	private String dataOrigin;
+	
+	/**
+	 * 查询逻辑：默认and，可指定 or 
+	*/
+	@ApiModelProperty(required = false,value="查询逻辑" , notes = "默认and，可指定 or ")
+	private String queryLogic;
 	
 	/**
 	 * 主键清单：用于接收批量主键参数
@@ -243,6 +255,44 @@ public class GoodsVO extends Goods {
 	}
 	
 	/**
+	 * 获得 数据来源<br>
+	 * 前端指定不同的来源，后端按来源执行不同的逻辑
+	 * @return 数据来源
+	*/
+	public String getDataOrigin() {
+		return dataOrigin;
+	}
+	
+	/**
+	 * 设置 数据来源
+	 * @param dataOrigin 数据来源
+	 * @return 当前对象
+	*/
+	public GoodsVO setDataOrigin(String dataOrigin) {
+		this.dataOrigin=dataOrigin;
+		return this;
+	}
+	
+	/**
+	 * 获得 查询逻辑<br>
+	 * 默认and，可指定 or 
+	 * @return 查询逻辑
+	*/
+	public String getQueryLogic() {
+		return queryLogic;
+	}
+	
+	/**
+	 * 设置 查询逻辑
+	 * @param queryLogic 查询逻辑
+	 * @return 当前对象
+	*/
+	public GoodsVO setQueryLogic(String queryLogic) {
+		this.queryLogic=queryLogic;
+		return this;
+	}
+	
+	/**
 	 * 获得 主键清单<br>
 	 * 用于接收批量主键参数
 	 * @return 主键清单
@@ -346,7 +396,9 @@ public class GoodsVO extends Goods {
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
 			inst.setPageSize(this.getPageSize());
+			inst.setDataOrigin(this.getDataOrigin());
 			inst.setIds(this.getIds());
+			inst.setQueryLogic(this.getQueryLogic());
 			inst.setSearchValue(this.getSearchValue());
 		}
 		inst.clearModifies();
@@ -425,6 +477,8 @@ public class GoodsVO extends Goods {
 			this.setFuzzyField(DataParser.parse(String.class, map.get(GoodsVOMeta.FUZZY_FIELD)));
 			this.setSortField(DataParser.parse(String.class, map.get(GoodsVOMeta.SORT_FIELD)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(GoodsVOMeta.PAGE_SIZE)));
+			this.setDataOrigin(DataParser.parse(String.class, map.get(GoodsVOMeta.DATA_ORIGIN)));
+			this.setQueryLogic(DataParser.parse(String.class, map.get(GoodsVOMeta.QUERY_LOGIC)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(GoodsVOMeta.SEARCH_VALUE)));
 			return true;
 		} else {
@@ -447,6 +501,8 @@ public class GoodsVO extends Goods {
 				this.setFuzzyField( (String)map.get(GoodsVOMeta.FUZZY_FIELD));
 				this.setSortField( (String)map.get(GoodsVOMeta.SORT_FIELD));
 				this.setPageSize( (Integer)map.get(GoodsVOMeta.PAGE_SIZE));
+				this.setDataOrigin( (String)map.get(GoodsVOMeta.DATA_ORIGIN));
+				this.setQueryLogic( (String)map.get(GoodsVOMeta.QUERY_LOGIC));
 				this.setSearchValue( (String)map.get(GoodsVOMeta.SEARCH_VALUE));
 				return true;
 			} catch (Exception e) {

@@ -45,7 +45,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 订单明细接口控制器
  * </p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2022-12-01 09:09:23
+ * @since 2023-01-11 09:59:18
 */
 
 @InDoc
@@ -171,7 +171,7 @@ public class OrderItemController extends SuperController {
 		@ApiImplicitParam(name = OrderItemVOMeta.AMOUNT , value = "数量" , required = false , dataTypeClass=Integer.class),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
-	@ApiOperationSupport( order=4 , author="李方捷 , leefangjie@qq.com" ,  ignoreParameters = { OrderItemVOMeta.PAGE_INDEX , OrderItemVOMeta.PAGE_SIZE , OrderItemVOMeta.SEARCH_FIELD , OrderItemVOMeta.FUZZY_FIELD , OrderItemVOMeta.SEARCH_VALUE , OrderItemVOMeta.DIRTY_FIELDS , OrderItemVOMeta.SORT_FIELD , OrderItemVOMeta.SORT_TYPE , OrderItemVOMeta.IDS } )
+	@ApiOperationSupport( order=4 , author="李方捷 , leefangjie@qq.com" ,  ignoreParameters = { OrderItemVOMeta.PAGE_INDEX , OrderItemVOMeta.PAGE_SIZE , OrderItemVOMeta.SEARCH_FIELD , OrderItemVOMeta.FUZZY_FIELD , OrderItemVOMeta.SEARCH_VALUE , OrderItemVOMeta.DIRTY_FIELDS , OrderItemVOMeta.SORT_FIELD , OrderItemVOMeta.SORT_TYPE , OrderItemVOMeta.DATA_ORIGIN , OrderItemVOMeta.QUERY_LOGIC , OrderItemVOMeta.IDS } )
 	@SentinelResource(value = OrderItemServiceProxy.UPDATE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(OrderItemServiceProxy.UPDATE)
 	public Result update(OrderItemVO orderItemVO) {
@@ -191,7 +191,7 @@ public class OrderItemController extends SuperController {
 		@ApiImplicitParam(name = OrderItemVOMeta.AMOUNT , value = "数量" , required = false , dataTypeClass=Integer.class),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
-	@ApiOperationSupport(order=5 ,  ignoreParameters = { OrderItemVOMeta.PAGE_INDEX , OrderItemVOMeta.PAGE_SIZE , OrderItemVOMeta.SEARCH_FIELD , OrderItemVOMeta.FUZZY_FIELD , OrderItemVOMeta.SEARCH_VALUE , OrderItemVOMeta.DIRTY_FIELDS , OrderItemVOMeta.SORT_FIELD , OrderItemVOMeta.SORT_TYPE , OrderItemVOMeta.IDS } )
+	@ApiOperationSupport(order=5 ,  ignoreParameters = { OrderItemVOMeta.PAGE_INDEX , OrderItemVOMeta.PAGE_SIZE , OrderItemVOMeta.SEARCH_FIELD , OrderItemVOMeta.FUZZY_FIELD , OrderItemVOMeta.SEARCH_VALUE , OrderItemVOMeta.DIRTY_FIELDS , OrderItemVOMeta.SORT_FIELD , OrderItemVOMeta.SORT_TYPE , OrderItemVOMeta.DATA_ORIGIN , OrderItemVOMeta.QUERY_LOGIC , OrderItemVOMeta.IDS } )
 	@SentinelResource(value = OrderItemServiceProxy.SAVE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(OrderItemServiceProxy.SAVE)
 	public Result save(OrderItemVO orderItemVO) {
