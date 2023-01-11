@@ -13,9 +13,9 @@ import com.leefj.foxnic.sql.demo.config.DBInstance;
 import com.leefj.foxnic.sql.demo.config.db.ExampleTables;
 
 /**
- * 实体类生成器
+ * 代码生成器
  * */
-public class EntityGenerator {
+public class ExampleCodeGenerator {
     public static interface  Config  {
         void config(PoClassFile poType);
     }
@@ -26,7 +26,7 @@ public class EntityGenerator {
      * 需要首先运行 ExampleDBMetaGenerator 生成 ExampleTables 类
      * */
     public static void main(String[] args) {
-        EntityGenerator generator = new EntityGenerator();
+        ExampleCodeGenerator generator = new ExampleCodeGenerator();
         // 生成商品实体类
         generator.generate(ExampleTables.EXAMPLE_GOODS.$TABLE, poType -> {
             // Goods 对象 通过 orderList 属性持有 Order
