@@ -13,6 +13,9 @@ import com.leefj.webfull.constants.db.WebFullTables.WEBFULL_EXAMPLE_ADDRESS;
 import com.leefj.webfull.constants.enums.WebFullDictEnum;
 import com.leefj.webfull.constants.enums.dict.RegionLocation;
 import com.leefj.webfull.constants.enums.example.RegionType;
+import com.leefj.webfull.domain.example.Goods;
+import com.leefj.webfull.domain.example.Order;
+import com.leefj.webfull.domain.example.OrderItem;
 import org.github.foxnic.web.generator.module.BaseCodeConfig;
 
 
@@ -27,10 +30,9 @@ public class ExampleAddressConfig extends BaseCodeConfig<WEBFULL_EXAMPLE_ADDRESS
 
         // 1、为 po 添加属性
         poType.addSimpleProperty(Integer.class, "orderCount", "订单量", "每年收到的订单数量");
-//		poType.addListProperty(Goods.class,"goodsList","订单明细商品","订单明细商品");
-//		poType.addListProperty(OrderItem.class,"itemList","订单明细","订单明细");
-//		poType.addListProperty(Order.class,"orderList","订单","订单");
-
+		poType.addListProperty(Goods.class,"goodsList","订单明细商品","订单明细商品");
+		poType.addListProperty(OrderItem.class,"itemList","订单明细","订单明细");
+		poType.addListProperty(Order.class,"orderList","订单","订单");
 
         // 2、为 vo 添加属性
         voType.addSimpleProperty(String.class, "keyword", "关键字", "查询关键字");
@@ -59,7 +61,6 @@ public class ExampleAddressConfig extends BaseCodeConfig<WEBFULL_EXAMPLE_ADDRESS
         fields = this.createFieldsBuilder();
         fields.addAll().removeDBTreatyFields();
         addressPureModel.addSimpleProperties(fields);
-
     }
 
     /**
@@ -69,7 +70,14 @@ public class ExampleAddressConfig extends BaseCodeConfig<WEBFULL_EXAMPLE_ADDRESS
     public void configFields(ViewOptions view) {
 
         // ID 字段通常隐藏
-        view.field(WEBFULL_EXAMPLE_ADDRESS.ID).basic().hidden();
+        view.field(WEBFULL_EXAMPLE_ADDRESS.ID)
+                // 基础配置，可通过 form、search、table 覆盖。
+                .basic().hidden();
+
+        // ID 字段通常隐藏
+        view.field(WEBFULL_EXAMPLE_ADDRESS.ID)
+                // 基础配置，可通过 form、search、table 覆盖。
+                .basic().hidden();
 
         // NAME 字段，单行文本框
         view.field(WEBFULL_EXAMPLE_ADDRESS.NAME)

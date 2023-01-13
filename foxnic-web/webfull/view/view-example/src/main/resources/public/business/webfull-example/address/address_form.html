@@ -3,6 +3,7 @@
  * 订单地址 列表页 JS 脚本
  * @author 李方捷 , leefangjie@qq.com
  * @since 2023-01-11 09:59:17
+ * @version
  */
  -->
  <!DOCTYPE html>
@@ -95,7 +96,7 @@
                         <input lay-filter="address" id="address" name="address" th:placeholder="${ lang.translate('请输入'+'收件地址') }" type="text" class="layui-input"    lay-verify="|required"   value="浙江省宁波市" />
                     </div>
                 </div>
-            
+
                 <!-- select_box : 类型 ,  regionType  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('类型')}">类型</div><div class="layui-required">*</div></div>
@@ -103,7 +104,7 @@
                         <div id="regionType" input-type="select" th:data="${enum.toArray('com.leefj.webfull.constants.enums.example.RegionType')}" extraParam="{}"></div>
                     </div>
                 </div>
-            
+
                 <!-- check_box : 地区位置 ,  regionLocation  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('地区位置')}">地区位置</div></div>
@@ -111,7 +112,7 @@
                             <input input-type="checkbox" type="checkbox" name="regionLocation" lay-filter="regionLocation" lay-skin="primary" th:each="e,stat:${dict.toArray('region_location')}" th:value="${e.code}" th:title="${e.text}" th:checked="${pageHelper.checkDefault(e.code,stat.index,'dongbei,huanan','')}">
                     </div>
                 </div>
-            
+
                 <!-- text_area : 备注 ,  notes  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('备注')}">备注</div></div>
