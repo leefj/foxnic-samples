@@ -36,3 +36,4 @@ hs_err_pid*
 /foxnic-web/web-full/wrapper/wrapper-camunda/target
 /foxnic-web/web-full/common/generator/target
 target\
+/foxnic-sql/target
