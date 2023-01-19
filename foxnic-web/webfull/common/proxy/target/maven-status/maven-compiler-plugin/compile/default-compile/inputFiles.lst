@@ -1,3 +1,7 @@
-/Users/LeeFJ/git/foxnic-samples/foxnic-web/webfull/common/proxy/src/main/java/com/leefj/webfull/proxy/example/AddressServiceProxy.java
-/Users/LeeFJ/git/foxnic-samples/foxnic-web/webfull/common/proxy/src/main/java/com/leefj/webfull/proxy/WebFullServiceNames.java
-/Users/LeeFJ/git/foxnic-samples/foxnic-web/webfull/common/proxy/src/main/java/com/leefj/webfull/proxy/FeignConfiguration.java
+D:\leefj\workspace\git-base\foxnic-samples\foxnic-web\webfull\common\proxy\src\main\java\com\leefj\webfull\proxy\example\AddressServiceProxy.java
+D:\leefj\workspace\git-base\foxnic-samples\foxnic-web\webfull\common\proxy\src\main\java\com\leefj\webfull\proxy\example\OrderItemServiceProxy.java
+D:\leefj\workspace\git-base\foxnic-samples\foxnic-web\webfull\common\proxy\src\main\java\com\leefj\webfull\proxy\FeignConfiguration.java
+D:\leefj\workspace\git-base\foxnic-samples\foxnic-web\webfull\common\proxy\src\main\java\com\leefj\webfull\proxy\example\GoodsServiceProxy.java
+D:\leefj\workspace\git-base\foxnic-samples\foxnic-web\webfull\common\proxy\src\main\java\com\leefj\webfull\proxy\WebFullServiceNames.java
+D:\leefj\workspace\git-base\foxnic-samples\foxnic-web\webfull\common\proxy\src\main\java\com\leefj\webfull\proxy\example\OrderServiceProxy.java
+D:\leefj\workspace\git-base\foxnic-samples\foxnic-web\webfull\common\proxy\src\main\java\com\leefj\webfull\proxy\example\ReimbursementServiceProxy.java
