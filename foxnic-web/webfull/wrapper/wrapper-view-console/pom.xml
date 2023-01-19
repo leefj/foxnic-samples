@@ -13,7 +13,7 @@
     <description>Wrapper Console View</description>
     <dependencies>
         <dependency>
-            <groupId>com.github.foxnic.web</groupId>
+            <groupId>com.foxnicweb.web</groupId>
             <artifactId>view-console</artifactId>
             <version>${foxnic.web.version}</version>
         </dependency>

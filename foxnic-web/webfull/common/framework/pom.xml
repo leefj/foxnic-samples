@@ -14,7 +14,7 @@
     <description>WebFull Framework</description>
     <dependencies>
         <dependency>
-            <groupId>com.github.foxnic.web</groupId>
+            <groupId>com.foxnicweb.web</groupId>
             <artifactId>framework-boot</artifactId>
             <version>${foxnic.web.version}</version>
         </dependency>
@@ -25,7 +25,7 @@
         </dependency>
 
         <dependency>
-            <groupId>com.github.foxnic.web</groupId>
+            <groupId>com.foxnicweb.web</groupId>
             <artifactId>proxy</artifactId>
             <version>${foxnic.web.version}</version>
         </dependency>

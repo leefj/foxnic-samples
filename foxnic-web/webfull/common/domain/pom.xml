@@ -18,12 +18,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.github.foxnic</groupId>
+            <groupId>com.foxnicweb</groupId>
             <artifactId>foxnic-api</artifactId>
             <version>${foxnic.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.github.foxnic</groupId>
+            <groupId>com.foxnicweb</groupId>
             <artifactId>foxnic-sql</artifactId>
             <version>${foxnic.version}</version>
         </dependency>
@@ -34,7 +34,7 @@
         </dependency>
 
         <dependency>
-            <groupId>com.github.foxnic.web</groupId>
+            <groupId>com.foxnicweb.web</groupId>
             <artifactId>domain</artifactId>
             <version>${foxnic.web.version}</version>
         </dependency>

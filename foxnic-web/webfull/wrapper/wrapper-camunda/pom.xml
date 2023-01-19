@@ -14,12 +14,12 @@
     <description>WebFull BPM App</description>
     <dependencies>
         <dependency>
-            <groupId>com.github.foxnic.web</groupId>
+            <groupId>com.foxnicweb.web</groupId>
             <artifactId>framework-boot</artifactId>
             <version>${foxnic.web.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.github.foxnic.web</groupId>
+            <groupId>com.foxnicweb.web</groupId>
             <artifactId>service-camunda</artifactId>
             <version>${foxnic.web.version}</version>
         </dependency>

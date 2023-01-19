@@ -15,17 +15,17 @@
     <dependencies>
         <!-- 通用基础模块 -->
         <dependency>
-            <groupId>com.github.foxnic.web</groupId>
+            <groupId>com.foxnicweb.web</groupId>
             <artifactId>framework-boot</artifactId>
             <version>${foxnic.web.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.github.foxnic.web</groupId>
+            <groupId>com.foxnicweb.web</groupId>
             <artifactId>framework-cloud</artifactId>
             <version>${foxnic.web.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.github.foxnic</groupId>
+            <groupId>com.foxnicweb</groupId>
             <artifactId>foxnic-generator</artifactId>
             <version>${foxnic.version}</version>
         </dependency>

@@ -14,86 +14,86 @@
     <description>Wrapper-All</description>
     <dependencies>
         <dependency>
-            <groupId>com.github.foxnic.web</groupId>
+            <groupId>com.foxnicweb.web</groupId>
             <artifactId>service-storage</artifactId>
             <version>${foxnic.web.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.github.foxnic.web</groupId>
+            <groupId>com.foxnicweb.web</groupId>
             <artifactId>service-job</artifactId>
             <version>${foxnic.web.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.github.foxnic.web</groupId>
+            <groupId>com.foxnicweb.web</groupId>
             <artifactId>service-system</artifactId>
             <version>${foxnic.web.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.github.foxnic.web</groupId>
+            <groupId>com.foxnicweb.web</groupId>
             <artifactId>service-oauth</artifactId>
             <version>${foxnic.web.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.github.foxnic.web</groupId>
+            <groupId>com.foxnicweb.web</groupId>
             <artifactId>service-hrm</artifactId>
             <version>${foxnic.web.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.github.foxnic.web</groupId>
+            <groupId>com.foxnicweb.web</groupId>
             <artifactId>service-pcm</artifactId>
             <version>${foxnic.web.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.github.foxnic.web</groupId>
+            <groupId>com.foxnicweb.web</groupId>
             <artifactId>service-changes</artifactId>
             <version>${foxnic.web.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.github.foxnic.web</groupId>
+            <groupId>com.foxnicweb.web</groupId>
             <artifactId>service-bpm</artifactId>
             <version>${foxnic.web.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.github.foxnic.web</groupId>
+            <groupId>com.foxnicweb.web</groupId>
             <artifactId>view-bpm</artifactId>
             <version>${foxnic.web.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.github.foxnic.web</groupId>
+            <groupId>com.foxnicweb.web</groupId>
             <artifactId>service-dataperm</artifactId>
             <version>${foxnic.web.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.github.foxnic.web</groupId>
+            <groupId>com.foxnicweb.web</groupId>
             <artifactId>view-console</artifactId>
             <version>${foxnic.web.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>com.github.foxnic.web</groupId>
+            <groupId>com.foxnicweb.web</groupId>
             <artifactId>view-dataperm</artifactId>
             <version>${foxnic.web.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>com.github.foxnic.web</groupId>
+            <groupId>com.foxnicweb.web</groupId>
             <artifactId>view-pcm</artifactId>
             <version>${foxnic.web.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>com.github.foxnic.web</groupId>
+            <groupId>com.foxnicweb.web</groupId>
             <artifactId>view-changes</artifactId>
             <version>${foxnic.web.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>com.github.foxnic.web</groupId>
+            <groupId>com.foxnicweb.web</groupId>
             <artifactId>service-docs</artifactId>
             <version>${foxnic.web.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.github.foxnic.web</groupId>
+            <groupId>com.foxnicweb.web</groupId>
             <artifactId>view-docs</artifactId>
             <version>${foxnic.web.version}</version>
         </dependency>

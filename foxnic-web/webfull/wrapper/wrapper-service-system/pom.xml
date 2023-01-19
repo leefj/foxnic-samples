@@ -14,12 +14,12 @@
     <description>Wrapper Service System</description>
     <dependencies>
         <dependency>
-            <groupId>com.github.foxnic.web</groupId>
+            <groupId>com.foxnicweb.web</groupId>
             <artifactId>framework-cloud</artifactId>
             <version>${foxnic.web.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.github.foxnic.web</groupId>
+            <groupId>com.foxnicweb.web</groupId>
             <artifactId>service-system</artifactId>
             <version>${foxnic.web.version}</version>
         </dependency>
